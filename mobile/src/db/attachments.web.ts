@@ -1,4 +1,4 @@
-import type { Attachment } from '../domain/types';
+import type { Attachment, PickResult } from '../domain/types';
 
 /**
  * Anexos — versão web.
@@ -80,31 +80,47 @@ export async function listByItem(itemId: string): Promise<Attachment[]> {
     .map(toAttachment);
 }
 
-/** Abre o seletor do navegador e guarda o arquivo. Null se cancelar. */
-export async function pickAndAdd(itemId: string): Promise<Attachment | null> {
-  const file = await pickFile();
-  if (!file) return null;
+/**
+ * Abre o seletor do navegador e guarda tudo o que for escolhido.
+ *
+ * Uma reserva raramente vem num arquivo só: passagem, comprovante e voucher
+ * costumam chegar separados. Um arquivo problemático volta em `failed` sem
+ * derrubar os outros.
+ */
+export async function pickAndAdd(itemId: string): Promise<PickResult> {
+  const files = await pickFiles();
+  const added: Attachment[] = [];
+  const failed: string[] = [];
 
-  const id = `att_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
-  await tx('readwrite', (s) => s.put(file, id));
+  for (const file of files) {
+    try {
+      const id = `att_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
+      await tx('readwrite', (s) => s.put(file, id));
 
-  const meta: Meta = {
-    id,
-    itemId,
-    name: file.name,
-    mimeType: file.type || undefined,
-    size: file.size,
-    createdAt: Date.now(),
-  };
-  writeMeta([...readMeta(), meta]);
-  return toAttachment(meta);
+      const meta: Meta = {
+        id,
+        itemId,
+        name: file.name,
+        mimeType: file.type || undefined,
+        size: file.size,
+        createdAt: Date.now(),
+      };
+      writeMeta([...readMeta(), meta]);
+      added.push(toAttachment(meta));
+    } catch {
+      failed.push(file.name);
+    }
+  }
+
+  return { added, failed };
 }
 
-function pickFile(): Promise<File | null> {
+function pickFiles(): Promise<File[]> {
   return new Promise((resolve) => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'application/pdf,image/*';
+    input.multiple = true;
     input.style.display = 'none';
     document.body.appendChild(input);
 
@@ -114,12 +130,18 @@ function pickFile(): Promise<File | null> {
       window.removeEventListener('focus', onFocus);
       input.remove();
     };
-    const onFocus = () => setTimeout(() => { if (!input.files?.length) { cleanup(); resolve(null); } }, 400);
+    const onFocus = () =>
+      setTimeout(() => {
+        if (!input.files?.length) {
+          cleanup();
+          resolve([]);
+        }
+      }, 400);
 
     input.onchange = () => {
-      const f = input.files?.[0] ?? null;
+      const list = input.files ? Array.from(input.files) : [];
       cleanup();
-      resolve(f);
+      resolve(list);
     };
     window.addEventListener('focus', onFocus);
     input.click();

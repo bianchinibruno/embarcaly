@@ -105,3 +105,10 @@ export interface TimelineStep {
   /** Chave do verbete no verso do bilhete. */
   info?: string;
 }
+
+/** Resultado de uma ida ao seletor de arquivos. */
+export interface PickResult {
+  added: Attachment[];
+  /** Nomes que o aparelho recusou. O resto da escolha continua salvo. */
+  failed: string[];
+}

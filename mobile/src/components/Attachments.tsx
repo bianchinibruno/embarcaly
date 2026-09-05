@@ -41,10 +41,17 @@ export function Attachments({ itemId }: { itemId: string }) {
     setError(null);
     setBusy(true);
     try {
-      const created = await attachments.pickAndAdd(itemId);
-      if (created) await refresh();
-    } catch (e) {
-      setError('Não foi possível anexar este arquivo. Tente outro.');
+      const { added, failed } = await attachments.pickAndAdd(itemId);
+      if (added.length) await refresh();
+      // Falha parcial merece nome: sem isso a pessoa conta os itens da lista
+      // para descobrir qual dos cinco arquivos ficou de fora.
+      if (failed.length === 1) {
+        setError(`Não foi possível anexar «${failed[0]}». Tente outro arquivo.`);
+      } else if (failed.length > 1) {
+        setError(`Não foi possível anexar ${failed.length} arquivos: ${failed.join(', ')}.`);
+      }
+    } catch {
+      setError('Não foi possível anexar. Tente outra vez.');
     } finally {
       setBusy(false);
     }
@@ -60,6 +67,9 @@ export function Attachments({ itemId }: { itemId: string }) {
   }
 
   async function askRemove(att: Attachment) {
+    // Limpa o aviso anterior: um erro de anexo que sobrevive à ação seguinte
+    // vira acusação solta, apontando para um arquivo que não está mais ali.
+    setError(null);
     const ok = await confirm({
       title: 'Remover este anexo?',
       body: `«${att.name}» será apagado deste aparelho. Se você precisar dele de novo, terá que anexar outra vez.`,
@@ -78,8 +88,9 @@ export function Attachments({ itemId }: { itemId: string }) {
       {list.length === 0 ? (
         <View style={[styles.empty, { borderColor: t.rule }]}>
           <Text style={[styles.emptyText, { color: t.ink3 }]}>
-            Nenhum documento anexado. Guarde aqui o PDF do bilhete, o voucher ou a foto da reserva
-            — fica disponível mesmo sem internet.
+            Nenhum documento anexado. Guarde aqui o PDF do bilhete, o voucher ou a foto da
+            reserva — dá para escolher vários de uma vez, e ficam disponíveis mesmo sem
+            internet.
           </Text>
         </View>
       ) : (
@@ -118,7 +129,7 @@ export function Attachments({ itemId }: { itemId: string }) {
       {error ? <Text style={[styles.error, { color: t.stamp }]}>{error}</Text> : null}
 
       <Button
-        title={busy ? 'Abrindo seletor…' : 'Anexar documento'}
+        title={busy ? 'Abrindo seletor…' : list.length ? 'Anexar outro documento' : 'Anexar documento'}
         variant="ghost"
         onPress={add}
         disabled={busy}

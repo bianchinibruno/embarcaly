@@ -4,7 +4,7 @@ import { Directory, File, Paths } from 'expo-file-system';
 import { Linking } from 'react-native';
 
 import { getDb, newId } from './client';
-import type { Attachment } from '../domain/types';
+import type { Attachment, PickResult } from '../domain/types';
 
 /**
  * Anexos — versão nativa.
@@ -54,46 +54,63 @@ export async function listByItem(itemId: string): Promise<Attachment[]> {
   return rows.map(toAttachment);
 }
 
-/** Abre o seletor do sistema e guarda o que for escolhido. Null se cancelar. */
-export async function pickAndAdd(itemId: string): Promise<Attachment | null> {
+/**
+ * Abre o seletor do sistema e guarda tudo o que for escolhido.
+ *
+ * Uma reserva raramente vem num arquivo só: passagem, comprovante de pagamento
+ * e voucher costumam chegar separados. Então o seletor aceita vários de uma vez,
+ * e um arquivo problemático não cancela os outros — ele volta em `failed` e o
+ * resto é salvo.
+ */
+export async function pickAndAdd(itemId: string): Promise<PickResult> {
   const res = await DocumentPicker.getDocumentAsync({
     type: ['application/pdf', 'image/*'],
     copyToCacheDirectory: true,
-    multiple: false,
+    multiple: true,
   });
-  if (res.canceled || !res.assets?.length) return null;
-
-  const asset = res.assets[0];
-  const id = newId('att');
-  const ext = asset.name.includes('.') ? asset.name.split('.').pop() : 'bin';
-
-  const source = new File(asset.uri);
-  const target = new File(folder(), `${id}.${ext}`);
-  source.copy(target);
+  if (res.canceled || !res.assets?.length) return { added: [], failed: [] };
 
   const db = await getDb();
-  const now = Date.now();
-  await db.runAsync(
-    `INSERT INTO attachments (id, item_id, name, mime_type, size, uri, created_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?);`,
-    id,
-    itemId,
-    asset.name,
-    asset.mimeType ?? null,
-    asset.size ?? null,
-    target.uri,
-    now,
-  );
+  const added: Attachment[] = [];
+  const failed: string[] = [];
 
-  return {
-    id,
-    itemId,
-    name: asset.name,
-    mimeType: asset.mimeType,
-    size: asset.size,
-    uri: target.uri,
-    createdAt: new Date(now),
-  };
+  for (const asset of res.assets) {
+    try {
+      const id = newId('att');
+      const ext = asset.name.includes('.') ? asset.name.split('.').pop() : 'bin';
+
+      const source = new File(asset.uri);
+      const target = new File(folder(), `${id}.${ext}`);
+      source.copy(target);
+
+      const now = Date.now();
+      await db.runAsync(
+        `INSERT INTO attachments (id, item_id, name, mime_type, size, uri, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?);`,
+        id,
+        itemId,
+        asset.name,
+        asset.mimeType ?? null,
+        asset.size ?? null,
+        target.uri,
+        now,
+      );
+
+      added.push({
+        id,
+        itemId,
+        name: asset.name,
+        mimeType: asset.mimeType,
+        size: asset.size,
+        uri: target.uri,
+        createdAt: new Date(now),
+      });
+    } catch {
+      failed.push(asset.name);
+    }
+  }
+
+  return { added, failed };
 }
 
 export async function remove(att: Attachment): Promise<void> {
