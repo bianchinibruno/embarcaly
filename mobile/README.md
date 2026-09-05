@@ -11,8 +11,15 @@ npm install
 npx expo start
 ```
 
+> **Windows PowerShell:** o `&&` não existe no PowerShell 5.1. Rode uma linha
+> por vez, ou separe com `;` — `cd mobile; npm install; npx expo start`.
+
 Abra o **Expo Go** no celular e escaneie o QR. Roda em iPhone e Android sem
 Mac, sem Xcode e sem Android Studio.
+
+Se o endereço que aparecer for `localhost` ou `127.0.0.1`, o celular não alcança
+a sua máquina — normalmente rede corporativa ou Wi-Fi que isola dispositivos.
+Nesse caso use `npx expo start --tunnel`.
 
 ```bash
 npm test            # 24 testes do domínio

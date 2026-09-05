@@ -38,8 +38,12 @@ viagens e reservas em banco SQLite local — cria, lista, edita, exclui e persis
 no aparelho, funcionando offline.
 
 ```bash
-cd mobile && npm install && npx expo start
+cd mobile
+npm install
+npx expo start
 ```
+
+No Windows PowerShell, separe com `;` em vez de `&&`.
 
 Abra o Expo Go no celular e escaneie o QR — roda em iPhone e Android sem Mac e
 sem Android Studio. Instruções de build e envio para App Store e Play Store no
