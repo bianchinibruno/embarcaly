@@ -15,6 +15,8 @@ export function TextField({
   autoCapitalize = 'sentences',
   mono = false,
   error,
+  autoFocus = false,
+  onSubmitEditing,
 }: {
   label: string;
   value: string;
@@ -23,6 +25,8 @@ export function TextField({
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   mono?: boolean;
   error?: string;
+  autoFocus?: boolean;
+  onSubmitEditing?: () => void;
 }) {
   const t = useTheme();
   return (
@@ -35,6 +39,9 @@ export function TextField({
         placeholderTextColor={t.ink3}
         autoCapitalize={autoCapitalize}
         autoCorrect={false}
+        autoFocus={autoFocus}
+        onSubmitEditing={onSubmitEditing}
+        returnKeyType={onSubmitEditing ? 'done' : undefined}
         style={[
           styles.input,
           {

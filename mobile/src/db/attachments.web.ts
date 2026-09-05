@@ -148,6 +148,11 @@ function pickFiles(): Promise<File[]> {
   });
 }
 
+/** Troca o rótulo. Os bytes no IndexedDB continuam intactos, na mesma chave. */
+export async function rename(att: Attachment, name: string): Promise<void> {
+  writeMeta(readMeta().map((m) => (m.id === att.id ? { ...m, name } : m)));
+}
+
 export async function remove(att: Attachment): Promise<void> {
   await tx('readwrite', (s) => s.delete(att.id));
   writeMeta(readMeta().filter((m) => m.id !== att.id));

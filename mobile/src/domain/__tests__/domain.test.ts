@@ -3,6 +3,7 @@ import { deriveFlightMarks, deriveLeaveBy, defaultEnd } from '../derive';
 import { passState } from '../passes';
 import { flightTimeline, nextStepIndex } from '../timeline';
 import type { Item } from '../types';
+import { cleanAttachmentName, extensionOf } from '../attachmentName';
 
 const d = (iso: string) => new Date(`${iso}:00`);
 
@@ -151,5 +152,50 @@ describe('linha do tempo do voo', () => {
 
   it('devolve -1 quando tudo já passou', () => {
     expect(nextStepIndex(steps, d('2026-10-04T00:00'))).toBe(-1);
+  });
+});
+
+describe('nome do anexo', () => {
+  it('preserva a extensão quando a pessoa não digita nenhuma', () => {
+    expect(cleanAttachmentName('Voucher do hotel', 'a1b2.pdf')).toBe('Voucher do hotel.pdf');
+  });
+
+  it('não duplica a extensão nem repete o caixa alto', () => {
+    expect(cleanAttachmentName('voucher.PDF', 'a1b2.pdf')).toBe('voucher.pdf');
+  });
+
+  it('não deixa o rótulo mentir sobre o tipo do arquivo', () => {
+    expect(cleanAttachmentName('relatorio.docx', 'a1b2.pdf')).toBe('relatorio.pdf');
+  });
+
+  it('não confunde número de versão com extensão', () => {
+    expect(cleanAttachmentName('voucher 2.0', 'a1b2.pdf')).toBe('voucher 2.0.pdf');
+  });
+
+  it('recusa nome vazio ou só espaço', () => {
+    expect(cleanAttachmentName('   ', 'a1b2.pdf')).toBeNull();
+  });
+
+  it('recusa nome que é só a extensão', () => {
+    expect(cleanAttachmentName('.pdf', 'a1b2.pdf')).toBeNull();
+  });
+
+  it('troca barra por hífen para não parecer caminho', () => {
+    expect(cleanAttachmentName('reservas/hotel', 'a1b2.pdf')).toBe('reservas-hotel.pdf');
+  });
+
+  it('mantém o nome cru quando o original não tem extensão', () => {
+    expect(cleanAttachmentName('meu voucher', 'anexo')).toBe('meu voucher');
+  });
+
+  it('corta nome longo sem perder a extensão', () => {
+    const r = cleanAttachmentName('x'.repeat(300), 'a1b2.pdf');
+    expect(r).not.toBeNull();
+    expect(r!.endsWith('.pdf')).toBe(true);
+    expect(r!.length).toBeLessThanOrEqual(124);
+  });
+
+  it('ignora ponto inicial de arquivo oculto', () => {
+    expect(extensionOf('.gitignore')).toBe('');
   });
 });

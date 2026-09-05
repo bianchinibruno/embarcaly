@@ -113,6 +113,15 @@ export async function pickAndAdd(itemId: string): Promise<PickResult> {
   return { added, failed };
 }
 
+/**
+ * Troca o rótulo do anexo. O arquivo em disco não se mexe: ele é endereçado
+ * por `uri`, não pelo nome que a pessoa lê.
+ */
+export async function rename(att: Attachment, name: string): Promise<void> {
+  const db = await getDb();
+  await db.runAsync('UPDATE attachments SET name = ? WHERE id = ?;', name, att.id);
+}
+
 export async function remove(att: Attachment): Promise<void> {
   // Arquivo primeiro: se a linha sumisse antes, o arquivo viraria órfão
   // sem ninguém para apagá-lo depois.
