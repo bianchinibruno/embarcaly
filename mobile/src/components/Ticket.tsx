@@ -39,6 +39,13 @@ export function Ticket({
   const stock = t.stock[item.type];
   const edge = t.edge[item.type];
 
+  // Um bilhete que já é botão não pode conter botões: além de HTML inválido e
+  // erro de hidratação, na tela de Viagens esse mesmo aninhamento chegou a
+  // matar o toque. Quando o cartão inteiro abre o detalhe, o (i) fica de fora
+  // — e não se perde nada, porque as explicações moram justamente na tela de
+  // detalhe, que é para onde o toque leva.
+  const info = onPress ? undefined : onInfo;
+
   const time =
     headRight !== undefined ? (
       headRight
@@ -67,7 +74,7 @@ export function Ticket({
         </View>
         {item.flight ? <DataRow k="Voo" v={item.flight} /> : null}
         {item.pnr ? (
-          <DataRow k="Localizador" v={item.pnr} onInfo={onInfo ? () => onInfo('pnr') : undefined} />
+          <DataRow k="Localizador" v={item.pnr} onInfo={info ? () => info('pnr') : undefined} />
         ) : null}
         {item.seat ? <DataRow k="Assento" v={item.seat} /> : null}
       </>
@@ -77,7 +84,7 @@ export function Ticket({
         {item.subtitle ? <Text style={[styles.sub, { color: t.ink3 }]}>{item.subtitle}</Text> : null}
         {item.seat ? <DataRow k="Assento" v={item.seat} /> : null}
         {item.pnr ? (
-          <DataRow k="Reserva" v={item.pnr} onInfo={onInfo ? () => onInfo('pnr') : undefined} />
+          <DataRow k="Reserva" v={item.pnr} onInfo={info ? () => info('pnr') : undefined} />
         ) : null}
       </>
     );
