@@ -40,7 +40,8 @@
     "web": "expo start --offline --port 8083",
     "typecheck": "tsc --noEmit",
     "doctor": "expo-doctor",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "private": true,
   "jest": {
@@ -48,6 +49,19 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/.export"
-    ]
+    ],
+    "collectCoverageFrom": [
+      "src/domain/**/*.ts",
+      "!src/domain/types.ts",
+      "!src/domain/**/__tests__/**"
+    ],
+    "coverageThreshold": {
+      "src/domain/": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
   }
 }
