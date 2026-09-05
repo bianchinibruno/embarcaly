@@ -1,0 +1,848 @@
+<title>Embarcaly Jogável</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Azeret+Mono:wght@300;400;500;600&display=swap">
+
+<style>
+  :root{
+    --desk:#D5D9D8;--paper:#FBFAF7;--paper-2:#F4F2EC;
+    --ink:#171C20;--ink-2:#3E474D;--ink-3:#7A848A;
+    --rule:#C9CDCB;--hair:#E2E1DA;--stamp:#B0432B;
+    --stock-air:#DBE7F0;--stock-bed:#F0E6D5;--stock-rail:#DDE8DD;--stock-act:#F1DFE0;--stock-car:#E6E2EF;
+    --edge-air:#7FA0BA;--edge-bed:#BFA274;--edge-rail:#82A382;--edge-act:#C08E92;--edge-car:#9B92B6;
+    --ui:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+    --mono:"Azeret Mono",ui-monospace,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --desk:#0E1215;--paper:#1A2025;--paper-2:#151A1E;
+    --ink:#E9EDEE;--ink-2:#B2BCC1;--ink-3:#79858B;
+    --rule:#2C3439;--hair:#242B30;--stamp:#D4715A;
+    --stock-air:#182833;--stock-bed:#2A2418;--stock-rail:#182619;--stock-act:#2B1D20;--stock-car:#211E2C;
+    --edge-air:#4E7893;--edge-bed:#8A7346;--edge-rail:#4E7752;--edge-act:#8E5F66;--edge-car:#6B6390;
+  }}
+  :root[data-theme="dark"]{
+    --desk:#0E1215;--paper:#1A2025;--paper-2:#151A1E;
+    --ink:#E9EDEE;--ink-2:#B2BCC1;--ink-3:#79858B;
+    --rule:#2C3439;--hair:#242B30;--stamp:#D4715A;
+    --stock-air:#182833;--stock-bed:#2A2418;--stock-rail:#182619;--stock-act:#2B1D20;--stock-car:#211E2C;
+    --edge-air:#4E7893;--edge-bed:#8A7346;--edge-rail:#4E7752;--edge-act:#8E5F66;--edge-car:#6B6390;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{width:min(100% - 2rem,1080px);margin-inline:auto;padding-bottom:4rem}
+
+  header.top{padding:2.6rem 0 1.4rem}
+  header.top .kick{font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+  header.top h1{font-weight:700;font-size:clamp(2rem,5.5vw,3rem);line-height:.95;letter-spacing:-.032em;margin:.5rem 0 .6rem}
+  header.top p{max-width:56ch;color:var(--ink-2);margin:0;font-size:.95rem}
+
+  .stage{display:grid;gap:2rem}
+  @media(min-width:900px){.stage{grid-template-columns:minmax(0,1fr) 360px;gap:3rem;align-items:start}}
+
+  /* ---- controle de demonstracao ---- */
+  .ctrl{border:1px solid var(--rule);background:var(--paper);padding:1rem 1.05rem}
+  .ctrl h2{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin:0 0 .2rem}
+  .ctrl .hint{font-size:.83rem;color:var(--ink-2);margin:.35rem 0 .9rem}
+  .presets{display:grid;gap:.35rem}
+  .preset{display:flex;align-items:baseline;gap:.6rem;width:100%;text-align:left;background:transparent;border:1px solid var(--rule);padding:.5rem .6rem;cursor:pointer;font-family:var(--ui);color:var(--ink)}
+  .preset:hover{background:var(--paper-2)}
+  .preset[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .preset .mm{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7;min-width:74px}
+  .preset .ll{font-size:.85rem;font-weight:600}
+  .clockline{margin-top:.9rem;padding-top:.8rem;border-top:1px dashed var(--rule);font-family:var(--mono);font-size:.68rem;color:var(--ink-3);letter-spacing:.04em}
+  .clockline b{color:var(--ink);font-weight:500}
+  .tips{margin-top:1rem;font-size:.8rem;color:var(--ink-2)}
+  .tips li{margin-bottom:.35em}
+
+  /* ---- aparelho ---- */
+  .frame-hold{display:flex;justify-content:center}
+  .phone{width:342px;max-width:100%;background:#0C1013;border-radius:42px;padding:10px;border:1px solid rgba(255,255,255,.07);box-shadow:0 26px 52px -28px rgba(0,0,0,.6)}
+  .glass{border-radius:33px;overflow:hidden;position:relative}
+  .app{background:var(--paper-2);height:688px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+
+  .abar{padding:1rem 1.05rem .8rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;border-bottom:1px solid var(--hair);background:var(--paper);flex:none}
+  .abar .tt{font-size:1.16rem;font-weight:700;letter-spacing:-.02em;line-height:1.12}
+  .abar .ss{font-family:var(--mono);font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-top:.28rem}
+  .back{background:transparent;border:0;cursor:pointer;font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stamp);padding:0 0 .2rem}
+  .abody{padding:.9rem .85rem 1.1rem;display:flex;flex-direction:column;gap:.7rem;flex:1;overflow-y:auto;overscroll-behavior:contain}
+  .abody::-webkit-scrollbar{width:0}
+
+  .lab{font-family:var(--mono);font-size:.56rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+  .divider{display:flex;align-items:center;gap:.55rem;margin:.3rem 0 .05rem}
+  .divider::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  .tk{position:relative;background:var(--paper);border:1px solid var(--rule);cursor:pointer}
+  .tk.static{cursor:default}
+  .tk::before,.tk::after{content:"";position:absolute;width:5px;height:100%;top:0;background-image:radial-gradient(circle at 0 4px,var(--paper-2) 3px,transparent 3.2px);background-size:5px 11px}
+  .tk::before{left:-1px}.tk::after{right:-1px;transform:scaleX(-1)}
+  .tk-stripe{height:4px}
+  .tk.air .tk-stripe{background:var(--edge-air)}.tk.bed .tk-stripe{background:var(--edge-bed)}
+  .tk.rail .tk-stripe{background:var(--edge-rail)}.tk.act .tk-stripe{background:var(--edge-act)}
+  .tk.car .tk-stripe{background:var(--edge-car)}
+  .tk.air .tk-head{background:var(--stock-air)}.tk.bed .tk-head{background:var(--stock-bed)}
+  .tk.rail .tk-head{background:var(--stock-rail)}.tk.act .tk-head{background:var(--stock-act)}
+  .tk.car .tk-head{background:var(--stock-car)}
+  .tk-head{padding:.48rem .72rem;display:flex;align-items:center;justify-content:space-between;gap:.55rem;border-bottom:1px solid var(--rule)}
+  .tk-kind{font-family:var(--mono);font-size:.55rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--ink-2)}
+  .tk-time{font-family:var(--mono);font-size:.7rem;font-weight:600}
+  .tk-body{padding:.66rem .72rem .72rem}
+
+  .route{display:flex;align-items:center;gap:.5rem}
+  .route .code{font-family:var(--mono);font-size:1.22rem;font-weight:600;line-height:1}
+  .route .city{font-size:.6rem;color:var(--ink-3);margin-top:.16rem}
+  .route .mid{flex:1;position:relative;height:14px}
+  .route .mid::before{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:repeating-linear-gradient(90deg,var(--ink-3) 0 3px,transparent 3px 6px);opacity:.55}
+  .route .mid::after{content:"";position:absolute;right:0;top:2.5px;border-left:6px solid var(--ink-3);border-top:4px solid transparent;border-bottom:4px solid transparent;opacity:.75}
+
+  .rows{margin-top:.6rem;display:grid;gap:.26rem}
+  .row{display:flex;align-items:baseline;gap:.4rem;font-size:.7rem}
+  .row .k{font-family:var(--mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;display:flex;align-items:center}
+  .row .dots{flex:1;border-bottom:1px dotted var(--rule);transform:translateY(-3px)}
+  .row .v{font-family:var(--mono);font-size:.7rem;font-weight:500;white-space:nowrap}
+
+  .tline{font-size:.9rem;font-weight:600;letter-spacing:-.01em;line-height:1.24}
+  .sline{font-size:.68rem;color:var(--ink-3);margin-top:.16rem}
+  .cd{font-family:var(--mono);font-size:.61rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+  .cd.hot{color:var(--stamp)}
+  .gap{display:flex;align-items:center;gap:.5rem;padding:.05rem .2rem .05rem .45rem}
+  .gap .bar{width:1px;height:18px;background:repeating-linear-gradient(180deg,var(--rule) 0 3px,transparent 3px 6px)}
+  .gap .txt{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
+  .stamp{display:inline-block;border:1.5px solid var(--stamp);color:var(--stamp);font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;padding:.15rem .38rem;transform:rotate(-3deg);white-space:nowrap}
+
+  .i{display:inline-flex;align-items:center;justify-content:center;flex:none;width:13px;height:13px;border:1px solid var(--ink-3);border-radius:50%;font-family:var(--mono);font-size:.5rem;font-weight:600;color:var(--ink-3);line-height:1;margin-left:.32rem;cursor:pointer;background:transparent}
+  .i.on{border-color:var(--stamp);color:var(--stamp)}
+
+  .perf{position:relative;height:1px;background:repeating-linear-gradient(90deg,var(--rule) 0 4px,transparent 4px 8px);margin:.65rem 0}
+  .perf::before,.perf::after{content:"";position:absolute;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--paper-2);border:1px solid var(--rule)}
+  .perf::before{left:-11px}.perf::after{right:-11px}
+
+  .barcode{height:34px;background-image:repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 3px,var(--ink) 3px 5px,transparent 5px 6px,var(--ink) 6px 7px,transparent 7px 10px,var(--ink) 10px 12px,transparent 12px 13px);opacity:.82}
+  .barnum{font-family:var(--mono);font-size:.56rem;letter-spacing:.3em;color:var(--ink-3);text-align:center;margin-top:.26rem}
+
+  .btn{display:block;width:100%;text-align:center;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.63rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;padding:.74rem .8rem;border:0;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn.stampy{background:var(--stamp);color:#fff}
+  .btn:disabled{opacity:.45;cursor:default}
+  .btn.slim{padding:.56rem .7rem;font-size:.58rem}
+
+  .tabs{display:flex;border-top:1px solid var(--rule);background:var(--paper);flex:none}
+  .tabs button{flex:1;text-align:center;padding:.66rem .2rem .78rem;font-family:var(--mono);font-size:.53rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);border:0;border-right:1px solid var(--hair);background:transparent;cursor:pointer}
+  .tabs button:last-child{border-right:0}
+  .tabs button.on{color:var(--ink);font-weight:600;box-shadow:inset 0 2px 0 var(--stamp)}
+
+  .hero{text-align:center;padding:.55rem 0 .1rem}
+  .hero .n{font-family:var(--mono);font-size:3rem;font-weight:300;letter-spacing:-.05em;line-height:1;display:block}
+  .hero .u{font-family:var(--mono);font-size:.57rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3);margin-top:.4rem;display:block}
+
+  .drop{border:1.5px dashed var(--rule);background:var(--paper);padding:1.3rem 1rem;text-align:center}
+  .drop .big{font-size:.95rem;font-weight:600}
+  .drop .sm{font-size:.7rem;color:var(--ink-3);margin-top:.28rem}
+  .mailbox{font-family:var(--mono);font-size:.68rem;background:var(--paper);border:1px solid var(--rule);padding:.55rem .65rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+  .mailbox .cp{font-size:.54rem;letter-spacing:.15em;color:var(--stamp);text-transform:uppercase;cursor:pointer}
+  .qitem{display:flex;align-items:center;gap:.55rem;background:var(--paper);border:1px solid var(--hair);padding:.48rem .6rem}
+  .qitem .fn{flex:1;font-family:var(--mono);font-size:.63rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .qitem .st{font-family:var(--mono);font-size:.53rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  .qitem .st.ok{color:var(--edge-rail)}.qitem .st.run{color:var(--stamp)}
+  .barload{height:2px;background:var(--hair);overflow:hidden;margin-top:.35rem}
+  .barload i{display:block;height:100%;width:30%;background:var(--stamp);animation:load 1s ease-in-out infinite alternate}
+  @keyframes load{from{width:22%}to{width:88%}}
+  @media(prefers-reduced-motion:reduce){.barload i{animation:none;width:60%}}
+
+  .bc{border:1px dashed var(--rule);padding:.75rem .68rem;text-align:center;background:var(--paper)}
+  .bc.issued{border-style:solid;border-color:var(--rule)}
+  .bc .h{font-family:var(--mono);font-size:.54rem;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-3)}
+  .bc.issued .h{color:var(--edge-rail)}
+  .bc .m{font-size:.72rem;color:var(--ink-2);margin-top:.35rem;line-height:1.4}
+  .bc .big{font-family:var(--mono);font-size:1rem;font-weight:500;margin-top:.4rem;color:var(--stamp)}
+
+  .tl{display:grid}
+  .tl-item{display:grid;grid-template-columns:54px 14px 1fr;align-items:start}
+  .tl-item .h{font-family:var(--mono);font-size:.71rem;font-weight:600;padding-top:.1rem}
+  .tl-item.est .h{font-weight:300;color:var(--ink-2)}
+  .tl-rail{position:relative;align-self:stretch}
+  .tl-rail .dot{width:7px;height:7px;border:1.5px solid var(--ink);background:var(--paper);border-radius:50%;margin:.26rem auto 0;position:relative;z-index:1}
+  .tl-item.est .dot{border-style:dashed;border-color:var(--ink-3)}
+  .tl-item.done .dot{background:var(--ink)}
+  .tl-item.now .dot{background:var(--stamp);border-color:var(--stamp)}
+  .tl-rail .line{position:absolute;left:50%;top:.68rem;bottom:0;width:1px;margin-left:-.5px;background:repeating-linear-gradient(180deg,var(--rule) 0 3px,transparent 3px 6px)}
+  .tl-item:last-child .line{display:none}
+  .tl-body{padding:0 0 .7rem .45rem}
+  .tl-body .n{font-size:.77rem;font-weight:600;display:flex;align-items:center;line-height:1.24}
+  .tl-body .d{font-size:.63rem;color:var(--ink-3);margin-top:.1rem}
+  .tl-item.done .tl-body{opacity:.5}
+  .legend{display:flex;gap:.9rem;flex-wrap:wrap;padding:.5rem .1rem 0}
+  .legend span{font-family:var(--mono);font-size:.51rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:.3rem}
+  .legend .mk{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper)}
+  .legend .mk.calc{border-style:dashed;border-color:var(--ink-3)}
+
+  .docgrid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+  .doc{background:var(--paper);border:1px solid var(--rule);padding:.55rem .55rem .65rem;position:relative}
+  .doc .dt{font-family:var(--mono);font-size:.53rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  .doc .dn{font-size:.76rem;font-weight:600;margin-top:.28rem;line-height:1.22}
+  .doc .dm{font-family:var(--mono);font-size:.57rem;color:var(--ink-3);margin-top:.24rem}
+  .doc .corner{position:absolute;top:0;right:0;width:0;height:0;border-top:13px solid var(--rule);border-left:13px solid transparent}
+
+  /* folha do verso */
+  .sheet{position:absolute;left:0;right:0;bottom:0;top:0;background:var(--paper-2);transform:translateY(100%);transition:transform .26s cubic-bezier(.3,.8,.3,1);display:flex;flex-direction:column;z-index:5}
+  .sheet.open{transform:translateY(0)}
+  @media(prefers-reduced-motion:reduce){.sheet{transition:none}}
+  .verso{background:var(--paper);border:1px solid var(--rule);padding:.8rem .78rem}
+  .verso .vh{font-family:var(--mono);font-size:.55rem;letter-spacing:.17em;text-transform:uppercase;color:var(--stamp);margin:0 0 .55rem;display:flex;justify-content:space-between;gap:.5rem}
+  .verso .q{font-size:.8rem;font-weight:600;margin-bottom:.2rem}
+  .verso .a{font-size:.72rem;color:var(--ink-2);line-height:1.5}
+  .verso .sep{height:1px;background:repeating-linear-gradient(90deg,var(--rule) 0 3px,transparent 3px 6px);margin:.65rem 0}
+
+  .empty{text-align:center;padding:2rem 1rem;color:var(--ink-3);font-size:.82rem}
+  .flagline{background:var(--stock-car);border:1px solid var(--edge-car);padding:.5rem .6rem;font-size:.72rem;color:var(--ink-2)}
+  .alert{border:1px solid var(--stamp);background:var(--paper);padding:.62rem .68rem}
+  .alert .ah{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.35rem}
+  .alert .ah .t{font-family:var(--mono);font-size:.54rem;letter-spacing:.19em;text-transform:uppercase;color:var(--stamp);font-weight:600}
+  .alert .am{font-size:.79rem;line-height:1.42}
+  .alert .ax{font-size:.69rem;color:var(--ink-2);margin-top:.4rem;padding-top:.4rem;border-top:1px dotted var(--rule)}
+  .was{color:var(--ink-3);text-decoration:line-through;font-weight:400;margin-right:.28rem}
+
+  /* ---- marca ---- */
+  .brand{display:flex;align-items:center;gap:.42rem}
+  .wm{font-weight:700;letter-spacing:-.032em}
+  .wm .ly{color:var(--stamp)}
+  .appicon{width:46px;height:46px;border-radius:11px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex:none}
+  .brandrow{display:flex;align-items:center;gap:.75rem;margin-bottom:.3rem}
+
+  /* ---- abertura ---- */
+  .splash{position:absolute;inset:0;background:var(--paper);z-index:10;display:flex;flex-direction:column;
+          align-items:center;justify-content:center;gap:.9rem;cursor:pointer;
+          animation:splashOut .55s ease 1.7s forwards}
+  .splash.gone{opacity:0;visibility:hidden;animation:none;transition:opacity .35s ease}
+  .splash .tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3)}
+  .splash .perfline{width:120px;height:1px;background:repeating-linear-gradient(90deg,var(--rule) 0 4px,transparent 4px 8px)}
+  @keyframes splashOut{to{opacity:0;visibility:hidden}}
+  @media(prefers-reduced-motion:reduce){.splash{animation:splashOut .01s ease 1.7s forwards}}
+  :focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
+  footer{border-top:1px solid var(--rule);margin-top:2.5rem;padding:1.4rem 0 3rem;font-size:.79rem;color:var(--ink-3)}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brandrow">
+      <span class="appicon">
+        <svg width="28" height="28" viewBox="0 0 48 48">
+          <rect x="7" y="9" width="6.5" height="30" rx="1" fill="var(--paper)"/>
+          <rect x="15" y="9" width="26" height="6.5" rx="1" fill="var(--stamp)"/>
+          <rect x="15" y="20.75" width="19" height="6.5" rx="1" fill="var(--paper)"/>
+          <rect x="15" y="32.5" width="26" height="6.5" rx="1" fill="var(--paper)" fill-opacity=".55"/>
+        </svg>
+      </span>
+      <div>
+        <div class="wm" style="font-size:1.35rem;line-height:1">embarca<span class="ly">ly</span></div>
+        <span class="kick">Prot&oacute;tipo naveg&aacute;vel</span>
+      </div>
+    </div>
+    <h1>Use como se fosse real.</h1>
+    <p>Uma viagem ao Jap&atilde;o com 8 reservas. Toque nos bilhetes, abra os (i), simule o envio dos PDFs &mdash; e use o controle ao lado para mover o rel&oacute;gio, porque este produto s&oacute; faz sentido no tempo.</p>
+  </header>
+
+  <div class="stage">
+    <div class="frame-hold">
+      <div class="phone"><div class="glass">
+        <div class="app">
+          <div class="abar" id="abar"></div>
+          <div class="abody" id="abody"></div>
+          <div class="tabs" id="tabs"></div>
+          <div class="sheet" id="sheet">
+            <div class="abar">
+              <div><div class="tt">Verso do bilhete</div><div class="ss" id="sheetSub">Explica&ccedil;&atilde;o</div></div>
+              <button class="back" id="sheetClose">Fechar</button>
+            </div>
+            <div class="abody" id="sheetBody"></div>
+          </div>
+          <div class="splash" id="splash">
+            <svg width="72" height="72" viewBox="0 0 48 48">
+              <rect x="7" y="9" width="6.5" height="30" rx="1" fill="var(--ink)"/>
+              <rect x="15" y="9" width="26" height="6.5" rx="1" fill="var(--stamp)"/>
+              <rect x="15" y="20.75" width="19" height="6.5" rx="1" fill="var(--ink)"/>
+              <rect x="15" y="32.5" width="26" height="6.5" rx="1" fill="var(--ink)" fill-opacity=".55"/>
+            </svg>
+            <div class="wm" style="font-size:1.75rem">embarca<span class="ly">ly</span></div>
+            <div class="perfline"></div>
+            <div class="tag">agora &middot; depois &middot; mais tarde</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <aside class="ctrl">
+      <h2>Controle de demonstra&ccedil;&atilde;o</h2>
+      <p class="hint">Escolha em que momento da viagem voc&ecirc; est&aacute;. Tudo recalcula: contagens, o que &eacute; &ldquo;agora&rdquo;, e se o cart&atilde;o de embarque j&aacute; existe.</p>
+      <div class="presets" id="presets"></div>
+      <div class="clockline">Agora: <b id="clock">&mdash;</b></div>
+      <button class="preset" id="replay" style="margin-top:.7rem;justify-content:center"><span class="ll">Rever a abertura</span></button>
+      <ul class="tips">
+        <li>Comece em <b>Faltam 12 dias</b> e toque em <b>Adicionar reservas</b> para ver os PDFs virarem itinerário.</li>
+        <li>Pule para <b>No aeroporto</b> e abra a aba <b>Agora</b>.</li>
+        <li>Toque em qualquer <b>(i)</b> para virar o bilhete.</li>
+        <li>Em <b>Cart&otilde;es</b>, veja os tr&ecirc;s estados do c&oacute;digo de barras mudarem com o rel&oacute;gio.</li>
+        <li><b>Voo atrasado</b> e <b>Port&atilde;o alterado</b> mostram o produto quando o plano quebra &mdash; que &eacute; quando ele vale mais.</li>
+      </ul>
+    </aside>
+  </div>
+
+  <footer>Embarcaly &middot; prot&oacute;tipo naveg&aacute;vel v1.1 &middot; marca Conceito A aplicada &middot; dados fict&iacute;cios. Nenhum c&oacute;digo de barras aqui &eacute; v&aacute;lido para embarque &mdash; e essa &eacute; exatamente a regra do produto real.</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  const D = (s) => new Date(s + ":00");
+
+  const ITEMS = [
+    { id:'f1', type:'air', kind:'Voo', title:'POA → GRU', from:'POA', to:'GRU',
+      fromCity:'Porto Alegre', toCity:'Guarulhos', start:D('2026-10-03T08:40'), end:D('2026-10-03T10:15'),
+      flight:'LA 8172', pnr:'QKZ4TP', seat:'14A', seq:'041',
+      checkinOpen:D('2026-10-01T08:40'), arriveBy:D('2026-10-03T06:40'), checkinClose:D('2026-10-03T07:40'),
+      boarding:D('2026-10-03T08:05'), gateClose:D('2026-10-03T08:25'), pass:'airline' },
+
+    { id:'f2', type:'air', kind:'Voo', title:'GRU → HND', from:'GRU', to:'HND',
+      fromCity:'São Paulo', toCity:'Tóquio', start:D('2026-10-03T22:15'), end:D('2026-10-05T06:20'),
+      flight:'JL 8085', pnr:'QKZ4TP', seat:'32K',
+      checkinOpen:D('2026-10-01T22:15'), arriveBy:D('2026-10-03T19:15'), checkinClose:D('2026-10-03T21:15'),
+      boarding:D('2026-10-03T21:35'), gateClose:D('2026-10-03T22:00'), pass:'airline' },
+
+    { id:'r1', type:'rail', kind:'Trem', title:'Narita Express → Shinjuku',
+      start:D('2026-10-05T08:05'), end:D('2026-10-05T09:23'), seat:'7-12A', pnr:'NEX-4471', pass:'external', operator:'JR East' },
+
+    { id:'h1', type:'bed', kind:'Hotel', title:'Shinjuku Granbell', sub:'5 noites · Tóquio',
+      start:D('2026-10-05T15:00'), end:D('2026-10-10T11:00'), pnr:'SG-88214' },
+
+    { id:'a1', type:'act', kind:'Passeio', title:'teamLab Borderless', sub:'Entrada com horário marcado',
+      start:D('2026-10-05T19:30'), end:D('2026-10-05T21:30'), pnr:'TL-2291', leaveBy:D('2026-10-05T18:45') },
+
+    { id:'r2', type:'rail', kind:'Trem', title:'Shinkansen Tóquio → Kyoto',
+      start:D('2026-10-10T13:20'), end:D('2026-10-10T15:38'), seat:'9-4C', pnr:'SK-1180', pass:'external', operator:'JR Central', late:true },
+
+    { id:'h2', type:'bed', kind:'Hotel', title:'Ryokan Hakone', sub:'3 noites',
+      start:D('2026-10-10T16:00'), end:D('2026-10-13T10:00'), pnr:'RH-4402', late:true },
+
+    { id:'c1', type:'car', kind:'Carro', title:'Toyota Corolla · Hakone', sub:'Retirada na estação',
+      start:D('2026-10-11T09:00'), end:D('2026-10-13T09:00'), pnr:'TY-9083', late:true,
+      needs:'Horário de retirada não encontrado no voucher' }
+  ];
+
+  const LATE = ['r2','h2','c1'];
+  const QUEUE = ['shinkansen-kyoto.pdf','ryokan-hakone-voucher.pdf','toyota-hakone-locacao.pdf'];
+
+  /* estado original de cada item, para poder desfazer atraso e troca de portão */
+  ITEMS.forEach(it => {
+    it._b = { start:it.start, end:it.end, boarding:it.boarding, gateClose:it.gateClose,
+              arriveBy:it.arriveBy, checkinClose:it.checkinClose };
+  });
+
+  function applyMut(mut){
+    ITEMS.forEach(it => {
+      ['start','end','boarding','gateClose','arriveBy','checkinClose'].forEach(k => { it[k] = it._b[k]; });
+      delete it.delayed; delete it.gate; delete it.gateFrom; delete it.walk;
+    });
+    if (!mut) return;
+    if (mut.delay){
+      const it = ITEMS.find(i => i.id === mut.delay.id), ms = mut.delay.min * 60000;
+      it.delayed = { orig:it._b.start, min:mut.delay.min, reason:mut.delay.reason };
+      ['start','end','boarding','gateClose'].forEach(k => {
+        if (it._b[k]) it[k] = new Date(it._b[k].getTime() + ms);
+      });
+    }
+    if (mut.gate){
+      const it = ITEMS.find(i => i.id === mut.gate.id);
+      it.gate = mut.gate.to; it.gateFrom = mut.gate.from; it.walk = mut.gate.walk;
+    }
+  }
+
+  const PRESETS = [
+    { id:'plan',  mm:'D−12',    ll:'Faltam 12 dias',      at:D('2026-09-21T10:00') },
+    { id:'vesp',  mm:'Véspera',  ll:'Noite anterior',      at:D('2026-10-02T20:30') },
+    { id:'manha', mm:'06:15',        ll:'Manhã do voo',    at:D('2026-10-03T06:15') },
+    { id:'atraso',mm:'07:20',        ll:'Voo atrasado',        at:D('2026-10-03T07:20'),
+      mut:{ delay:{ id:'f1', min:105, reason:'aeronave em manutenção' } } },
+    { id:'aero',  mm:'07:50',        ll:'No aeroporto',        at:D('2026-10-03T07:50') },
+    { id:'portao',mm:'21:18',        ll:'Portão alterado',     at:D('2026-10-03T21:18'),
+      mut:{ gate:{ id:'f2', from:'12', to:'28', walk:9 } } },
+    { id:'toq',   mm:'Dia 3',        ll:'Chegando em Tóquio', at:D('2026-10-05T07:42') },
+    { id:'meio',  mm:'Dia 8',        ll:'Meio da viagem',      at:D('2026-10-10T12:40') }
+  ];
+
+  const VERSO = {
+    checkinOpen:{ t:'Abre o check-in', q:'O momento de garantir seu assento.',
+      a:'A companhia libera a emissão do cartão de embarque. Fazer cedo aumenta a chance de escolher assento sem pagar a mais.',
+      q2:'Dica', a2:'Leva dois minutos no celular e elimina o risco do prazo seguinte.' },
+    arriveBy:{ t:'Chegue ao aeroporto', q:'Este horário não está no seu bilhete.',
+      a:'Fomos nós que calculamos: 2h antes para voo doméstico, 3h para internacional. Se você despacha mala ou viaja com criança, some 30 minutos.' },
+    checkinClose:{ t:'Fecha o check-in', q:'O prazo mais perigoso da sua viagem.',
+      a:'Depois desse horário a companhia não aceita mais quem não fez check-in — mesmo com a passagem paga e você dentro do aeroporto.',
+      q2:'Como evitar', a2:'Faça o check-in assim que abrir, dois dias antes.' },
+    boarding:{ t:'Começa o embarque', q:'Está impresso no seu cartão.',
+      a:'Horário em que a fila começa a andar. Não é a hora de sair da sala VIP — é a hora de já estar perto do portão.' },
+    gateClose:{ t:'Fecha o portão', q:'Estimativa nossa, e a mais cruel.',
+      a:'Costuma ser 15 minutos antes da partida. Depois disso o portão fecha mesmo que você esteja correndo no corredor.' },
+    gate:{ t:'Portão de embarque', q:'Por que está vazio?',
+      a:'O portão só é definido algumas horas antes e muda com frequência. Preferimos deixar em branco a te dar um número errado na hora que importa.' },
+    pnr:{ t:'Localizador', q:'Seis caracteres que valem sua reserva.',
+      a:'É o código que identifica sua compra. Você informa no balcão, no totém do aeroporto ou no site da companhia.' },
+    pass:{ t:'Código de barras', q:'Só a companhia pode emitir.',
+      a:'O código carrega o número de sequência do seu check-in, gerado pelo sistema da companhia. Guardamos e exibimos o original — nunca criamos um.',
+      q2:'Por isso existem três estados', a2:'Emitido, ainda não emitido e fora daqui. Um código inventado não leria no portão.' },
+    conexao:{ t:'Conexão', q:'Tempo entre um voo e outro.',
+      a:'Abaixo de 1h30 em aeroporto grande é apertado. Se os voos forem de companhias diferentes, pode ser preciso retirar e despachar a bagagem de novo.' },
+    atraso:{ t:'Voo atrasado', q:'O que recalculamos sozinhos.',
+      a:'Embarque, fechamento do portão, pouso e todos os intervalos seguintes. Se alguma reserva depois deixar de ser alcançável, avisamos aqui antes de você descobrir no aeroporto.',
+      q2:'O que não fazemos', a2:'Não remarcamos nada por você. Reacomodação é sempre com a companhia — nós só garantimos que você saiba primeiro.' },
+    portao:{ t:'Portão alterado', q:'Mudou depois do cartão emitido.',
+      a:'Portão muda com frequência, às vezes minutos antes. Mostramos o novo, o antigo e quanto tempo de caminhada isso costuma custar dentro do terminal.',
+      q2:'Confira sempre', a2:'O painel do aeroporto é a fonte final. Somos o aviso rápido, não a autoridade.' }
+  };
+
+  /* ------------------ relógio simulado ------------------ */
+  let simBase = PRESETS[0].at, realBase = Date.now(), presetId = 'plan';
+  const now = () => new Date(simBase.getTime() + (Date.now() - realBase));
+
+  const state = { view:'viagens', stack:[], itemId:null, added:new Set(ITEMS.filter(i=>!i.late).map(i=>i.id)), adding:false };
+
+  /* ------------------ formatação ------------------ */
+  const p2 = n => String(n).padStart(2,'0');
+  const MES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const DIA = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+  const hhmm = d => p2(d.getHours()) + ':' + p2(d.getMinutes());
+  const dm = d => p2(d.getDate()) + ' ' + MES[d.getMonth()].toUpperCase();
+  const dayKey = d => d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+
+  function fmtIn(target, ref){
+    const ms = target - (ref || now());
+    if (ms <= 0) return 'agora';
+    const min = Math.floor(ms/60000);
+    if (min < 60) return 'em ' + min + ' min';
+    const h = Math.floor(min/60), m = min%60;
+    if (h < 24) return 'em ' + h + 'h ' + p2(m);
+    const d = Math.floor(h/24);
+    return 'em ' + d + 'd ' + p2(h%24) + 'h';
+  }
+  function daysTo(target){
+    return Math.max(0, Math.ceil((target - now())/86400000));
+  }
+  function hotness(target){ const ms = target - now(); return ms > 0 && ms < 3*3600000; }
+
+  const visible = () => ITEMS.filter(i => state.added.has(i.id)).sort((a,b)=>a.start-b.start);
+  const trip = { name:'Japão', sub:'Tóquio · Hakone · Kyoto', start:D('2026-10-03T08:40'), end:D('2026-10-22T18:00') };
+
+  function upcoming(){ const n = now(); return visible().filter(i => (i.end||i.start) > n); }
+  function inTrip(){ const n = now(); return n >= trip.start && n <= trip.end; }
+
+  /* ------------------ helpers de render ------------------ */
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const iBtn = (key, on) => '<button class="i'+(on?' on':'')+'" data-verso="'+key+'" aria-label="Explicação">i</button>';
+  const cdSpan = (target, extra) => '<span class="cd'+(hotness(target)?' hot':'')+'" data-until="'+target.getTime()+'">'+fmtIn(target)+(extra||'')+'</span>';
+
+  function ticket(it, opts){
+    opts = opts || {};
+    const head = opts.headLeft || it.kind;
+    const right = opts.headRight != null ? opts.headRight
+      : (it.delayed ? '<s class="was">'+hhmm(it.delayed.orig)+'</s>'+hhmm(it.start) : hhmm(it.start));
+    let body = '';
+    if (it.type === 'air' && !opts.compact){
+      body += '<div class="route"><div><div class="code">'+it.from+'</div><div class="city">'+it.fromCity+'</div></div>'
+            + '<div class="mid"></div>'
+            + '<div><div class="code">'+it.to+'</div><div class="city">'+it.toCity+'</div></div></div>';
+      body += '<div class="rows">'
+            + row('Voo', it.flight) + row('Localizador', it.pnr, 'pnr') + row('Assento', it.seat) + '</div>';
+    } else {
+      body += '<div class="tline">'+esc(it.title)+'</div>';
+      if (it.sub) body += '<div class="sline">'+esc(it.sub)+'</div>';
+      if (it.seat || it.pnr){
+        body += '<div class="rows">';
+        if (it.seat) body += row('Assento', it.seat);
+        if (it.pnr) body += row('Reserva', it.pnr, 'pnr');
+        body += '</div>';
+      }
+    }
+    if (it.needs) body += '<div class="flagline" style="margin-top:.55rem">'+esc(it.needs)+'</div>';
+    return '<div class="tk '+it.type+(opts.static?' static':'')+'" data-item="'+it.id+'">'
+      + '<div class="tk-stripe"></div>'
+      + '<div class="tk-head"><span class="tk-kind">'+esc(head)+'</span>'+(right===false?'':'<span class="tk-time">'+right+'</span>')+'</div>'
+      + '<div class="tk-body">'+body+'</div></div>';
+  }
+  function row(k, v, verso){
+    return '<div class="row"><span class="k">'+esc(k)+(verso?iBtn(verso):'')+'</span><span class="dots"></span><span class="v">'+esc(v)+'</span></div>';
+  }
+  function divider(t){ return '<div class="divider"><span class="lab">'+esc(t)+'</span></div>'; }
+  const fmtDur = m => m >= 60 ? Math.floor(m/60)+'h'+p2(m%60) : m+' min';
+
+  function alertCard(it){
+    if (it.gateFrom){
+      return '<div class="alert"><div class="ah"><span class="t">Mudou agora</span><span class="stamp">Portão</span></div>'
+        + '<div class="am">O portão do voo <b>'+it.flight+'</b> mudou de <b>'+it.gateFrom+'</b> para <b>'+it.gate+'</b>.'+iBtn('portao',true)+'</div>'
+        + '<div class="ax">Cerca de '+it.walk+' min de caminhada dentro do terminal. Embarque às '+hhmm(it.boarding)+'.</div></div>';
+    }
+    const list = visible(), nxt = list[list.indexOf(it)+1];
+    let cons = '';
+    if (nxt){
+      const novo = Math.round((nxt.start - it.end)/60000), velho = Math.round((nxt.start - it._b.end)/60000);
+      cons = (nxt.type === 'air' ? 'Sua conexão' : 'O intervalo até ' + esc(nxt.title))
+           + ' caiu de <b>'+fmtDur(velho)+'</b> para <b>'+fmtDur(novo)+'</b> — '
+           + (novo < 90 ? 'ficou apertada.' : 'continua tranquila.');
+    }
+    return '<div class="alert"><div class="ah"><span class="t">Mudou agora</span><span class="stamp">Atraso</span></div>'
+      + '<div class="am">O voo <b>'+it.flight+'</b> atrasou <b>'+fmtDur(it.delayed.min)+'</b>. Nova partida às <b>'+hhmm(it.start)+'</b>.'+iBtn('atraso',true)+'</div>'
+      + (cons ? '<div class="ax">'+cons+'</div>' : '') + '</div>';
+  }
+  function gapBetween(a, b){
+    const ms = b.start - (a.end || a.start);
+    if (ms <= 0) return '';
+    const min = Math.round(ms/60000), h = Math.floor(min/60), m = min%60;
+    if (min < 25) return '';
+    const t = h >= 24 ? '' : (h ? h+'h '+p2(m) : min+' min');
+    if (!t) return '';
+    const label = (a.type==='air' && b.type==='air') ? t+' de conexão' : t+' livres';
+    return '<div class="gap"><span class="bar"></span><span class="txt">'+label+'</span>'
+         + (a.type==='air'&&b.type==='air' ? iBtn('conexao') : '') + '</div>';
+  }
+
+  /* ------------------ views ------------------ */
+  function viewViagens(){
+    const n = now(), d = daysTo(trip.start), started = n >= trip.start;
+    const pend = visible().filter(i=>i.needs).length;
+    let h = '';
+    h += '<div class="tk air static"><div class="tk-stripe"></div>'
+       + '<div class="tk-head"><span class="tk-kind">'+(started?'Em viagem':'Próxima viagem')+'</span><span class="tk-time">03 – 22 OUT</span></div>'
+       + '<div class="tk-body"><div class="tline">'+trip.name+'</div><div class="sline">'+trip.sub+'</div>'
+       + '<div class="hero"><span class="n">'+(started ? Math.max(1, Math.ceil((n-trip.start)/86400000)) : d)+'</span>'
+       + '<span class="u">'+(started?'dia de viagem':'dias para embarcar')+'</span></div>'
+       + '<div class="perf"></div><div class="rows">'
+       + row('Reservas', String(visible().length))
+       + row('Documentos', String(visible().length + 1))
+       + row('Pendências', String(pend))
+       + '</div></div></div>';
+    h += '<button class="btn" data-go="add">Adicionar reservas</button>';
+    h += divider('Guardadas');
+    h += '<div class="tk bed static"><div class="tk-stripe"></div><div class="tk-head"><span class="tk-kind">Concluída</span><span class="tk-time">JAN 2026</span></div>'
+       + '<div class="tk-body"><div class="tline">Portugal &amp; Espanha</div><div class="sline">18 dias · 21 reservas</div></div></div>';
+    h += '<div class="tk rail static"><div class="tk-stripe"></div><div class="tk-head"><span class="tk-kind">Concluída</span><span class="tk-time">SET 2025</span></div>'
+       + '<div class="tk-body"><div class="tline">Argentina</div><div class="sline">6 dias · 7 reservas</div></div></div>';
+    const brand = '<span class="brand">'
+      + '<svg width="19" height="19" viewBox="0 0 48 48" style="flex:none">'
+      + '<rect x="7" y="9" width="6.5" height="30" rx="1" fill="var(--ink)"/>'
+      + '<rect x="15" y="9" width="26" height="6.5" rx="1" fill="var(--stamp)"/>'
+      + '<rect x="15" y="20.75" width="19" height="6.5" rx="1" fill="var(--ink)"/>'
+      + '<rect x="15" y="32.5" width="26" height="6.5" rx="1" fill="var(--ink)" fill-opacity=".55"/></svg>'
+      + '<span class="wm">embarca<span class="ly">ly</span></span></span>';
+    return { title:brand, sub:'3 guardadas · 1 a caminho', body:h,
+             right: started ? '<span class="stamp">Em viagem</span>' : '' };
+  }
+
+  function viewItinerario(){
+    const list = visible();
+    if (!list.length) return { title:'Itinerário', sub:'vazio', body:'<div class="empty">Nenhuma reserva ainda.</div>' };
+    let h = '', lastDay = null, prev = null;
+    list.forEach(it => {
+      const k = dayKey(it.start);
+      if (k !== lastDay){
+        h += divider(DIA[it.start.getDay()] + ' · ' + dm(it.start).toLowerCase());
+        lastDay = k; prev = null;
+      }
+      if (prev) h += gapBetween(prev, it);
+      h += ticket(it);
+      prev = it;
+    });
+    const d = daysTo(trip.start);
+    return { title:'Itinerário', sub:list.length+' reservas · '+trip.name, body:h,
+             right:'<span class="cd">'+(now()>=trip.start?'em viagem':'D−'+d)+'</span>' };
+  }
+
+  function viewAgora(){
+    const up = upcoming();
+    if (!up.length) return { title:'Agora', sub:'sem próximos', body:'<div class="empty">Nada pela frente. Boa viagem.</div>' };
+    const [a, b, c] = up;
+    let h = '';
+    const disr = up.find(i => i.delayed || i.gateFrom);
+    if (disr) h += alertCard(disr);
+    h += ticket(a, { headLeft:'Agora', headRight:false });
+    h = h.replace('<span class="tk-kind">Agora</span>', '<span class="tk-kind">Agora</span>'+cdSpan(a.start));
+    if (a.type === 'air' && passState(a) === 'issued'){
+      h += '<div class="tk air static"><div class="tk-stripe"></div><div class="tk-body">'
+         + '<div class="barcode"></div><div class="barnum">M1BIANCHINI/B '+a.pnr+'</div></div></div>';
+      h += '<button class="btn stampy" data-go="passes">Abrir cartão de embarque</button>';
+    } else if (a.type === 'air'){
+      h += '<button class="btn ghost" data-go="passes">Ver cartões de embarque</button>';
+    } else {
+      h += '<button class="btn stampy" data-item-btn="'+a.id+'">Abrir bilhete</button>';
+    }
+    if (a.leaveBy) h += '<div class="flagline">Saia até '+hhmm(a.leaveBy)+' para chegar a tempo.</div>';
+    if (b){ h += gapBetween(a, b) || ''; h += ticket(b, { headLeft:'Depois', headRight:false })
+      .replace('<span class="tk-kind">Depois</span>', '<span class="tk-kind">Depois</span>'+cdSpan(b.start)); }
+    if (c){ h += ticket(c, { headLeft:'Mais tarde', headRight:false })
+      .replace('<span class="tk-kind">Mais tarde</span>', '<span class="tk-kind">Mais tarde</span>'+cdSpan(c.start)); }
+    const n = now();
+    return { title:'Agora', sub:DIA[n.getDay()]+' · '+dm(n).toLowerCase()+' · '+hhmm(n), body:h,
+             right: inTrip() ? '<span class="stamp">Em viagem</span>' : '' };
+  }
+
+  function passState(it){
+    if (it.pass === 'external') return 'external';
+    if (it.type !== 'air') return 'none';
+    return now() >= it.checkinOpen ? 'issued' : 'pending';
+  }
+
+  function viewPasses(){
+    const flights = visible().filter(i => i.type === 'air' || i.pass === 'external');
+    let h = '';
+    flights.forEach(it => {
+      const st = passState(it);
+      let inner = '';
+      if (st === 'issued'){
+        inner = '<div class="bc issued"><div class="h">Emitido pela companhia'+iBtn('pass',true)+'</div>'
+              + '<div class="barcode" style="margin-top:.5rem"></div>'
+              + '<div class="barnum">M1BIANCHINI/B '+it.pnr+'</div></div>'
+              + '<div class="rows" style="margin-top:.55rem">'+row('Assento', it.seat||'—')+row('Sequência', it.seq||'038')+'</div>'
+              + '<button class="btn slim" style="margin-top:.55rem">Adicionar à Carteira</button>';
+      } else if (st === 'pending'){
+        inner = '<div class="bc"><div class="h">Ainda não emitido'+iBtn('pass')+'</div>'
+              + '<div class="m">Só a companhia pode gerar seu cartão de embarque.</div>'
+              + '<div class="big" data-until="'+it.checkinOpen.getTime()+'">abre '+fmtIn(it.checkinOpen)+'</div></div>'
+              + '<button class="btn ghost slim" style="margin-top:.55rem">Avisar quando abrir</button>';
+      } else {
+        inner = '<div class="bc"><div class="h">Fora daqui'+iBtn('pass')+'</div>'
+              + '<div class="m">Este bilhete só abre no app da '+(it.operator||'operadora')+'. Guardamos o localizador e o horário.</div></div>'
+              + '<div class="rows" style="margin-top:.55rem">'+row('Localizador', it.pnr||'—','pnr')+(it.seat?row('Assento',it.seat):'')+'</div>'
+              + '<button class="btn ghost slim" style="margin-top:.55rem">Abrir app da '+(it.operator||'operadora')+'</button>';
+      }
+      h += '<div class="tk '+it.type+' static"><div class="tk-stripe"></div>'
+         + '<div class="tk-head"><span class="tk-kind">'+esc(it.title)+'</span><span class="tk-time">'+dm(it.start)+' · '+hhmm(it.start)+'</span></div>'
+         + '<div class="tk-body">'+inner+'</div></div>';
+    });
+    return { title:'Cartões de embarque', sub:flights.length+' trechos', body:h, back:true };
+  }
+
+  function viewItem(){
+    const it = ITEMS.find(i => i.id === state.itemId);
+    if (!it) return { title:'—', sub:'', body:'', back:true };
+    let h = ticket(it, { static:true });
+    if (it.type === 'air'){
+      const steps = [
+        { at:it.checkinOpen, n:'Abre o check-in', d:'2 dias antes · escolha de assento', v:'checkinOpen', est:false },
+        { at:it.arriveBy,   n:'Chegue ao aeroporto', d:'Recomendação nossa', v:'arriveBy', est:true },
+        { at:it.checkinClose, n:'Fecha o check-in', d:'Depois disso não dá mais para embarcar', v:'checkinClose', est:true },
+        { at:it.boarding,   n:'Começa o embarque', d:'Impresso no seu cartão', v:'boarding', est:false },
+        { at:it.gateClose,  n:'Fecha o portão', d:'15 min antes · estimativa', v:'gateClose', est:true },
+        { at:it.start,      n:'Decolagem', d:it.from+' → '+it.to, est:false },
+        { at:it.end,        n:'Pouso em '+it.to, d:'', est:false }
+      ];
+      const n = now();
+      h += divider('Linha do tempo deste voo');
+      if (it.delayed) h += '<div class="flagline">Horários recalculados após o atraso de '+fmtDur(it.delayed.min)+' · '+esc(it.delayed.reason)+'.</div>';
+      h += '<div class="tk air static"><div class="tk-stripe"></div><div class="tk-body"><div class="tl">';
+      steps.forEach((s, idx) => {
+        const done = n > s.at;
+        const isNext = !done && steps.slice(0, idx).every(x => n > x.at);
+        const cls = [s.est?'est':'', done?'done':'', isNext?'now':''].filter(Boolean).join(' ');
+        const dt = (idx===0 || dayKey(s.at)!==dayKey(steps[idx-1].at)) ? dm(s.at)+'<br>' : '';
+        h += '<div class="tl-item '+cls+'"><span class="h">'+dt+hhmm(s.at)+'</span>'
+           + '<span class="tl-rail"><span class="dot"></span><span class="line"></span></span>'
+           + '<span class="tl-body"><span class="n">'+s.n+(s.v?iBtn(s.v, s.est):'')+'</span>'
+           + (s.d?'<span class="d">'+s.d+'</span>':'')
+           + (isNext?'<span class="d" data-until="'+s.at.getTime()+'" style="color:var(--stamp);font-weight:600">'+fmtIn(s.at)+'</span>':'')
+           + '</span></div>';
+      });
+      h += '</div><div class="legend"><span><i class="mk"></i> do documento</span><span><i class="mk calc"></i> calculado por nós</span></div></div></div>';
+      h += '<div class="rows" style="padding:0 .1rem">'
+         + row('Portão', it.gate ? (it.gate + (it.gateFrom ? ' · era ' + it.gateFrom : '')) : 'a definir', it.gate ? 'portao' : 'gate')
+         + row('Bagagem','1 despachada')+'</div>';
+      h += '<button class="btn ghost" data-go="passes">Ver cartão de embarque</button>';
+    } else {
+      h += divider('Detalhes');
+      h += '<div class="tk '+it.type+' static"><div class="tk-stripe"></div><div class="tk-body"><div class="rows">'
+         + row('Início', dm(it.start)+' '+hhmm(it.start))
+         + (it.end?row('Fim', dm(it.end)+' '+hhmm(it.end)):'')
+         + row('Reserva', it.pnr||'—','pnr')
+         + (it.seat?row('Assento',it.seat):'')
+         + '</div>'
+         + (it.leaveBy?'<div class="flagline" style="margin-top:.55rem">Saia até '+hhmm(it.leaveBy)+'.</div>':'')
+         + '</div></div>';
+      if (it.pass === 'external') h += '<button class="btn ghost" data-go="passes">Ver como abrir este bilhete</button>';
+    }
+    h += divider('Anexos');
+    h += '<div class="docgrid"><div class="doc"><span class="corner"></span><div class="dt">PDF</div><div class="dn">Comprovante</div><div class="dm">184 KB</div></div>'
+       + '<div class="doc"><span class="corner"></span><div class="dt">E-mail</div><div class="dn">Confirmação original</div><div class="dm">03 set</div></div></div>';
+    return { title:it.type==='air' ? ('Voo '+it.flight) : it.title, sub:dm(it.start)+' · '+hhmm(it.start), body:h, back:true };
+  }
+
+  function viewDocs(){
+    const list = visible();
+    const groups = [
+      ['Voos', list.filter(i=>i.type==='air')],
+      ['Hospedagem', list.filter(i=>i.type==='bed')],
+      ['Transporte', list.filter(i=>i.type==='rail'||i.type==='car')],
+      ['Passeios', list.filter(i=>i.type==='act')]
+    ];
+    let h = '';
+    groups.forEach(([name, arr]) => {
+      if (!arr.length) return;
+      h += divider(name) + '<div class="docgrid">';
+      arr.forEach(i => {
+        h += '<div class="doc" data-item="'+i.id+'"><span class="corner"></span>'
+           + '<div class="dt">'+dm(i.start)+'</div><div class="dn">'+esc(i.type==='air'?i.title:i.title)+'</div>'
+           + '<div class="dm">'+(i.pnr||'—')+'</div></div>';
+      });
+      h += '</div>';
+    });
+    h += divider('Pessoais') + '<div class="docgrid">'
+       + '<div class="doc"><span class="corner"></span><div class="dt">DOC</div><div class="dn">Passaporte</div><div class="dm">val. 2031</div></div>'
+       + '<div class="doc"><span class="corner"></span><div class="dt">DOC</div><div class="dn">Seguro viagem</div><div class="dm">AP-55219</div></div></div>';
+    return { title:'Documentos', sub:(list.length+3)+' arquivos · offline', body:h };
+  }
+
+  function viewAdd(){
+    let h = '';
+    if (!state.adding){
+      const missing = LATE.filter(id => !state.added.has(id));
+      h += '<div class="drop"><div class="big">Solte seus PDFs aqui</div>'
+         + '<div class="sm">Passagem, voucher, ingresso, locação</div>'
+         + '<div class="perf"></div><div class="sm">ou tire foto do bilhete impresso</div></div>';
+      h += divider('Ou encaminhe por e-mail');
+      h += '<div class="mailbox"><span>japao@embarcaly.app</span><span class="cp">Copiar</span></div>';
+      if (missing.length){
+        h += divider('Simular envio');
+        h += '<button class="btn stampy" id="simulate">Enviar '+missing.length+' PDFs</button>';
+        h += '<div class="sm" style="font-size:.72rem;color:var(--ink-3);text-align:center">'+QUEUE.join(' · ')+'</div>';
+      } else {
+        h += '<div class="empty">Tudo lido. 8 reservas no itinerário.</div>';
+        h += '<button class="btn" data-go="itinerario">Ver itinerário</button>';
+      }
+    } else {
+      h += divider('Lendo agora');
+      QUEUE.forEach((f, idx) => {
+        const st = state.progress > idx ? 'ok' : (state.progress === idx ? 'run' : '');
+        const lbl = st==='ok' ? 'Lido' : (st==='run' ? 'Lendo' : 'Na fila');
+        h += '<div class="qitem" style="flex-direction:column;align-items:stretch;gap:.15rem">'
+           + '<div style="display:flex;gap:.55rem;align-items:center"><span class="fn">'+f+'</span><span class="st '+st+'">'+lbl+'</span></div>'
+           + (st==='run' ? '<div class="barload"><i></i></div>' : '')
+           + '</div>';
+      });
+    }
+    return { title:'Adicionar reservas', sub:trip.name+' · out 2026', body:h, back:true };
+  }
+
+  /* ------------------ render ------------------ */
+  const abar = document.getElementById('abar'), abody = document.getElementById('abody'), tabsEl = document.getElementById('tabs');
+  const TABS = [['viagens','Viagens'],['agora','Agora'],['itinerario','Itinerário'],['docs','Docs']];
+
+  function render(keepScroll){
+    const top = keepScroll ? abody.scrollTop : 0;
+    let v;
+    switch(state.view){
+      case 'itinerario': v = viewItinerario(); break;
+      case 'agora':      v = viewAgora(); break;
+      case 'docs':       v = viewDocs(); break;
+      case 'passes':     v = viewPasses(); break;
+      case 'item':       v = viewItem(); break;
+      case 'add':        v = viewAdd(); break;
+      default:           v = viewViagens();
+    }
+    abar.innerHTML = '<div><div class="tt">'+v.title+'</div><div class="ss">'+(v.sub||'')+'</div></div>'
+      + (v.back ? '<button class="back" data-back="1">Voltar</button>' : (v.right||''));
+    abody.innerHTML = v.body;
+    tabsEl.innerHTML = TABS.map(([id,label]) =>
+      '<button data-tab="'+id+'" class="'+(state.view===id?'on':'')+'">'+label+'</button>').join('');
+    abody.scrollTop = top;
+    tick();
+  }
+
+  function tick(){
+    const n = now();
+    document.getElementById('clock').textContent =
+      DIA[n.getDay()]+', '+p2(n.getDate())+' '+MES[n.getMonth()]+' '+n.getFullYear()+' · '+hhmm(n);
+    document.querySelectorAll('[data-until]').forEach(el => {
+      const t = new Date(Number(el.dataset.until));
+      const txt = fmtIn(t, n);
+      el.textContent = el.classList.contains('big') ? ('abre '+txt) : txt;
+      if (el.classList.contains('cd')) el.classList.toggle('hot', hotness(t));
+    });
+  }
+
+  /* ------------------ verso ------------------ */
+  const sheet = document.getElementById('sheet'), sheetBody = document.getElementById('sheetBody'), sheetSub = document.getElementById('sheetSub');
+  function openVerso(key){
+    const v = VERSO[key]; if (!v) return;
+    sheetSub.textContent = v.t;
+    let h = '<div class="verso"><div class="vh"><span>'+v.t+'</span></div>'
+          + '<div class="q">'+v.q+'</div><div class="a">'+v.a+'</div>';
+    if (v.q2) h += '<div class="sep"></div><div class="q">'+v.q2+'</div><div class="a">'+v.a2+'</div>';
+    h += '</div>';
+    sheetBody.innerHTML = h;
+    sheet.classList.add('open');
+  }
+  document.getElementById('sheetClose').addEventListener('click', () => sheet.classList.remove('open'));
+
+  /* ------------------ eventos ------------------ */
+  document.querySelector('.app').addEventListener('click', (e) => {
+    const versoBtn = e.target.closest('[data-verso]');
+    if (versoBtn){ e.stopPropagation(); openVerso(versoBtn.dataset.verso); return; }
+    const tab = e.target.closest('[data-tab]');
+    if (tab){ state.view = tab.dataset.tab; render(); return; }
+    const back = e.target.closest('[data-back]');
+    if (back){ state.view = state.stack.pop() || 'viagens'; render(); return; }
+    const go = e.target.closest('[data-go]');
+    if (go){ state.stack.push(state.view); state.view = go.dataset.go; render(); return; }
+    const ib = e.target.closest('[data-item-btn]');
+    if (ib){ state.stack.push(state.view); state.itemId = ib.dataset.itemBtn; state.view='item'; render(); return; }
+    const card = e.target.closest('[data-item]');
+    if (card && !card.classList.contains('static')){
+      state.stack.push(state.view); state.itemId = card.dataset.item; state.view = 'item'; render(); return;
+    }
+    if (e.target.id === 'simulate') runSimulation();
+  });
+
+  function runSimulation(){
+    state.adding = true; state.progress = 0; render();
+    const advance = () => {
+      state.added.add(LATE[state.progress]);
+      state.progress++;
+      if (state.progress >= QUEUE.length){
+        state.adding = false; state.view = 'itinerario'; state.stack = [];
+        render(); return;
+      }
+      render(true); setTimeout(advance, 560);
+    };
+    setTimeout(advance, 680);
+  }
+
+  /* ------------------ presets ------------------ */
+  const presetsEl = document.getElementById('presets');
+  presetsEl.innerHTML = PRESETS.map(p =>
+    '<button class="preset" data-preset="'+p.id+'" aria-pressed="'+(p.id===presetId)+'">'
+    + '<span class="mm">'+p.mm+'</span><span class="ll">'+p.ll+'</span></button>').join('');
+  presetsEl.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-preset]'); if (!b) return;
+    const p = PRESETS.find(x => x.id === b.dataset.preset);
+    simBase = p.at; realBase = Date.now(); presetId = p.id; applyMut(p.mut);
+    presetsEl.querySelectorAll('.preset').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.preset === p.id)));
+    if (p.id !== 'plan' && state.view === 'viagens') state.view = 'agora';
+    sheet.classList.remove('open');
+    render();
+  });
+
+  /* Abertura: anima sozinha, mas nunca prende o app.
+     Some por toque e por temporizador de seguranca, caso a animacao
+     seja estrangulada com a aba em segundo plano. */
+  const splashEl = document.getElementById('splash');
+  const hideSplash = () => splashEl.classList.add('gone');
+  splashEl.addEventListener('click', hideSplash);
+  setTimeout(hideSplash, 2400);
+
+  document.getElementById('replay').addEventListener('click', () => {
+    splashEl.classList.remove('gone');
+    splashEl.style.animation = 'none';
+    void splashEl.offsetWidth;
+    splashEl.style.animation = '';
+    setTimeout(hideSplash, 2400);
+  });
+
+  render();
+  setInterval(tick, 1000);
+})();
+</script>

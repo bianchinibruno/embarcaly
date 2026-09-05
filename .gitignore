@@ -1,0 +1,23 @@
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.*
+!.env.example
+
+# Editores e SO
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Python do gerador de marca
+__pycache__/
+*.pyc
+
+# Contexto local de agentes
+CLAUDE.md
+raio-x.md

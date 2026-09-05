@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Embarcaly">
+  <rect width="64" height="64" rx="10.2" fill="#171C20"/>
+  <rect x="15.00" y="17.00" width="6.50" height="30.00" rx="1.00" fill="#FBFAF7"/>
+  <rect x="23.00" y="17.00" width="26.00" height="6.50" rx="1.00" fill="#B0432B"/>
+  <rect x="23.00" y="28.75" width="19.00" height="6.50" rx="1.00" fill="#FBFAF7"/>
+  <rect x="23.00" y="40.50" width="26.00" height="6.50" rx="1.00" fill="#FBFAF7" fill-opacity="0.55"/>
+</svg>
