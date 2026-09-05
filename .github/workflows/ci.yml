@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  app:
+    name: tipos e bundle
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+
+      - run: npm ci
+
+      - name: Tipos
+        run: npm run typecheck
+
+      - name: Configuração do projeto
+        run: npx expo-doctor
+
+      # Compila o bundle de verdade. Typecheck sozinho não pega import quebrado
+      # nem dependência nativa faltando — só o empacotamento pega.
+      - name: Bundle Android
+        run: npx expo export --platform android --output-dir ./.export
+
+      - name: Bundle iOS
+        run: npx expo export --platform ios --output-dir ./.export-ios

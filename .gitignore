@@ -24,3 +24,6 @@ raio-x.md
 
 # Config local de agentes
 .claude/
+
+# Saidas de export do Expo
+mobile/.export*/
