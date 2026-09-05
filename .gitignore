@@ -21,3 +21,6 @@ __pycache__/
 # Contexto local de agentes
 CLAUDE.md
 raio-x.md
+
+# Config local de agentes
+.claude/

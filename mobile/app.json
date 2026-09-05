@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "Embarcaly",
+    "slug": "embarcaly",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "embarcaly",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "primaryColor": "#B0432B",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.embarcaly.mobile",
+      "buildNumber": "1",
+      "infoPlist": {
+        "CFBundleDisplayName": "Embarcaly",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "app.embarcaly.mobile",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#171C20",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#FBFAF7",
+          "dark": {
+            "image": "./assets/splash.png",
+            "backgroundColor": "#1A2025"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    }
+  }
+}

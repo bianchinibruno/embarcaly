@@ -19,12 +19,9 @@ O produto não organiza reservas. **Organiza decisões.**
 
 ## O que tem aqui
 
-Este repositório guarda a fase de concepção: protótipo navegável, identidade
-visual e o documento de conceito. Ainda não há aplicação real — a construção só
-começa depois da validação com viajantes.
-
 ```
-index.html              protótipo navegável (abre direto, sem build)
+mobile/                 app nativo iOS + Android (Expo · React Native · TypeScript)
+index.html              protótipo navegável em HTML (abre direto, sem build)
 brand/                  identidade visual completa
   MARCA.md              manual de marca
   gen_brand.py          gerador dos assets
@@ -33,6 +30,23 @@ brand/                  identidade visual completa
 docs/
   Embarcaly-Concept-Brief-v1.pdf
 ```
+
+### O app
+
+Código editável em TypeScript, uma base para as duas lojas.
+
+```bash
+cd mobile && npm install && npx expo start
+```
+
+Abra o Expo Go no celular e escaneie o QR — roda em iPhone e Android sem Mac e
+sem Android Studio. Instruções de build e envio para App Store e Play Store no
+[README do app](mobile/README.md).
+
+### O protótipo em HTML
+
+Continua no ar como referência de design e para demonstração rápida em qualquer
+navegador. É a mesma experiência, sem instalar nada.
 
 ## O protótipo
 
