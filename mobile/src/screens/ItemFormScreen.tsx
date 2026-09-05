@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation, useRoute, type RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { ChipsField, DateTimeField, TextField } from '../components/form';
 import { Button, Divider } from '../components/primitives';
+import { useConfirm } from '../components/Confirm';
 import { font, space } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 import { useApp } from '../state/AppState';
@@ -25,6 +26,7 @@ export function ItemFormScreen() {
   const nav = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, 'ItemForm'>>();
   const { items, createItem, updateItem, deleteItem } = useApp();
+  const confirm = useConfirm();
 
   const editing = route.params?.id ? items.find((i) => i.id === route.params!.id) : null;
 
@@ -43,8 +45,44 @@ export function ItemFormScreen() {
   const [operator, setOperator] = useState(editing?.operator ?? '');
   const [international, setInternational] = useState<'sim' | 'nao'>('nao');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [saving, setSaving] = useState(false);
+  // Ref porque o listener de beforeRemove enxerga o estado do render em que
+  // foi registrado; sem isso, salvar dispara o aviso de descarte.
+  const savingRef = useRef(false);
+  const beginSave = () => { savingRef.current = true; setSaving(true); };
 
   const isFlight = type === 'air';
+
+  const dirty =
+    type !== (editing?.type ?? 'air') ||
+    title !== (editing?.title ?? '') ||
+    subtitle !== (editing?.subtitle ?? '') ||
+    start.getTime() !== (editing?.start ?? start).getTime() ||
+    from !== (editing?.from ?? '') ||
+    to !== (editing?.to ?? '') ||
+    flight !== (editing?.flight ?? '') ||
+    pnr !== (editing?.pnr ?? '') ||
+    seat !== (editing?.seat ?? '');
+
+  /** Sair com alteração pendente pede confirmação. Ver TripFormScreen. */
+  useEffect(() => {
+    const unsub = nav.addListener('beforeRemove', (e) => {
+      if (!dirty || savingRef.current) return;
+      e.preventDefault();
+      void confirm({
+        title: 'Descartar alterações?',
+        body: editing
+          ? `As mudanças em «${editing.title}» não foram salvas. Sair agora perde o que você preencheu.`
+          : 'Esta reserva ainda não foi adicionada. Sair agora perde o que você preencheu.',
+        confirmLabel: 'Descartar',
+        cancelLabel: 'Continuar editando',
+        destructive: true,
+      }).then((ok) => {
+        if (ok) nav.dispatch(e.data.action);
+      });
+    });
+    return unsub;
+  }, [nav, dirty, confirm, editing]);
 
   async function save() {
     const next: Record<string, string> = {};
@@ -52,6 +90,18 @@ export function ItemFormScreen() {
     if (end <= start) next.end = 'O fim precisa ser depois do início';
     setErrors(next);
     if (Object.keys(next).length) return;
+
+    if (editing) {
+      const ok = await confirm({
+        title: 'Salvar alterações?',
+        body:
+          `Os dados atuais de «${editing.title}» serão substituídos.` +
+          (isFlight ? ' Os horários derivados do voo serão recalculados.' : ''),
+        confirmLabel: 'Salvar',
+      });
+      if (!ok) return;
+    }
+    beginSave();
 
     const pass: PassSource = isFlight ? 'carrier' : type === 'rail' ? 'external' : 'none';
 
@@ -82,19 +132,19 @@ export function ItemFormScreen() {
     nav.goBack();
   }
 
-  function confirmDelete() {
+  async function confirmDelete() {
     if (!editing) return;
-    Alert.alert('Excluir reserva', `"${editing.title}" será apagada. Não dá para desfazer.`, [
-      { text: 'Cancelar', style: 'cancel' },
-      {
-        text: 'Excluir',
-        style: 'destructive',
-        onPress: async () => {
-          await deleteItem(editing.id);
-          nav.goBack();
-        },
-      },
-    ]);
+    const ok = await confirm({
+      title: 'Excluir esta reserva?',
+      body: `«${editing.title}» sai do itinerário e os documentos ligados a ela deixam de aparecer. Não dá para desfazer.`,
+      confirmLabel: 'Excluir',
+      destructive: true,
+    });
+    if (!ok) return;
+    beginSave();
+    await deleteItem(editing.id);
+    // Volta para a lista: o detalhe da reserva excluida nao existe mais.
+    nav.navigate('Tabs', { screen: 'Itinerary' });
   }
 
   return (
@@ -179,12 +229,16 @@ export function ItemFormScreen() {
       ) : null}
 
       <View style={{ height: space.sm }} />
-      <Button title={editing ? 'Salvar alterações' : 'Adicionar reserva'} onPress={save} />
+      <Button
+        title={editing ? 'Salvar alterações' : 'Adicionar reserva'}
+        onPress={save}
+        disabled={saving}
+      />
 
       {editing ? (
         <>
           <Divider>Zona de risco</Divider>
-          <Button title="Excluir reserva" variant="ghost" onPress={confirmDelete} />
+          <Button title="Excluir reserva" variant="ghost" onPress={confirmDelete} disabled={saving} />
         </>
       ) : null}
     </ScrollView>

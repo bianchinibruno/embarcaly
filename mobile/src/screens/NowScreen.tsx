@@ -59,7 +59,7 @@ export function NowScreen() {
       </View>
 
       <ScrollView contentContainerStyle={styles.body}>
-        {disrupted ? <Alert item={disrupted} onInfo={setVerso} /> : null}
+        {disrupted ? <DisruptionNotice item={disrupted} onInfo={setVerso} /> : null}
 
         <Ticket item={current} headLeft="Agora" headRight={cd(current)} onInfo={setVerso} />
 
@@ -111,7 +111,7 @@ function GapRow({ a, b, onInfo }: { a: Item; b: Item; onInfo: (k: string) => voi
 }
 
 /** O aviso que só aparece quando o plano quebra — e é aí que o produto vale mais. */
-function Alert({ item, onInfo }: { item: Item; onInfo: (k: string) => void }) {
+function DisruptionNotice({ item, onInfo }: { item: Item; onInfo: (k: string) => void }) {
   const t = useTheme();
   const { items } = useApp();
 

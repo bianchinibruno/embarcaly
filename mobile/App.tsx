@@ -15,6 +15,7 @@ import {
 
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { AppStateProvider } from './src/state/AppState';
+import { ConfirmProvider } from './src/components/Confirm';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -32,8 +33,10 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <AppStateProvider>
-        <StatusBar style="auto" />
-        <RootNavigator />
+        <ConfirmProvider>
+          <StatusBar style="auto" />
+          <RootNavigator />
+        </ConfirmProvider>
       </AppStateProvider>
     </SafeAreaProvider>
   );
