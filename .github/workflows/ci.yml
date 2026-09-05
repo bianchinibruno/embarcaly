@@ -29,10 +29,12 @@ jobs:
       - name: Tipos
         run: npm run typecheck
 
-      # Falha se a cobertura do domínio cair de 100%. As regras de negócio são
-      # o que não pode quebrar em silêncio: horários derivados, estado do
-      # cartão de embarque, nome de anexo.
-      - name: Testes de domínio (cobertura 100%)
+      # Falha se a cobertura cair de 100% no domínio ou nos componentes. As
+      # regras de negócio são o que não pode quebrar em silêncio: horários
+      # derivados, estado do cartão de embarque, nome de anexo. E os
+      # componentes guardam invariantes que já quebraram na prática, como
+      # bilhete tocável não conter botão dentro de botão.
+      - name: Testes de domínio e componentes (cobertura 100%)
         run: npm run test:coverage -- --ci
 
       - name: Configuração do projeto

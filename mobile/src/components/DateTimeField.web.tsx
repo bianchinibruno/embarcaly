@@ -31,6 +31,7 @@ export function DateTimeField({ label, value, onChange, error }: DateTimeFieldPr
       <Label>{label}</Label>
       <input
         type="datetime-local"
+        aria-label={label}
         value={toLocalInput(value)}
         onChange={(e) => {
           const next = new Date(e.target.value);
