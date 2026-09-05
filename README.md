@@ -33,7 +33,9 @@ docs/
 
 ### O app
 
-Código editável em TypeScript, uma base para as duas lojas.
+Código editável em TypeScript, uma base para as duas lojas. **CRUD completo** de
+viagens e reservas em banco SQLite local — cria, lista, edita, exclui e persiste
+no aparelho, funcionando offline.
 
 ```bash
 cd mobile && npm install && npx expo start

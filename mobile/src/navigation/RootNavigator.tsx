@@ -11,7 +11,8 @@ import { ItineraryScreen } from '../screens/ItineraryScreen';
 import { DocsScreen } from '../screens/DocsScreen';
 import { ItemScreen } from '../screens/ItemScreen';
 import { PassesScreen } from '../screens/PassesScreen';
-import { AddScreen } from '../screens/AddScreen';
+import { TripFormScreen } from '../screens/TripFormScreen';
+import { ItemFormScreen } from '../screens/ItemFormScreen';
 import { font } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 import type { RootStackParamList, TabParamList } from './types';
@@ -86,9 +87,22 @@ export function RootNavigator() {
           options={{ title: 'Cartões de embarque', headerBackTitle: 'Voltar' }}
         />
         <Stack.Screen
-          name="Add"
-          component={AddScreen}
-          options={{ title: 'Adicionar reservas', headerBackTitle: 'Voltar' }}
+          name="TripForm"
+          component={TripFormScreen}
+          options={({ route }) => ({
+            title: route.params?.id ? 'Editar viagem' : 'Nova viagem',
+            headerBackTitle: 'Voltar',
+            presentation: 'modal',
+          })}
+        />
+        <Stack.Screen
+          name="ItemForm"
+          component={ItemFormScreen}
+          options={({ route }) => ({
+            title: route.params?.id ? 'Editar reserva' : 'Nova reserva',
+            headerBackTitle: 'Voltar',
+            presentation: 'modal',
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

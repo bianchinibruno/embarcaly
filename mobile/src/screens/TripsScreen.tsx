@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -9,24 +9,19 @@ import { DevClock } from '../components/DevClock';
 import { font, space } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 import { useApp } from '../state/AppState';
-import { daysUntil } from '../domain/time';
+import { dayMonth, daysUntil } from '../domain/time';
 import type { RootStackParamList } from '../navigation/types';
 
-/**
- * Home. A contagem regressiva é o maior elemento da tela porque, antes de
- * embarcar, a única pergunta que existe é quanto falta.
- */
 export function TripsScreen() {
   const t = useTheme();
-  const { trip, items, now } = useApp();
+  const { ready, trips, activeTrip, items, now, selectTrip, seedSample } = useApp();
   const nav = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  if (!ready) {
+    return <View style={{ flex: 1, backgroundColor: t.paper2 }} />;
+  }
+
   const n = now();
-  const started = n >= trip.start;
-  const days = started
-    ? Math.max(1, Math.ceil((n.getTime() - trip.start.getTime()) / 86400000))
-    : daysUntil(trip.start, n);
-  const pending = items.filter((i) => i.needs).length;
 
   return (
     <View style={{ flex: 1, backgroundColor: t.paper2 }}>
@@ -34,74 +29,115 @@ export function TripsScreen() {
         <View>
           <Wordmark />
           <View style={{ marginTop: 4 }}>
-            <Label>3 guardadas · 1 a caminho</Label>
+            <Label>
+              {trips.length === 0
+                ? 'nenhuma viagem ainda'
+                : `${trips.length} ${trips.length === 1 ? 'viagem' : 'viagens'}`}
+            </Label>
           </View>
         </View>
-        {started ? <Stamp>Em viagem</Stamp> : null}
+        {activeTrip && n >= activeTrip.start && n <= activeTrip.end ? <Stamp>Em viagem</Stamp> : null}
       </View>
 
       <ScrollView contentContainerStyle={styles.body}>
-        <View style={[styles.card, { backgroundColor: t.paper, borderColor: t.rule }]}>
-          <View style={{ height: 4, backgroundColor: t.edge.air }} />
-          <View style={[styles.head, { backgroundColor: t.stock.air, borderBottomColor: t.rule }]}>
-            <Text style={[styles.kind, { color: t.ink2 }]}>
-              {started ? 'Em viagem' : 'Próxima viagem'}
+        {trips.length === 0 ? (
+          <View style={[styles.emptyCard, { backgroundColor: t.paper, borderColor: t.rule }]}>
+            <Text style={[styles.emptyTitle, { color: t.ink }]}>Comece pela sua viagem.</Text>
+            <Text style={[styles.emptyText, { color: t.ink2 }]}>
+              Crie a viagem, adicione as reservas e o Embarcaly monta a sequência: o que fazer
+              agora, o que vem depois e qual documento você precisa ter em mãos.
             </Text>
-            <Text style={[styles.time, { color: t.ink }]}>03 – 22 OUT</Text>
+            <View style={{ height: space.md }} />
+            <Button title="Criar minha viagem" onPress={() => nav.navigate('TripForm', {})} />
+            <View style={{ height: space.sm }} />
+            <Button title="Ver com dados de exemplo" variant="ghost" onPress={seedSample} />
           </View>
-          <View style={styles.cardBody}>
-            <Text style={[styles.tripName, { color: t.ink }]}>{trip.name}</Text>
-            <Text style={[styles.tripSub, { color: t.ink3 }]}>{trip.subtitle}</Text>
+        ) : null}
 
-            <View style={styles.hero}>
-              <Text style={[styles.heroNum, { color: t.ink }]}>{days}</Text>
-              <Text style={[styles.heroUnit, { color: t.ink3 }]}>
-                {started ? 'dia de viagem' : 'dias para embarcar'}
-              </Text>
-            </View>
+        {trips.map((trip) => {
+          const isActive = trip.id === activeTrip?.id;
+          const started = n >= trip.start;
+          const finished = n > trip.end;
+          const days = started
+            ? Math.max(1, Math.ceil((n.getTime() - trip.start.getTime()) / 86400000))
+            : daysUntil(trip.start, n);
 
-            <View style={[styles.perf, { borderTopColor: t.rule }]} />
-            <DataRow k="Reservas" v={String(items.length)} />
-            <DataRow k="Documentos" v={String(items.length + 2)} />
-            <DataRow k="Pendências" v={String(pending)} />
-          </View>
-        </View>
+          return (
+            <Pressable
+              key={trip.id}
+              onPress={() => {
+                selectTrip(trip.id);
+                nav.navigate('Tabs', { screen: 'Itinerary' });
+              }}
+              onLongPress={() => nav.navigate('TripForm', { id: trip.id })}
+              accessibilityRole="button"
+              accessibilityLabel={`Abrir viagem ${trip.name}`}
+            >
+              <View style={[styles.card, { backgroundColor: t.paper, borderColor: isActive ? t.ink : t.rule }]}>
+                <View style={{ height: 4, backgroundColor: finished ? t.edge.bed : t.edge.air }} />
+                <View
+                  style={[
+                    styles.head,
+                    { backgroundColor: finished ? t.stock.bed : t.stock.air, borderBottomColor: t.rule },
+                  ]}
+                >
+                  <Text style={[styles.kind, { color: t.ink2 }]}>
+                    {finished ? 'Concluída' : started ? 'Em viagem' : 'Próxima viagem'}
+                  </Text>
+                  <Text style={[styles.time, { color: t.ink }]}>
+                    {dayMonth(trip.start)} – {dayMonth(trip.end)}
+                  </Text>
+                </View>
 
-        <Button title="Adicionar reservas" onPress={() => nav.navigate('Add')} />
+                <View style={styles.cardBody}>
+                  <Text style={[styles.tripName, { color: t.ink }]}>{trip.name}</Text>
+                  {trip.subtitle ? (
+                    <Text style={[styles.tripSub, { color: t.ink3 }]}>{trip.subtitle}</Text>
+                  ) : null}
 
-        <Divider>Guardadas</Divider>
-        <Archived name="Portugal & Espanha" meta="18 dias · 21 reservas" when="JAN 2026" tone="bed" />
-        <Archived name="Argentina" meta="6 dias · 7 reservas" when="SET 2025" tone="rail" />
+                  {!finished ? (
+                    <View style={styles.hero}>
+                      <Text style={[styles.heroNum, { color: t.ink }]}>{days}</Text>
+                      <Text style={[styles.heroUnit, { color: t.ink3 }]}>
+                        {started ? 'dia de viagem' : 'dias para embarcar'}
+                      </Text>
+                    </View>
+                  ) : null}
+
+                  {isActive ? (
+                    <>
+                      <View style={[styles.perf, { borderTopColor: t.rule }]} />
+                      <DataRow k="Reservas" v={String(items.length)} />
+                      <DataRow k="Pendências" v={String(items.filter((i) => i.needs).length)} />
+                    </>
+                  ) : null}
+
+                  <View style={styles.actions}>
+                    <Pressable
+                      onPress={() => nav.navigate('TripForm', { id: trip.id })}
+                      hitSlop={10}
+                      accessibilityRole="button"
+                    >
+                      <Text style={[styles.action, { color: t.stamp }]}>Editar</Text>
+                    </Pressable>
+                    {isActive ? (
+                      <Text style={[styles.action, { color: t.ink3 }]}>Selecionada</Text>
+                    ) : (
+                      <Text style={[styles.action, { color: t.ink3 }]}>Toque para abrir</Text>
+                    )}
+                  </View>
+                </View>
+              </View>
+            </Pressable>
+          );
+        })}
+
+        {trips.length > 0 ? (
+          <Button title="Nova viagem" onPress={() => nav.navigate('TripForm', {})} />
+        ) : null}
 
         <DevClock />
       </ScrollView>
-    </View>
-  );
-}
-
-function Archived({
-  name,
-  meta,
-  when,
-  tone,
-}: {
-  name: string;
-  meta: string;
-  when: string;
-  tone: 'bed' | 'rail';
-}) {
-  const t = useTheme();
-  return (
-    <View style={[styles.card, { backgroundColor: t.paper, borderColor: t.rule }]}>
-      <View style={{ height: 4, backgroundColor: t.edge[tone] }} />
-      <View style={[styles.head, { backgroundColor: t.stock[tone], borderBottomColor: t.rule }]}>
-        <Text style={[styles.kind, { color: t.ink2 }]}>Concluída</Text>
-        <Text style={[styles.time, { color: t.ink }]}>{when}</Text>
-      </View>
-      <View style={styles.cardBody}>
-        <Text style={[styles.tripName, { color: t.ink, fontSize: 15 }]}>{name}</Text>
-        <Text style={[styles.tripSub, { color: t.ink3 }]}>{meta}</Text>
-      </View>
     </View>
   );
 }
@@ -126,12 +162,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   kind: { fontFamily: font.monoBold, fontSize: 9.5, letterSpacing: 1.8, textTransform: 'uppercase' },
-  time: { fontFamily: font.monoBold, fontSize: 12 },
+  time: { fontFamily: font.monoBold, fontSize: 11 },
   cardBody: { paddingHorizontal: 12, paddingTop: 10, paddingBottom: 12 },
   tripName: { fontFamily: font.uiBold, fontSize: 17, letterSpacing: -0.3 },
   tripSub: { fontFamily: font.ui, fontSize: 11.5, marginTop: 2 },
   hero: { alignItems: 'center', paddingVertical: space.md },
-  heroNum: { fontFamily: font.mono, fontSize: 52, lineHeight: 56, letterSpacing: -2 },
+  heroNum: { fontFamily: font.mono, fontSize: 48, lineHeight: 52, letterSpacing: -2 },
   heroUnit: {
     fontFamily: font.mono,
     fontSize: 10,
@@ -140,4 +176,14 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   perf: { borderTopWidth: 1, borderStyle: 'dashed', marginVertical: space.sm },
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: space.md,
+    paddingTop: space.sm,
+  },
+  action: { fontFamily: font.monoBold, fontSize: 9.5, letterSpacing: 1.6, textTransform: 'uppercase' },
+  emptyCard: { borderWidth: 1, padding: space.lg },
+  emptyTitle: { fontFamily: font.uiBold, fontSize: 19, letterSpacing: -0.4 },
+  emptyText: { fontFamily: font.ui, fontSize: 13.5, lineHeight: 20, marginTop: 6 },
 });

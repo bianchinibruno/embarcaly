@@ -29,6 +29,9 @@ jobs:
       - name: Tipos
         run: npm run typecheck
 
+      - name: Testes de domínio
+        run: npm test -- --ci
+
       - name: Configuração do projeto
         run: npx expo-doctor
 

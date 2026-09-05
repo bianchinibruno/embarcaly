@@ -155,6 +155,12 @@ export function ItemScreen() {
           </>
         )}
 
+        <Button
+          title="Editar reserva"
+          variant="ghost"
+          onPress={() => nav.navigate('ItemForm', { id: item.id })}
+        />
+
         <Divider>Anexos</Divider>
         <View style={styles.docs}>
           {(item.documents ?? [{ id: 'x', kind: 'pdf' as const, name: 'Comprovante', meta: '—' }]).map(

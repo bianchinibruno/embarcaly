@@ -5,7 +5,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Ticket } from '../components/Ticket';
 import { VersoSheet } from '../components/VersoSheet';
-import { Divider, Gap, Label } from '../components/primitives';
+import { Button, Divider, Gap, Label } from '../components/primitives';
 import { font, space } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 import { useApp } from '../state/AppState';
@@ -20,12 +20,23 @@ import type { RootStackParamList } from '../navigation/types';
  */
 export function ItineraryScreen() {
   const t = useTheme();
-  const { trip, items, now } = useApp();
+  const { activeTrip, items, now } = useApp();
   const nav = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [verso, setVerso] = useState<string | null>(null);
 
   const n = now();
-  const started = n >= trip.start;
+
+  if (!activeTrip) {
+    return (
+      <View style={[styles.blank, { backgroundColor: t.paper2 }]}>
+        <Text style={[styles.blankText, { color: t.ink3 }]}>
+          Selecione uma viagem na aba Viagens.
+        </Text>
+      </View>
+    );
+  }
+
+  const started = n >= activeTrip.start;
 
   let lastDay = '';
   const rows: React.ReactNode[] = [];
@@ -68,14 +79,27 @@ export function ItineraryScreen() {
       <View style={[styles.bar, { backgroundColor: t.paper, borderBottomColor: t.hair }]}>
         <View>
           <Text style={[styles.h1, { color: t.ink }]}>Itinerário</Text>
-          <Label>{`${items.length} reservas · ${trip.name}`}</Label>
+          <Label>{`${items.length} ${items.length === 1 ? 'reserva' : 'reservas'} · ${activeTrip.name}`}</Label>
         </View>
         <Text style={[styles.cd, { color: t.ink2 }]}>
-          {started ? 'em viagem' : `D−${daysUntil(trip.start, n)}`}
+          {started ? 'em viagem' : `D−${daysUntil(activeTrip.start, n)}`}
         </Text>
       </View>
 
-      <ScrollView contentContainerStyle={styles.body}>{rows}</ScrollView>
+      <ScrollView contentContainerStyle={styles.body}>
+        {items.length === 0 ? (
+          <View style={[styles.blankCard, { backgroundColor: t.paper, borderColor: t.rule }]}>
+            <Text style={[styles.blankTitle, { color: t.ink }]}>Nenhuma reserva ainda.</Text>
+            <Text style={[styles.blankText, { color: t.ink2, textAlign: 'left', marginTop: 6 }]}>
+              Adicione o primeiro voo, hotel ou trem. Basta o horário de partida — o resto da linha
+              do tempo a gente calcula.
+            </Text>
+          </View>
+        ) : (
+          rows
+        )}
+        <Button title="Adicionar reserva" onPress={() => nav.navigate('ItemForm', {})} />
+      </ScrollView>
       <VersoSheet versoKey={verso} onClose={() => setVerso(null)} />
     </View>
   );
@@ -93,4 +117,8 @@ const styles = StyleSheet.create({
   h1: { fontFamily: font.uiBold, fontSize: 20, letterSpacing: -0.5 },
   body: { padding: space.md, gap: space.md, paddingBottom: space.xxl },
   cd: { fontFamily: font.monoBold, fontSize: 10.5, letterSpacing: 1, textTransform: 'uppercase' },
+  blank: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.xl },
+  blankCard: { borderWidth: 1, padding: space.lg },
+  blankTitle: { fontFamily: font.uiBold, fontSize: 16 },
+  blankText: { fontFamily: font.ui, fontSize: 13.5, lineHeight: 20, textAlign: 'center' },
 });

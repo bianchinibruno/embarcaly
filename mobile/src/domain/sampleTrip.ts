@@ -128,12 +128,3 @@ export const sampleTrip: Trip = {
     },
   ],
 };
-
-/** Itens que chegam pelo fluxo de envio de PDF, para demonstrar a extração. */
-export const LATE_ITEM_IDS = ['r2', 'h2', 'c1'];
-
-export const QUEUE_FILES = [
-  'shinkansen-kyoto.pdf',
-  'ryokan-hakone-voucher.pdf',
-  'toyota-hakone-locacao.pdf',
-];
