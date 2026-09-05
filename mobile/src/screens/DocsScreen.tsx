@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Divider, Label } from '../components/primitives';
+import { HeaderBack } from '../components/HeaderBack';
 import { font, space } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 import { useApp } from '../state/AppState';
@@ -32,6 +33,7 @@ export function DocsScreen() {
     <View style={{ flex: 1, backgroundColor: t.paper2 }}>
       <View style={[styles.bar, { backgroundColor: t.paper, borderBottomColor: t.hair }]}>
         <View>
+          <HeaderBack label="Viagens" onPress={() => nav.navigate('Tabs', { screen: 'Trips' })} />
           <Text style={[styles.h1, { color: t.ink }]}>Documentos</Text>
           <Label>{`${items.length + 2} arquivos · offline`}</Label>
         </View>

@@ -13,6 +13,7 @@ import { ItemScreen } from '../screens/ItemScreen';
 import { PassesScreen } from '../screens/PassesScreen';
 import { TripFormScreen } from '../screens/TripFormScreen';
 import { ItemFormScreen } from '../screens/ItemFormScreen';
+import { HeaderBack } from '../components/HeaderBack';
 import { font } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 import type { RootStackParamList, TabParamList } from './types';
@@ -79,29 +80,36 @@ export function RootNavigator() {
         <Stack.Screen
           name="Item"
           component={ItemScreen}
-          options={{ title: 'Reserva', headerBackTitle: 'Voltar' }}
+          options={({ navigation }) => ({
+            title: 'Reserva',
+            headerLeft: () => <HeaderBack onPress={navigation.goBack} />,
+          })}
         />
         <Stack.Screen
           name="Passes"
           component={PassesScreen}
-          options={{ title: 'Cartões de embarque', headerBackTitle: 'Voltar' }}
+          options={({ navigation }) => ({
+            title: 'Cartões de embarque',
+            headerLeft: () => <HeaderBack onPress={navigation.goBack} />,
+          })}
         />
         <Stack.Screen
           name="TripForm"
           component={TripFormScreen}
-          options={({ route }) => ({
+          options={({ route, navigation }) => ({
             title: route.params?.id ? 'Editar viagem' : 'Nova viagem',
-            headerBackTitle: 'Voltar',
             presentation: 'modal',
+            // Modal não tem gesto de arrastar na web: a saída precisa ser visível.
+            headerLeft: () => <HeaderBack onPress={navigation.goBack} label="Fechar" />,
           })}
         />
         <Stack.Screen
           name="ItemForm"
           component={ItemFormScreen}
-          options={({ route }) => ({
+          options={({ route, navigation }) => ({
             title: route.params?.id ? 'Editar reserva' : 'Nova reserva',
-            headerBackTitle: 'Voltar',
             presentation: 'modal',
+            headerLeft: () => <HeaderBack onPress={navigation.goBack} label="Fechar" />,
           })}
         />
       </Stack.Navigator>
