@@ -73,6 +73,19 @@ export interface DocumentRef {
   meta?: string;
 }
 
+/** Arquivo real anexado a uma reserva: PDF, foto do bilhete, voucher. */
+export interface Attachment {
+  id: string;
+  itemId: string;
+  name: string;
+  mimeType?: string;
+  /** Bytes. Undefined quando a origem não informa. */
+  size?: number;
+  /** Nativo: caminho no sistema de arquivos. Web: chave no IndexedDB. */
+  uri: string;
+  createdAt: Date;
+}
+
 export interface Trip {
   id: string;
   name: string;

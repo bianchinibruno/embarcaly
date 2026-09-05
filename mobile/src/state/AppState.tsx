@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { items as itemsRepo, trips as tripsRepo, type ItemInput, type TripInput } from '../db/repo';
+import * as attachments from '../db/attachments';
 import { sampleTrip } from '../domain/sampleTrip';
 import type { Item, Trip } from '../domain/types';
 
@@ -98,6 +99,10 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
 
   const deleteTrip = useCallback(
     async (id: string) => {
+      // Idem para cada reserva da viagem.
+      for (const it of await itemsRepo.listByTrip(id)) {
+        await attachments.removeAllForItem(it.id);
+      }
       await tripsRepo.remove(id);
       const list = await refreshTrips();
       if (activeId === id) {
@@ -129,6 +134,9 @@ export function AppStateProvider({ children }: { children: React.ReactNode }) {
 
   const deleteItem = useCallback(
     async (id: string) => {
+      // Os arquivos precisam sair antes: a linha cai por cascata, mas o
+      // arquivo no disco ficaria orfao para sempre.
+      await attachments.removeAllForItem(id);
       await itemsRepo.remove(id);
       await refreshItems(activeId);
     },

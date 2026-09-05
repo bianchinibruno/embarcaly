@@ -10,7 +10,7 @@
  * apresentação.
  */
 
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 
 export const MIGRATIONS: string[] = [
   // v1
@@ -71,5 +71,25 @@ export const MIGRATIONS: string[] = [
   );
 
   CREATE INDEX IF NOT EXISTS idx_items_trip_start ON items(trip_id, start_at);
+  `,
+
+  // v2 — anexos
+  //
+  // A linha guarda só o ponteiro; o arquivo em si vive em
+  // documentDirectory/attachments. Apagar a reserva remove a linha por
+  // cascata, mas o arquivo precisa ser apagado à mão — senão sobra lixo
+  // ocupando espaço no aparelho para sempre.
+  `
+  CREATE TABLE IF NOT EXISTS attachments (
+    id          TEXT PRIMARY KEY NOT NULL,
+    item_id     TEXT NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    name        TEXT NOT NULL,
+    mime_type   TEXT,
+    size        INTEGER,
+    uri         TEXT NOT NULL,
+    created_at  INTEGER NOT NULL
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_attachments_item ON attachments(item_id);
   `,
 ];

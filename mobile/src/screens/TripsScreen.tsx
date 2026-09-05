@@ -63,17 +63,21 @@ export function TripsScreen() {
             : daysUntil(trip.start, n);
 
           return (
-            <Pressable
+            <View
               key={trip.id}
-              onPress={() => {
-                selectTrip(trip.id);
-                nav.navigate('Tabs', { screen: 'Itinerary' });
-              }}
-              onLongPress={() => nav.navigate('TripForm', { id: trip.id })}
-              accessibilityRole="button"
-              accessibilityLabel={`Abrir viagem ${trip.name}`}
+              style={[styles.card, { backgroundColor: t.paper, borderColor: isActive ? t.ink : t.rule }]}
             >
-              <View style={[styles.card, { backgroundColor: t.paper, borderColor: isActive ? t.ink : t.rule }]}>
+              {/* O cartao inteiro abre a viagem, mas "Editar" fica FORA deste
+                  Pressable: botao dentro de botao e HTML invalido e quebra o
+                  toque na web. */}
+              <Pressable
+                onPress={() => {
+                  selectTrip(trip.id);
+                  nav.navigate('Tabs', { screen: 'Itinerary' });
+                }}
+                accessibilityRole="button"
+                accessibilityLabel={`Abrir viagem ${trip.name}`}
+              >
                 <View style={{ height: 4, backgroundColor: finished ? t.edge.bed : t.edge.air }} />
                 <View
                   style={[
@@ -112,23 +116,23 @@ export function TripsScreen() {
                     </>
                   ) : null}
 
-                  <View style={styles.actions}>
-                    <Pressable
-                      onPress={() => nav.navigate('TripForm', { id: trip.id })}
-                      hitSlop={10}
-                      accessibilityRole="button"
-                    >
-                      <Text style={[styles.action, { color: t.stamp }]}>Editar</Text>
-                    </Pressable>
-                    {isActive ? (
-                      <Text style={[styles.action, { color: t.ink3 }]}>Selecionada</Text>
-                    ) : (
-                      <Text style={[styles.action, { color: t.ink3 }]}>Toque para abrir</Text>
-                    )}
-                  </View>
                 </View>
+              </Pressable>
+
+              <View style={[styles.actions, { borderTopColor: t.hair }]}>
+                <Pressable
+                  onPress={() => nav.navigate('TripForm', { id: trip.id })}
+                  hitSlop={10}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Editar viagem ${trip.name}`}
+                >
+                  <Text style={[styles.action, { color: t.stamp }]}>Editar</Text>
+                </Pressable>
+                <Text style={[styles.action, { color: t.ink3 }]}>
+                  {isActive ? 'Selecionada' : 'Toque para abrir'}
+                </Text>
               </View>
-            </Pressable>
+            </View>
           );
         })}
 
@@ -179,8 +183,9 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: space.md,
-    paddingTop: space.sm,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderTopWidth: 1,
   },
   action: { fontFamily: font.monoBold, fontSize: 9.5, letterSpacing: 1.6, textTransform: 'uppercase' },
   emptyCard: { borderWidth: 1, padding: space.lg },

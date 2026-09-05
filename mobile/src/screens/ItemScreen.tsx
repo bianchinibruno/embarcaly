@@ -5,7 +5,8 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Ticket } from '../components/Ticket';
 import { VersoSheet } from '../components/VersoSheet';
-import { Button, DataRow, Divider, InfoButton, Label } from '../components/primitives';
+import { Button, DataRow, Divider, InfoButton } from '../components/primitives';
+import { Attachments } from '../components/Attachments';
 import { font, space } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 import { useApp } from '../state/AppState';
@@ -107,9 +108,11 @@ export function ItemScreen() {
                 })}
 
                 <View style={styles.legend}>
-                  <LegendDot solid /> <Text style={[styles.legendText, { color: t.ink3 }]}>do documento</Text>
+                  <LegendDot solid />
+                  <Text style={[styles.legendText, { color: t.ink3 }]}>do documento</Text>
                   <View style={{ width: space.md }} />
-                  <LegendDot /> <Text style={[styles.legendText, { color: t.ink3 }]}>calculado por nós</Text>
+                  <LegendDot />
+                  <Text style={[styles.legendText, { color: t.ink3 }]}>calculado por nós</Text>
                 </View>
               </View>
             </View>
@@ -161,18 +164,7 @@ export function ItemScreen() {
           onPress={() => nav.navigate('ItemForm', { id: item.id })}
         />
 
-        <Divider>Anexos</Divider>
-        <View style={styles.docs}>
-          {(item.documents ?? [{ id: 'x', kind: 'pdf' as const, name: 'Comprovante', meta: '—' }]).map(
-            (doc) => (
-              <View key={doc.id} style={[styles.doc, { backgroundColor: t.paper, borderColor: t.rule }]}>
-                <Label>{doc.kind === 'email' ? 'E-mail' : 'PDF'}</Label>
-                <Text style={[styles.docName, { color: t.ink }]}>{doc.name}</Text>
-                <Text style={[styles.docMeta, { color: t.ink3 }]}>{doc.meta}</Text>
-              </View>
-            ),
-          )}
-        </View>
+        <Attachments itemId={item.id} />
       </ScrollView>
 
       <VersoSheet versoKey={verso} onClose={() => setVerso(null)} />
@@ -212,7 +204,7 @@ const styles = StyleSheet.create({
   stepTitle: { fontFamily: font.uiBold, fontSize: 13.5 },
   stepDetail: { fontFamily: font.ui, fontSize: 11, marginTop: 1 },
   stepNext: { fontFamily: font.monoBold, fontSize: 11, marginTop: 3 },
-  legend: { flexDirection: 'row', alignItems: 'center', marginTop: space.sm },
+  legend: { flexDirection: 'row', alignItems: 'center', marginTop: space.sm, gap: 5 },
   legendDot: { width: 8, height: 8, borderRadius: 4, borderWidth: 1.5, marginRight: 5 },
   legendText: { fontFamily: font.mono, fontSize: 9, letterSpacing: 1, textTransform: 'uppercase' },
   flag: { borderWidth: 1, padding: space.sm },
