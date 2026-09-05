@@ -152,3 +152,27 @@ o sistema.
 O que não existe ainda: extração de PDF, back-end e sincronização, autenticação,
 notificações push e anexo de arquivos. Nada disso bloqueia a publicação — são a
 v2.
+
+## Rodar no navegador
+
+Não precisa de celular, de Expo Go nem de conta da Apple.
+
+```bash
+npm run web
+```
+
+Depois abra `http://localhost:8083`.
+
+Duas peças trocam de implementação por plataforma, e o Metro escolhe sozinha
+pela extensão do arquivo:
+
+| Nativo | Web | Por quê |
+|---|---|---|
+| `db/repo.ts` — SQLite | `db/repo.web.ts` — localStorage | No navegador o expo-sqlite depende de WebAssembly e de cabeçalhos de isolamento; não vale a complexidade num ambiente cujo propósito é ver o app rodando |
+| `DateTimeField.tsx` | `DateTimeField.web.tsx` | `@react-native-community/datetimepicker` é só nativo; na web usamos o seletor do próprio navegador |
+
+Nenhuma tela sabe a diferença — as duas versões expõem a mesma interface.
+
+**A web é para desenvolver e demonstrar.** O produto é o app das lojas, e as
+coisas que só o aparelho prova — seletor nativo, gravação em SQLite,
+carregamento de fontes — precisam ser testadas lá.
