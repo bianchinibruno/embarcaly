@@ -36,6 +36,7 @@ aérea é obrigada a fazer.
 | Ciclo de validação | **10/09/2026 → 03/01/2027** |
 | Repositório | https://github.com/bianchinibruno/embarcaly |
 | Painel de controle | https://claude.ai/code/artifact/545256a7-8a0d-435e-a17d-854d2a967e49 |
+| **Índice geral** · ed. 02 | https://claude.ai/code/artifact/520b947e-9703-40df-aea7-c2c228b2ff5b |
 
 ---
 
@@ -118,6 +119,11 @@ política de privacidade.
 ---
 
 ## 4 · O que falta, em ordem de dependência
+
+> **Esta lista, datada e em ordem de execução, está no índice geral** (ed. 02),
+> na seção *O que fazer agora*: os nove passos até o G0, com os dois checkpoints
+> de quarta e o que fazer se cada um falhar.
+> https://claude.ai/code/artifact/520b947e-9703-40df-aea7-c2c228b2ff5b
 
 ### Hoje — 5 minutos, zero custo
 1. **Trocar `SEU_ID` pelo endpoint do Formspree** em `index.html` e
