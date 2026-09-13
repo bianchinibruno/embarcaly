@@ -67,6 +67,13 @@ describe('recalcular', () => {
     expect(c.atrasoMin).toBe(0);
   });
 
+  it('usa o início como fim quando a origem não tem horário de término', () => {
+    const t = viagem();
+    // O transfer não tem `end`. Atrasado, a chegada é o próprio início + atraso.
+    const c = recalcular(t, 'transfer', 120)!;
+    expect(c.chegadaNova).toEqual(d('2026-09-13T21:10:00'));
+  });
+
   it('não inclui o próprio item de origem nos efeitos', () => {
     const c = recalcular(viagem(), 'voo', 200)!;
     expect(c.efeitos.map((e) => e.item.id)).not.toContain('voo');
