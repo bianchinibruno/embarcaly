@@ -819,6 +819,10 @@
         return;
       }
 
+      // A ordem das lojas é decisão travada (D3): Play antes da Apple. Quem
+      // marca iPhone não pode ouvir a mesma promessa de quem marca Android.
+      var ehIphone = form.sistema.value === 'iPhone';
+
       var botao = form.querySelector('button[type="submit"]');
       botao.disabled = true;
       botao.textContent = 'Enviando';
@@ -830,7 +834,9 @@
       }).then(function (r) {
         if (!r.ok) throw new Error('falhou');
         form.hidden = true;
-        mostrar('Pronto. Te aviso no dia que entrar na Play Store.');
+        mostrar(ehIphone
+          ? 'Pronto. O Embarcaly começa no Android, então o iPhone vem depois — te aviso assim que tiver data.'
+          : 'Pronto. Te aviso no dia que entrar na Play Store.');
       }).catch(function () {
         botao.disabled = false;
         botao.textContent = 'Entrar na lista';
