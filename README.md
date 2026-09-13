@@ -68,9 +68,11 @@ sem Android Studio. Instruções de build e envio para App Store e Play Store no
 tese do produto, o preço, e as duas conversões do momento — entrar na lista de
 espera e **se voluntariar para as entrevistas**.
 
-> ⚠️ **Antes de publicar:** troque `SEU_ID` no `action` do formulário pelo
-> endpoint do Formspree. Enquanto não trocar, o formulário cai automaticamente
-> num fallback por e-mail — funciona, mas não registra nada.
+> **Formulários ligados.** Cada landing tem seu próprio endpoint do Formspree —
+> `mgaejzrr` aqui, `mwlkdqad` na `/captura/` — de propósito, para medir qual das
+> duas converte. Plano grátis: **50 envios/mês somados**. Estourada a cota, o
+> envio some sem erro visível na página, então confira o contador no painel
+> antes de mandar tráfego grande.
 
 ### O protótipo em HTML
 

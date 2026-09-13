@@ -723,10 +723,10 @@
       <h2>Te aviso quando entrar na Play Store</h2>
       <p>Uma mensagem, no dia do lançamento. Não tem newsletter.</p>
 
-      <!-- ANTES DE PUBLICAR: troque SEU_ID pelo endpoint do Formspree (plano
-           grátis, 50 envios/mês). Enquanto não trocar, o formulário cai num
-           fallback por e-mail e a página continua funcionando. -->
-      <form id="espera" action="https://formspree.io/f/SEU_ID" method="POST">
+      <!-- Formspree "institucional" — plano grátis, 50 envios/mês. Estourou a
+           cota, o envio some sem erro na página: confira o contador no painel.
+           O bloco SEU_ID no script abaixo é rede de segurança e não roda mais. -->
+      <form id="espera" action="https://formspree.io/f/mgaejzrr" method="POST">
         <div class="campo">
           <label for="email">E-mail</label>
           <input type="email" id="email" name="email" required autocomplete="email" placeholder="voce@email.com">

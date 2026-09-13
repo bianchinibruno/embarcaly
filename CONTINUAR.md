@@ -125,9 +125,11 @@ política de privacidade.
 > de quarta e o que fazer se cada um falhar.
 > https://claude.ai/code/artifact/520b947e-9703-40df-aea7-c2c228b2ff5b
 
-### Hoje — 5 minutos, zero custo
-1. **Trocar `SEU_ID` pelo endpoint do Formspree** em `index.html` e
-   `captura/index.html`. Até lá, o formulário cai num fallback por e-mail
+### Feito em 13/09 — falta só você validar
+1. ~~Trocar `SEU_ID` pelo endpoint do Formspree~~ — **ligado**: `mgaejzrr` na
+   landing institucional, `mwlkdqad` na de captura, separados para medir qual
+   converte. **Envie um teste real de cada página e confirme que o e-mail
+   chega** antes de publicar carrossel
 
 ### Bloqueia o G0 — só conversa, zero código
 2. **Montar a lista do círculo em `plano/controle-recrutamento.md`** — o tracker

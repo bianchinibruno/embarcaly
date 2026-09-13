@@ -677,12 +677,15 @@ mede renda, mede se a máquina de aquisição compõe.
 
 ## 14 · O que falta
 
-### Hoje — 5 minutos, zero custo
-1. **Trocar `SEU_ID` pelo endpoint do Formspree** nas duas landings. Até lá cai
-   num fallback por e-mail: funciona, mas não registra
+### Feito em 13/09 — falta só você validar
+1. ~~Trocar `SEU_ID` pelo endpoint do Formspree~~ — **ligado**, um endpoint por
+   landing. **Envie um teste real de cada página e confirme que o e-mail chega**:
+   o primeiro envio de um formulário novo costuma exigir confirmação
 
 ### Bloqueia o G0 — só conversa
-2. Ler [`plano/02-icp.md`](plano/02-icp.md) e montar a lista do círculo
+2. Montar a lista do círculo em
+   [`plano/controle-recrutamento.md`](plano/controle-recrutamento.md) — ICP e
+   critérios de triagem em [`plano/02-icp.md`](plano/02-icp.md)
 3. Publicar os carrosséis 01 e 02 — artes prontas
 4. **12 entrevistas** até 27/09
 
