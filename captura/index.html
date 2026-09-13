@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EFEEE6">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+
+<title>Guia dos seus direitos quando o voo atrasa — Embarcaly</title>
+<meta name="description" content="Baixe o guia de 8 páginas da Resolução ANAC 400: o que a companhia deve, quando, e o texto pronto pra falar no balcão. De graça.">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Embarcaly">
+<meta property="og:title" content="A companhia deve hotel pra você. Ninguém vai falar.">
+<meta property="og:description" content="+1h internet. +2h comida. +4h hotel. Guia gratuito de 8 páginas.">
+<meta property="og:image" content="https://bianchinibruno.github.io/embarcaly/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bianchinibruno.github.io/embarcaly/og-image.png">
+
+<link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../brand/png/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&family=Archivo+Narrow:wght@500;700&family=Courier+Prime:wght@400;700&display=swap">
+
+<style>
+  :root {
+    --papel: #EFEEE6; --calha: #E6E5DB; --barra: #DCE3D8; --barra-esc: #CBD6C6;
+    --chumbo: #14170F; --chumbo-2: #5C6356; --chumbo-3: #8B9185;
+    --fio: #B4B8A9; --fio-forte: #8E9384;
+    --carimbo: #46356E; --carimbo-l: #7E6BA8;
+    --disp: "Archivo Narrow", "Helvetica Neue", Arial, sans-serif;
+    --texto: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --dado: "Courier Prime", ui-monospace, Courier, monospace;
+    --gut: clamp(1.1rem, 5vw, 2.5rem);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--papel); }
+
+  body {
+    margin: 0; background: var(--papel); color: var(--chumbo);
+    font-family: var(--texto); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; position: relative;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    opacity: 0.42;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23f)' opacity='0.32'/%3E%3C/svg%3E");
+  }
+
+  .folha {
+    max-width: 42rem; margin: 0 auto; padding: 0 var(--gut) 0 calc(var(--gut) + 2rem);
+    position: relative; z-index: 2;
+  }
+  .folha::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2rem;
+    background: var(--calha); border-right: 1px solid var(--fio);
+    background-image: radial-gradient(circle at 50% 115px,
+      #DAD8CC 0 5.5px, #C2C0B2 5.5px 6.5px, transparent 6.5px);
+    background-repeat: repeat-y; background-size: 100% 230px;
+  }
+
+  h1, h2, h3 { margin: 0; }
+  p { margin: 0 0 1rem; color: var(--chumbo-2); }
+  p:last-child { margin-bottom: 0; }
+  b { color: var(--chumbo); font-weight: 600; }
+
+  .cabeca {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem 1rem;
+    font-family: var(--dado); font-size: 0.66rem; letter-spacing: 0.07em;
+    color: var(--chumbo-3); text-transform: uppercase; padding: 1.3rem 0 0.45rem;
+  }
+  .regua-forte { height: 2px; background: var(--chumbo); }
+
+  header { padding: 2.4rem 0 2rem; }
+  .selo-secao {
+    display: block; font-family: var(--dado); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--carimbo);
+    margin-bottom: 0.9rem;
+  }
+  h1 {
+    font-family: var(--disp); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(2.4rem, 10vw, 3.9rem); line-height: 1.05; letter-spacing: -0.012em;
+  }
+  h1 .dim { display: block; color: var(--chumbo-3); font-size: 0.46em; margin-top: 0.6rem; }
+
+  section { padding: 2.4rem 0; border-top: 1px solid var(--fio); }
+  h2 {
+    font-family: var(--disp); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(1.5rem, 5.5vw, 2rem); line-height: 1.1; margin-bottom: 0.9rem;
+  }
+
+  /* listagem greenbar */
+  .lst { margin-top: 1.4rem; border-top: 2px solid var(--chumbo); }
+  .lin {
+    display: grid; grid-template-columns: 4.5rem 1fr; gap: 0.15rem 1rem;
+    align-items: baseline; padding: 0.85rem 0.6rem; margin: 0 -0.6rem;
+  }
+  .lin:nth-child(odd) { background: var(--barra); }
+  .lst .fim { height: 2px; background: var(--chumbo); }
+  .marco {
+    font-family: var(--dado); font-size: 1.35rem; font-weight: 700;
+    letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--chumbo);
+  }
+  .item { font-family: var(--texto); font-weight: 600; font-size: 1.02rem; color: var(--chumbo); }
+  .nota { grid-column: 2; color: var(--chumbo-2); font-size: 0.92rem; }
+
+  /* o que tem dentro */
+  .sumario { margin-top: 1.3rem; }
+  .sumario div {
+    display: grid; grid-template-columns: 2.6rem 1fr; gap: 0.8rem;
+    padding: 0.7rem 0; border-bottom: 1px solid var(--fio); align-items: baseline;
+  }
+  .sumario div:first-child { border-top: 1px solid var(--fio-forte); }
+  .sumario .fl {
+    font-family: var(--dado); font-size: 0.78rem; font-weight: 700; color: var(--carimbo);
+  }
+  .sumario b { font-size: 1rem; }
+
+  /* formulário — o centro da página */
+  .captura {
+    background: var(--barra); border: 1.5px solid var(--carimbo);
+    padding: clamp(1.3rem, 5vw, 2rem); margin-top: 1.6rem;
+  }
+  .captura h3 {
+    font-family: var(--disp); font-weight: 700; text-transform: uppercase;
+    font-size: 1.4rem; color: var(--carimbo); margin-bottom: 0.5rem;
+  }
+  .captura p { color: var(--chumbo); font-size: 0.97rem; }
+  form { margin-top: 1.2rem; }
+  .campo { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+  label {
+    font-family: var(--dado); font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--chumbo-3);
+  }
+  input[type="email"], input[type="text"], select {
+    font-family: var(--texto); font-size: 1rem; color: var(--chumbo);
+    background: var(--papel); border: 1px solid var(--fio-forte);
+    padding: 0.75rem 0.85rem; width: 100%; border-radius: 0;
+    -webkit-appearance: none; appearance: none;
+  }
+  input::placeholder { color: var(--chumbo-3); }
+  select {
+    background-image: linear-gradient(45deg, transparent 50%, var(--chumbo-3) 50%),
+                      linear-gradient(135deg, var(--chumbo-3) 50%, transparent 50%);
+    background-position: calc(100% - 19px) 55%, calc(100% - 14px) 55%;
+    background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 2.4rem;
+  }
+  input:focus-visible, select:focus-visible, .btn:focus-visible, a:focus-visible {
+    outline: 2px solid var(--carimbo); outline-offset: 3px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; width: 100%;
+    font-family: var(--dado); font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+    padding: 1rem 1.4rem; background: var(--carimbo); color: var(--papel);
+    border: 1.5px solid var(--carimbo); cursor: pointer;
+    transition: background .12s linear, color .12s linear;
+  }
+  .btn:hover { background: transparent; color: var(--carimbo); }
+  .btn.direto { background: transparent; color: var(--carimbo); margin-top: 0.7rem; }
+  .btn.direto:hover { background: var(--carimbo); color: var(--papel); }
+  .fino { font-size: 0.82rem; color: var(--chumbo-3); margin-top: 0.9rem; }
+
+  #recado {
+    margin-top: 1rem; padding: 0.9rem 1.05rem; background: var(--papel);
+    border-left: 3px solid var(--carimbo); font-size: 0.95rem; color: var(--chumbo);
+  }
+
+  .prova {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 1px; background: var(--fio); border: 1px solid var(--fio); margin-top: 1.4rem;
+  }
+  .prova div { background: var(--papel); padding: 0.9rem 1rem 1rem; }
+  .prova b {
+    display: block; font-family: var(--dado); font-size: 1.55rem; font-weight: 700;
+    letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .prova span {
+    display: block; font-family: var(--dado); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--chumbo-3); margin-top: 0.4rem;
+  }
+
+  .nega {
+    margin-top: 1.5rem; padding: 1.1rem 1.25rem; background: var(--barra);
+    border-left: 3px solid var(--fio-forte);
+  }
+  .nega p { font-size: 0.94rem; color: var(--chumbo); }
+
+  .carimbo-peca {
+    display: inline-block; transform: rotate(-5deg); position: relative;
+    font-family: var(--dado); font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--carimbo);
+    border: 2px solid var(--carimbo); padding: 0.65rem 1.15rem; margin: 1.8rem 0 0.4rem;
+    line-height: 1.3; text-align: center;
+  }
+  .carimbo-peca::before {
+    content: ""; position: absolute; inset: -2px; border: 2px solid var(--carimbo-l);
+    opacity: 0.4; transform: translate(1.2px, 1.5px);
+  }
+  .carimbo-peca::after { content: ""; position: absolute; inset: 3px; border: 1px solid var(--carimbo); }
+
+  footer { border-top: 2px solid var(--chumbo); padding: 1.6rem 0 3rem; }
+  .aviso { font-size: 0.79rem; color: var(--chumbo-3); line-height: 1.55; }
+  .aviso b { color: var(--chumbo-2); font-weight: 600; }
+  .ed {
+    margin-top: 1.2rem; font-family: var(--dado); font-size: 0.66rem;
+    letter-spacing: 0.09em; color: var(--chumbo-3); text-transform: uppercase;
+  }
+  footer a { color: var(--chumbo-2); }
+  a.link { color: var(--carimbo); text-decoration: none; border-bottom: 1px solid var(--carimbo-l); }
+
+  @media (max-width: 34rem) {
+    .folha { padding-left: calc(var(--gut) + 1rem); }
+    .folha::before { width: 1rem; background-image: none; }
+    .lin { grid-template-columns: 1fr; }
+    .lin .nota { grid-column: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="folha">
+
+  <div class="cabeca">
+    <span>Guia gratuito / distribuição livre</span>
+    <span>Ed. 01 · 8 folhas</span>
+  </div>
+  <div class="regua-forte"></div>
+
+  <header>
+    <span class="selo-secao">Resolução ANAC nº 400/2016</span>
+    <h1>A companhia deve hotel pra você.<span class="dim">Ninguém vai falar.</span></h1>
+  </header>
+
+  <section>
+    <p style="font-size:1.06rem">
+      Passou de quatro horas de atraso, eles são obrigados a te hospedar e pagar
+      o transporte. Passou de duas, devem comida. Passou de uma, devem internet
+      e telefone.
+    </p>
+
+    <div class="lst">
+      <div class="lin"><span class="marco">+1h</span><span class="item">Comunicação</span><span class="nota">Internet e telefone por conta da companhia.</span></div>
+      <div class="lin"><span class="marco">+2h</span><span class="item">Alimentação</span><span class="nota">Voucher, refeição ou lanche conforme o horário.</span></div>
+      <div class="lin"><span class="marco">+4h</span><span class="item">Hospedagem</span><span class="nota">Hotel mais transporte de ida e volta até ele.</span></div>
+      <div class="fim"></div>
+    </div>
+
+    <div class="prova">
+      <div><b>17 mi</b><span>com voo interrompido em 2018</span></div>
+      <div><b>2%</b><span>pediram alguma coisa</span></div>
+      <div><b>112 mil</b><span>voos cancelados por ano</span></div>
+    </div>
+
+    <p style="margin-top:1.4rem">
+      A distância entre esses dois primeiros números é a razão deste guia existir.
+      <b>Não é falta de direito. É falta de saber.</b>
+    </p>
+  </section>
+
+  <section>
+    <span class="selo-secao">O que tem dentro</span>
+    <h2>Oito folhas, sem enrolação</h2>
+
+    <div class="sumario">
+      <div><span class="fl">FL.02</span><b>Assistência material</b></div>
+      <div><span class="fl">FL.03</span><b>As quatro saídas acima de 4h, e a compensação por overbooking</b></div>
+      <div><span class="fl">FL.04</span><b>O que falar no balcão, frase por frase, e o que guardar como prova</b></div>
+      <div><span class="fl">FL.05</span><b>Bagagem: prazos, o RIB e o erro que enfraquece o caso</b></div>
+      <div><span class="fl">FL.06</span><b>Onde levar o caso, de graça, na ordem certa</b></div>
+      <div><span class="fl">FL.07</span><b>Resumo de bolso, feito pra printar</b></div>
+    </div>
+
+    <div class="captura">
+      <h3>Pega o guia</h3>
+      <p>
+        Download direto, sem cadastro. O e-mail é só se você quiser que eu avise
+        quando o aplicativo sair.
+      </p>
+
+      <a class="btn" href="../guia-direitos-do-passageiro.pdf" download>Baixar o PDF agora</a>
+
+      <!-- ANTES DE PUBLICAR: troque SEU_ID pelo endpoint do Formspree.
+           Enquanto não trocar, o formulário cai num fallback por e-mail. -->
+      <form id="lista" action="https://formspree.io/f/SEU_ID" method="POST">
+        <div class="campo" style="margin-top:1.3rem">
+          <label for="email">Quer ser avisado do lançamento? Deixa o e-mail</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="voce@email.com">
+        </div>
+        <div class="campo">
+          <label for="quando">Quando é a sua próxima viagem</label>
+          <select id="quando" name="proxima_viagem" required>
+            <option value="">Escolha</option>
+            <option>Este mês</option>
+            <option>Em até 3 meses</option>
+            <option>Depois disso</option>
+            <option>Ainda não sei</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="sistema">Seu celular</label>
+          <select id="sistema" name="sistema" required>
+            <option value="">Escolha</option>
+            <option>Android</option>
+            <option>iPhone</option>
+          </select>
+        </div>
+        <button class="btn direto" type="submit">Quero ser avisado</button>
+      </form>
+
+      <div id="recado" hidden></div>
+
+      <p class="fino">
+        Uma mensagem, no dia do lançamento. Não tem newsletter. Guardo só o
+        e-mail e essas duas respostas, e apago quando você pedir.
+      </p>
+    </div>
+
+    <div class="carimbo-peca">Guarde<br>no celular</div>
+  </section>
+
+  <section>
+    <span class="selo-secao">Quem fez</span>
+    <h2>Por que um engenheiro montou um guia de direito</h2>
+    <p>
+      Voltei de uma viagem com treze reservas em sete fornecedores. Terminei tudo
+      numa planilha, porque nenhum aplicativo dava conta de juntar aquilo. Aí um
+      voo atrasou três horas, e a planilha me disse exatamente o que
+      <b>era pra</b> ter acontecido.
+    </p>
+    <p>
+      Estou construindo o <b>Embarcaly</b>: voo, hotel, carro e passeio num lugar
+      só, e quando um elo quebra, ele refaz a cadeia inteira e diz o que a
+      companhia é obrigada a fazer.
+    </p>
+    <p>
+      O guia é a parte que funciona <b>com ou sem o aplicativo</b>. Por isso é de
+      graça e sempre vai ser.
+    </p>
+
+    <div class="nega">
+      <p>
+        <b>O que isto não é.</b> Não sou advogado e este guia não é consultoria
+        jurídica. O Embarcaly não é escritório de advocacia e não é agência de
+        viagens: não vende passagem, não intermedeia reserva e não representa
+        você perante ninguém. Conhecer o direito não garante o atendimento dele.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="aviso">
+      Conteúdo informativo baseado na Resolução ANAC nº 400/2016 e no Código de
+      Defesa do Consumidor. <b>Não constitui consultoria jurídica nem parecer.</b>
+      Normas mudam e cada caso tem particularidades. Confira a versão vigente em
+      anac.gov.br e, em caso de dúvida, procure o Procon, a ANAC ou um advogado.
+    </p>
+    <div class="ed">
+      Embarcaly · Bruno Bianchini · <a href="mailto:bbianchini97@gmail.com">contato</a> ·
+      <a href="../">site</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var form = document.getElementById('lista');
+    var recado = document.getElementById('recado');
+    if (!form) return;
+
+    function mostrar(texto, html) {
+      recado.hidden = false;
+      if (html) { recado.innerHTML = texto; } else { recado.textContent = texto; }
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var acao = form.getAttribute('action') || '';
+
+      if (acao.indexOf('SEU_ID') !== -1) {
+        var corpo = 'Quero ser avisado do lancamento do Embarcaly.\n\n'
+          + 'E-mail: ' + form.email.value + '\n'
+          + 'Proxima viagem: ' + form.proxima_viagem.value + '\n'
+          + 'Celular: ' + form.sistema.value + '\n';
+        window.location.href = 'mailto:bbianchini97@gmail.com'
+          + '?subject=' + encodeURIComponent('Lista de espera do Embarcaly')
+          + '&body=' + encodeURIComponent(corpo);
+        mostrar('Abri seu e-mail com a mensagem pronta. É só enviar. Se não abriu, escreve pra '
+          + '<a class="link" href="mailto:bbianchini97@gmail.com">bbianchini97@gmail.com</a>.', true);
+        return;
+      }
+
+      var botao = form.querySelector('button[type="submit"]');
+      botao.disabled = true;
+      botao.textContent = 'Enviando';
+
+      fetch(acao, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error('falhou');
+          form.hidden = true;
+          mostrar('Pronto. Te aviso no dia que o aplicativo entrar na Play Store.');
+        })
+        .catch(function () {
+          botao.disabled = false;
+          botao.textContent = 'Quero ser avisado';
+          mostrar('Não consegui enviar agora. Tenta de novo ou escreve pra '
+            + '<a class="link" href="mailto:bbianchini97@gmail.com">bbianchini97@gmail.com</a>.', true);
+        });
+    });
+  })();
+</script>
+
+</body>
+</html>
