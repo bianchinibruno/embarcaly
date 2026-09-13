@@ -40,8 +40,9 @@ use na Semana 0** — mas ela não conta com isso.
 
 ### Semana 1 · 14–20/09 — 7 entrevistas
 - [ ] 7 entrevistas de 20 min ([roteiro](templates/entrevista-viajante.md))
-- [ ] Quarta: conferir a planilha de controle. Se o círculo rendeu e faltam os de
-      fora, abrir as fontes 3 e 4 ([recrutamento.md](templates/recrutamento.md))
+- [ ] Quarta: conferir o [controle de recrutamento](controle-recrutamento.md). Se o
+      círculo rendeu e faltam os de fora, abrir as fontes 3 e 4
+      ([recrutamento.md](templates/recrutamento.md))
 - [ ] Toda entrevista termina com *"quem você conhece que é o organizador do grupo?"*
 - [ ] 2 posts
 - [ ] **Peça para ver a planilha.** É o dado mais honesto que você vai coletar

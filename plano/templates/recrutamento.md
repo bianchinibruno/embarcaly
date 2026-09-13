@@ -281,9 +281,9 @@ mais tempo que as entrevistas.
 
 ## Planilha de controle
 
-| Nome | Fonte | Contato em | Respondeu | Qualifica | Agendado | Feita | Android | Indicou |
-|---|---|---|---|---|---|---|---|---|
-| | | | | | | | | |
+> **Ela já existe, pronta para preencher:**
+> [plano/controle-recrutamento.md](../controle-recrutamento.md) — a lista, o
+> placar do G0, a meta de composição e o checkpoint de quarta.
 
 Uma linha por pessoa abordada, incluindo quem não respondeu — é como você
 descobre qual fonte está rendendo e qual abandonar.

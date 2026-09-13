@@ -54,10 +54,11 @@ aérea é obrigada a fazer.
 
 ## 3 · Tudo que foi construído, em ordem
 
-### Estratégia — `plano/` · 13 documentos
+### Estratégia — `plano/` · 14 documentos
 Decisões travadas, ICP detalhado, benchmark de concorrentes, escopo do MVP,
 cronograma dia a dia, orçamento com fluxo de caixa, go-to-market, portões,
-13 riscos, refinamento, e a validação de demanda.
+13 riscos, refinamento, a validação de demanda — e o **controle de recrutamento**,
+que é o único arquivo do repositório feito para você preencher à mão.
 
 ### Identidade — `brand/IDENTIDADE.md`
 Sistema visual **v2 "Painel"**, superfície impressa: papel greenbar `#EFEEE6`,
@@ -123,7 +124,8 @@ política de privacidade.
    `captura/index.html`. Até lá, o formulário cai num fallback por e-mail
 
 ### Bloqueia o G0 — só conversa, zero código
-2. Ler `plano/02-icp.md` e montar a lista do círculo
+2. **Montar a lista do círculo em `plano/controle-recrutamento.md`** — o tracker
+   está pronto e vazio. ICP e critérios de triagem em `plano/02-icp.md`
 3. Publicar os carrosséis 01 e 02 — artes prontas em `marketing/artes/`
 4. **12 entrevistas** até 27/09 — roteiro em `plano/templates/entrevista-viajante.md`
 
