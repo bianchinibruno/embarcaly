@@ -4,7 +4,8 @@
 uma sequência de próximas ações: o que fazer agora, o que vem depois, e qual
 documento você precisa ter em mãos naquele momento.
 
-> 🧭 **[Abrir o protótipo](https://bianchinibruno.github.io/embarcaly/)**
+> 🧭 **[Abrir a landing](https://bianchinibruno.github.io/embarcaly/)** ·
+> **[Abrir o protótipo](https://bianchinibruno.github.io/embarcaly/prototipo/)**
 
 ---
 
@@ -20,11 +21,23 @@ O produto não organiza reservas. **Organiza decisões.**
 ## O que tem aqui
 
 ```
+index.html              landing pública — a porta de entrada do funil
+og-image.png            imagem de compartilhamento (gerada por brand/gen_og.py)
+guia-direitos-do-passageiro.pdf   isca: guia da Resolução ANAC 400
+
 mobile/                 app nativo iOS + Android (Expo · React Native · TypeScript)
-index.html              protótipo navegável em HTML (abre direto, sem build)
+prototipo/index.html    protótipo navegável em HTML (abre direto, sem build)
+
+plano/                  plano de execução, 10/09/2026 → 03/01/2027
+  README.md             índice, portões e as duas regras
+  02-icp.md             quem é o cliente — ler antes das entrevistas
+  templates/            recrutamento, entrevista, posts, landing, diário
+  gerar-guia.py         gerador do PDF de direitos
+
 brand/                  identidade visual completa
   MARCA.md              manual de marca
   gen_brand.py          gerador dos assets
+  gen_og.py             gerador da imagem de compartilhamento
   *.svg                 marca, lockup e ícone — claro, escuro e mono
   png/                  ícones de loja, favicons e .ico
 docs/
@@ -49,10 +62,20 @@ Abra o Expo Go no celular e escaneie o QR — roda em iPhone e Android sem Mac e
 sem Android Studio. Instruções de build e envio para App Store e Play Store no
 [README do app](mobile/README.md).
 
+### A landing
+
+`index.html` na raiz é a porta de entrada pública: o guia de direitos em PDF, a
+tese do produto, o preço, e as duas conversões do momento — entrar na lista de
+espera e **se voluntariar para as entrevistas**.
+
+> ⚠️ **Antes de publicar:** troque `SEU_ID` no `action` do formulário pelo
+> endpoint do Formspree. Enquanto não trocar, o formulário cai automaticamente
+> num fallback por e-mail — funciona, mas não registra nada.
+
 ### O protótipo em HTML
 
-Continua no ar como referência de design e para demonstração rápida em qualquer
-navegador. É a mesma experiência, sem instalar nada.
+Continua no ar em `/prototipo/` como referência de design e para demonstração
+rápida em qualquer navegador. É a mesma experiência, sem instalar nada.
 
 ## O protótipo
 
@@ -99,12 +122,22 @@ Cor não decora, classifica.
 
 ## Status
 
-🟡 **Concepção concluída · aguardando validação.**
+🟠 **Em validação.** Ciclo de 10/09/2026 a 03/01/2027, com quatro portões.
 
 O próximo passo não é programar. É descobrir se a dor é forte e frequente o
 bastante para alguém pagar — e a pergunta que decide não é sobre dor, é sobre
 frequência: *quantas viagens com mais de três reservas você fez nos últimos 12
 meses?*
+
+| Portão | Data | Passa com |
+|---|---|---|
+| **G0** | 27/09 | 20 entrevistas · 15 que não sabiam dos próprios direitos |
+| **G1** | 11/10 | 10 pré-vendas pagas, sendo 4 de fora do círculo pessoal |
+| **G2** | 29/11 | 20 viagens pagas · 100% dos direitos informados corretos |
+| **G3** | 03/01 | 100 viagens pagas · alcance crescendo 3 meses seguidos |
+
+**Regra do ciclo: commit de código de produto está proibido até o G1.**
+O plano completo está em [plano/](plano/README.md).
 
 ---
 
