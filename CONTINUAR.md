@@ -5,6 +5,9 @@ Escrito para você abrir uma sessão nova e dizer só **"continua"**.
 
 ---
 
+> **Contexto completo e detalhado:** [DOSSIE.md](DOSSIE.md).
+> Este arquivo é o resumo operacional; aquele é a história inteira.
+
 ## 0 · Como usar este arquivo
 
 Comando de abertura da próxima sessão:
