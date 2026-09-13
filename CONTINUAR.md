@@ -14,7 +14,7 @@ Plano completo em [plano/README.md](plano/README.md).
 
 | Portão | Data | Situação |
 |---|---|---|
-| G0 · 20 entrevistas | dom 27/09 | 🔴 não iniciado |
+| G0 · **12** entrevistas | dom 27/09 | 🔴 não iniciado |
 | G1 · 10 pré-vendas pagas | dom 11/10 | 🔴 não iniciado |
 | G2 · 20 viagens pagas | dom 29/11 | 🔴 não iniciado |
 | G3 · 100 viagens pagas | dom 03/01 | 🔴 não iniciado |
@@ -37,7 +37,7 @@ novo — e foi feito porque não dependia de validação.
 | **Marketing** | Plano de 6 meses, calendário editorial de 26 semanas, ASO completo |
 | **Vendas** | Playbook, precificação, plano de lançamento |
 
-**Suíte de testes: 270 passando, typecheck limpo.**
+**Suíte de testes: 271 passando, 100% de cobertura no domínio, CI verde.**
 
 ## O que falta, em ordem de dependência
 
@@ -45,7 +45,7 @@ novo — e foi feito porque não dependia de validação.
 1. Ler [02-icp.md](plano/02-icp.md) e montar a lista de 25 do círculo
 2. Publicar P1 e P2 (artes prontas em `marketing/artes/`)
 3. Trocar `SEU_ID` do Formspree no `index.html`
-4. 20 entrevistas até 27/09
+4. **12** entrevistas até 27/09
 5. Abrir a pré-venda de R$19 e fechar 10 até 11/10
 
 ### Bloqueia o lançamento — depois do G1
