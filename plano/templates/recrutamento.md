@@ -1,6 +1,6 @@
-# Recrutamento — como achar as 20 pessoas
+# Recrutamento — como achar as 12 pessoas
 
-Meta: **20 entrevistas até domingo 27/09**, sendo ≥12 em Android e ≥8 de fora do
+Meta: **12 entrevistas até domingo 27/09**, sendo ≥8 em Android e ≥6 de fora do
 seu círculo ([02-icp.md](../02-icp.md)).
 
 Este arquivo é o "onde e como". O que perguntar está no
@@ -10,16 +10,16 @@ Este arquivo é o "onde e como". O que perguntar está no
 
 ## A conta que você precisa fazer antes
 
-Ninguém consegue 20 entrevistas falando com 20 pessoas.
+Ninguém consegue 12 entrevistas falando com 12 pessoas.
 
 | Fonte | Contatos | Respondem | **Entrevistam** |
 |---|---|---|---|
-| Seu círculo | 25 | ~18 | **12** |
-| Indicação de quem você já entrevistou | 12 | ~8 | **5** |
-| Frios — grupos, Instagram, Reddit | 30 | ~6 | **4** |
-| **Total** | **67** | **32** | **21** |
+| Seu círculo | 12 | ~9 | **6** |
+| Indicação de quem você já entrevistou | 10 | ~7 | **4** |
+| Frios — grupos, Instagram, Reddit | 22 | ~5 | **3** |
+| **Total** | **44** | **21** | **13** |
 
-**Você precisa abordar ~67 pessoas.** Parece muito e não é: são 12 mensagens por
+**Você precisa abordar ~44 pessoas.** Parece muito e não é: são 6 mensagens por
 dia durante uma semana, e a maioria é gente que você já conhece.
 
 > **Comece pelo círculo e esgote.** Só vá para fontes frias na quarta-feira da
@@ -27,7 +27,7 @@ dia durante uma semana, e a maioria é gente que você já conhece.
 
 ---
 
-## Fonte 1 · Seu círculo — 25 contatos, ~12 entrevistas
+## Fonte 1 · Seu círculo — 12 contatos, ~6 entrevistas
 
 A mais rápida, a mais subestimada, e a que você vai querer pular por vergonha.
 Não pule.
@@ -38,7 +38,7 @@ Faça os quatro varrimentos, nesta ordem, anotando nomes numa planilha:
 
 **1 · WhatsApp.** Abra a lista de conversas e desça. Para cada nome, uma pergunta
 só: *"essa pessoa viajou no último ano e meio?"* Não precisa ter certeza — na
-dúvida, anote. Alvo: 15 nomes em 10 minutos.
+dúvida, anote. Alvo: 10 nomes em 10 minutos.
 
 **2 · Suas próprias fotos.** Abra a galeria no ano passado. Quem aparece
 viajando com você? E quem **organizou** aquela viagem? Se foi você, quem mais
@@ -265,7 +265,7 @@ recebe algo útil indica outra pessoa — e a indicação é a fonte 2.
 
 ## Agendamento
 
-Com 20 entrevistas em duas semanas, o vai-e-volta de "que horas você pode?" come
+Com 12 entrevistas em duas semanas, o vai-e-volta de "que horas você pode?" come
 mais tempo que as entrevistas.
 
 - **Calendly no plano grátis.** Crie um evento de 20 min, com seus horários reais
@@ -288,9 +288,9 @@ mais tempo que as entrevistas.
 Uma linha por pessoa abordada, incluindo quem não respondeu — é como você
 descobre qual fonte está rendendo e qual abandonar.
 
-**Confira toda quarta-feira:** se o círculo já rendeu 12 e você tem só 2 de fora,
-pare de insistir no círculo e vá para as fontes 3 e 4. O critério de **8 de fora
-do seu círculo** é do [G0](../09-validacao.md) e não é negociável — 20 amigos
+**Confira toda quarta-feira:** se o círculo já rendeu 6 e você tem só 1 de fora,
+pare de insistir no círculo e vá para as fontes 3 e 4. O critério de **6 de fora
+do seu círculo** é do [G0](../09-validacao.md) e não é negociável — 12 amigos
 seus com iPhone dizendo que a ideia é ótima é o resultado mais perigoso possível.
 
 ---

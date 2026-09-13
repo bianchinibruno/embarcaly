@@ -314,7 +314,7 @@ Duas publicações por semana. Terça e sábado.
 | Ter 22/09 | P5 · A planilha da minha última viagem tinha 14 linhas | Carrossel | IG |
 | Sáb 26/09 | P6 · Cancelaram seu voo? Você tem 4 opções | Carrossel | IG |
 | Ter 29/09 | P7 · Eles têm que te atualizar a cada 30 minutos | Reels | IG + TikTok + Shorts |
-| Sáb 03/10 | P8 · Entrevistei 20 pessoas que organizam viagem | Carrossel | IG |
+| Sáb 03/10 | P8 · Entrevistei 12 pessoas que organizam viagem | Carrossel | IG |
 
 ---
 
@@ -433,14 +433,14 @@ conte. **É a sua melhor fonte de entrevistados.**)*
 
 ---
 
-### P8 · Carrossel — o que 20 entrevistas mostraram
+### P8 · Carrossel — o que 12 entrevistas mostraram
 **Só publique depois do G0. Números reais, sem inflar.**
 
 | Slide | Texto |
 |---|---|
-| 1 | **Entrevistei 20 pessoas que organizam a viagem do grupo.** |
+| 1 | **Entrevistei 12 pessoas que organizam a viagem do grupo.** |
 | 2 | Todas viajaram com 4+ reservas no último ano e meio. |
-| 3 | *(o número real)* de 20 **não sabiam** que tinham direito a hotel com 4h de atraso. |
+| 3 | *(o número real)* de 12 **não sabiam** que tinham direito a hotel com 4h de atraso. |
 | 4 | *(o número real)* mostraram a planilha. Uma tinha 31 linhas. |
 | 5 | A frase que mais ouvi: *"(a frase literal mais forte do seu arquivo)"* |
 | 6 | O que eu aprendi: *(uma coisa honesta que te surpreendeu)* |

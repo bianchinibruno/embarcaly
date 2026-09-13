@@ -15,7 +15,7 @@ O curso abre com quatro travas. Aplicadas ao seu caso concreto:
 | *Não se preocupe com a linguagem ideal* | Expo + React Native + TypeScript está decidido e é adequado. **Encerrado — não reabra.** |
 | *Não precisa de sócio no início* | Mantenha assim até o G2. |
 | *Passos pequenos e constantes* | 1h30 por dia útil + 4h no sábado. Ver 1.2. |
-| *Apaixone-se pelo problema* | Você já está. É a sua planilha de viagem. Só falta confirmar que ela é de mais 20 pessoas |
+| *Apaixone-se pelo problema* | Você já está. É a sua planilha de viagem. Só falta confirmar que ela é de mais 12 pessoas |
 
 **A armadilha específica do seu perfil.** Você é Engenheiro de Qualidade. Seu
 instinto treinado é aumentar cobertura, endurecer o pipeline e eliminar

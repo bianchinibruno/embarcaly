@@ -60,7 +60,7 @@ Três fatos que se encaixam e não vão ficar abertos para sempre:
 2. **Seu app é Expo / React Native** e publica nas duas lojas com a mesma base de
    código. A vantagem já existe, e não foi planejada
 3. **A dor é sua.** Você organiza viagem exatamente assim. Isso não substitui as
-   20 entrevistas, mas resolve o problema que mata a maioria dos micro-SaaS:
+   12 entrevistas, mas resolve o problema que mata a maioria dos micro-SaaS:
    saber onde dói de verdade
 
 ## ICP

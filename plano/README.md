@@ -49,7 +49,7 @@ Centralizar é o produto e é **de graça**. O que se cobra, a **R$39 por viagem
 
 | Portão | Data | Passa com |
 |---|---|---|
-| **G0** | dom **27/09** | **12 entrevistas** · 8 com caso real · 10 que não sabiam dos direitos · 8 em Android |
+| **G0** | dom **27/09** | **12 entrevistas** · 8 com caso real · 10 que não sabiam dos direitos · 8 em Android · 6 de fora do círculo |
 | **G1** | dom **11/10** | **10 pré-vendas pagas de R$19**, sendo 4 de fora do seu círculo |
 | **G2** | dom **29/11** | 30 viagens acompanhadas · 20 pagas · 100% dos direitos corretos |
 | **G3** | dom **03/01** | 100 viagens pagas · 25% de recompra · alcance crescendo 3 meses |

@@ -9,7 +9,7 @@ Meta: **12 entrevistas até domingo 27/09.** Sete na semana 1, cinco na semana 2
 
 ---
 
-> **Onde achar as 20 pessoas, com a mensagem pronta para cada canal, está em
+> **Onde achar as 12 pessoas, com a mensagem pronta para cada canal, está em
 > [recrutamento.md](recrutamento.md).** Este arquivo é o que perguntar; aquele é
 > como chegar até elas.
 

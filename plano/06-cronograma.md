@@ -36,20 +36,20 @@ use na Semana 0** — mas ela não conta com isso.
 > uma linha de código.
 
 ## Semanas 1–2 · Entrevistas · 14/09 – 27/09
-**Objetivo: 20 entrevistas, e o G0 fechado com número.**
+**Objetivo: 12 entrevistas, e o G0 fechado com número.**
 
-### Semana 1 · 14–20/09 — 12 entrevistas
-- [ ] 12 entrevistas de 20 min ([roteiro](templates/entrevista-viajante.md))
+### Semana 1 · 14–20/09 — 7 entrevistas
+- [ ] 7 entrevistas de 20 min ([roteiro](templates/entrevista-viajante.md))
 - [ ] Quarta: conferir a planilha de controle. Se o círculo rendeu e faltam os de
       fora, abrir as fontes 3 e 4 ([recrutamento.md](templates/recrutamento.md))
 - [ ] Toda entrevista termina com *"quem você conhece que é o organizador do grupo?"*
 - [ ] 2 posts
 - [ ] **Peça para ver a planilha.** É o dado mais honesto que você vai coletar
 
-### Semana 2 · 21–27/09 — 8 entrevistas e o portão
-- [ ] 8 entrevistas, agora priorizando **quem veio por indicação e usa Android**
+### Semana 2 · 21–27/09 — 5 entrevistas e o portão
+- [ ] 5 entrevistas, agora priorizando **quem veio por indicação e usa Android**
 - [ ] 2 posts
-- [ ] Conferir a composição contra a meta do [02-icp.md](02-icp.md): ≥12 Android, ≥8 de fora do círculo
+- [ ] Conferir a composição contra a meta do [02-icp.md](02-icp.md): ≥8 Android, ≥6 de fora do círculo
 - [ ] Preencher o **G0**
 
 > 🚦 **G0 · dom 27/09.** Critérios em [09-validacao.md](09-validacao.md).
@@ -61,7 +61,7 @@ use na Semana 0** — mas ela não conta com isso.
 ### Semana 3 · 28/09–04/10
 - [ ] Gravar demo de 90s com o protótipo HTML que já está no ar
 - [ ] Landing vira página de pré-venda: **R$19, com devolução garantida**
-- [ ] Voltar aos 20 entrevistados com a demo
+- [ ] Voltar aos 12 entrevistados com a demo
 - [ ] 2 posts, agora citando falas reais das entrevistas
 - [ ] **R$150 em anúncio, 5 dias, 3 mensagens** — para descobrir qual converte,
       não para adquirir usuário ([07-orcamento.md](07-orcamento.md))
@@ -130,8 +130,8 @@ As cinco funcionalidades de [05-mvp.md](05-mvp.md).
 
 | Data | Marco |
 |---|---|
-| dom 13/09 | 20 nomes na lista, 2 posts no ar |
-| **dom 27/09** | **20 entrevistas · G0** |
+| dom 13/09 | 12 nomes na lista, 2 posts no ar |
+| **dom 27/09** | **12 entrevistas · G0** |
 | **dom 11/10** | **10 pré-vendas pagas · G1** |
 | dom 15/11 | App na Play Store |
 | **dom 29/11** | **20 viagens pagas · G2** |

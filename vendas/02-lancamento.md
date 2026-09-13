@@ -70,7 +70,7 @@ Nenhum destes é negociável. Sem os seis, não envia.
 |---|---|
 | 1 | **ESTÁ NO AR.** E finalmente no Android. |
 | 2 | Há 3 meses eu voltei de uma viagem com 13 reservas e terminei numa planilha. |
-| 3 | Conversei com 20 pessoas que organizam a viagem do grupo. *(o número real)* de 20 não sabiam que tinham direito a hotel com 4h de atraso. |
+| 3 | Conversei com 12 pessoas que organizam a viagem do grupo. *(o número real)* de 12 não sabiam que tinham direito a hotel com 4h de atraso. |
 | 4 | Construí isto: voo, hotel, carro e passeio num lugar só. Offline. Em português. |
 | 5 | E quando um voo atrasa, ele refaz a viagem inteira: o transfer que já era, o hotel que precisa ser avisado, o passeio de amanhã que ficou impossível. |
 | 6 | Organizar é de graça pra sempre. Acompanhar uma viagem custa R$39, uma vez. |

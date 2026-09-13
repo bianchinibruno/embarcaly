@@ -17,7 +17,7 @@ Quatro portões. Números escritos antes de você ver o resultado.
 |---|---|---|
 | Entrevistas com viajantes | ≥ 12 | ___ |
 | Que lembram de um problema real de viagem nos últimos 24 meses | ≥ 8 | ___ |
-| Que **não sabiam** do direito a hospedagem com 4h de atraso | ≥ 15 | ___ |
+| Que **não sabiam** do direito a hospedagem com 4h de atraso | ≥ 10 | ___ |
 | Que viajam com alguém dependendo deles | ≥ 8 | ___ |
 | Que perderam dinheiro ou uma reserva por causa de um atraso | ≥ 4 | ___ |
 | **Que mostraram a planilha, o print ou a pasta de e-mail** | ≥ 8 | ___ |
@@ -34,7 +34,7 @@ prova que a dor de centralizar existe e que nada no mercado resolveu para ela.
 Peça para ver. É o dado mais honesto que você vai coletar, e vale mais que
 qualquer resposta falada.
 
-**Composição também é critério.** Vinte amigos seus com iPhone respondendo que a
+**Composição também é critério.** Doze amigos seus com iPhone respondendo que a
 ideia é ótima é o resultado mais perigoso possível: parece validação e não é.
 Os alvos de Android e de fora do círculo estão em [02-icp.md](02-icp.md).
 

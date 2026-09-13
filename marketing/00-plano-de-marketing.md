@@ -121,7 +121,7 @@ dogma.
 **Objetivo:** descobrir qual mensagem converte, sem produto.
 
 - 2 publicações/semana, testando os dois pilares
-- 20 entrevistas ([recrutamento](../plano/templates/recrutamento.md))
+- 12 entrevistas ([recrutamento](../plano/templates/recrutamento.md))
 - Guia em PDF como isca em toda abordagem
 - R$150 no teste de mensagem (semana 3), três anúncios de R$50
 - **Entrega:** a mensagem vencedora vira título da landing, gancho dos

@@ -23,13 +23,13 @@ Artes já renderizadas em [artes/](artes/).
 | 06 | sex 25/09 | D | CAR | Cancelaram seu voo? Você tem 4 opções | [pronta](artes/carrossel-04-escolhas/) |
 | 07 | ter 29/09 | D | REE | Eles têm que te atualizar a cada 30 minutos | roteiro pronto |
 
-**Marco:** G0 em 27/09 — 20 entrevistas fechadas.
+**Marco:** G0 em 27/09 — 12 entrevistas fechadas.
 
 ## Mês 2 · Outubro — pré-venda e início da construção
 
 | # | Data | Pilar | Fmt | Título |
 |---|---|---|---|---|
-| 08 | sex 02/10 | B | CAR | Entrevistei 20 pessoas que organizam viagem. O que descobri. |
+| 08 | sex 02/10 | B | CAR | Entrevistei 12 pessoas que organizam viagem. O que descobri. |
 | 09 | ter 06/10 | D | CAR | Bagagem extraviada: 7 dias no doméstico, 21 no internacional |
 | 10 | sex 09/10 | A | REE | Testei 4 organizadores de viagem. Um não existe no Android. |
 | 11 | ter 13/10 | D | CAR | O que guardar quando o voo dá problema: a lista de 6 itens |
@@ -123,7 +123,7 @@ o buraco do Android · comparativo honesto · por que sem assinatura · por que
 offline importa · a cadeia que ninguém recalcula · o que o app não faz
 
 **Bastidor e caso real (5)**
-a planilha de 14 linhas · o que 20 entrevistas mostraram · como eu testo um
+a planilha de 14 linhas · o que 12 entrevistas mostraram · como eu testo um
 direito · número do mês · erro que eu cometi
 
 ---

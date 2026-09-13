@@ -94,11 +94,11 @@ para o público errado custa o projeto.
 > de opinião detalhada. Nada disso serve. Ele quer mais dado, mais filtro, mais
 > controle — e se você construir para ele, constrói um Flighty pior. **Se a
 > pessoa mencionar programa de fidelidade sem você perguntar, encerre a
-> entrevista com educação e não conte na meta de 20.**
+> entrevista com educação e não conte na meta de 12.**
 
 ---
 
-## Onde achar 20 pessoas em duas semanas
+## Onde achar 12 pessoas em duas semanas
 
 Na ordem. Não pule para a fonte 3 antes de esgotar a 1.
 
@@ -107,11 +107,11 @@ Na ordem. Não pule para a fonte 3 antes de esgotar a 1.
 
 | # | Fonte | Quantas esperar | Como |
 |---|---|---|---|
-| **1** | **Seu círculo** — amigos, família, colegas da Omnichat | 8–10 | Mensagem direta. Todo mundo conhece alguém que "organiza tudo" |
-| **2** | **Indicação em cadeia** | 5–8 | A última pergunta de toda entrevista: *"quem você conhece que é o organizador do grupo?"* É a fonte mais rica e a mais ignorada |
-| **3** | **Grupos de Facebook por destino** | 3–5 | "Brasileiros em Portugal", "Viagem para Disney", "Mochilão Europa", "Intercâmbio". Poste pedindo ajuda, não divulgando produto |
-| **4** | **Instagram de quem posta roteiro próprio** | 2–4 | Pessoa comum publicando a própria viagem — **não influenciador**. Influenciador tem outra relação com viagem |
-| **5** | Reddit r/viagens, r/brasil | 1–3 | Funciona se o pedido for genuíno e sem link |
+| **1** | **Seu círculo** — amigos, família, colegas da Omnichat | 5–6 | Mensagem direta. Todo mundo conhece alguém que "organiza tudo" |
+| **2** | **Indicação em cadeia** | 3–5 | A última pergunta de toda entrevista: *"quem você conhece que é o organizador do grupo?"* É a fonte mais rica e a mais ignorada |
+| **3** | **Grupos de Facebook por destino** | 2–3 | "Brasileiros em Portugal", "Viagem para Disney", "Mochilão Europa", "Intercâmbio". Poste pedindo ajuda, não divulgando produto |
+| **4** | **Instagram de quem posta roteiro próprio** | 1–2 | Pessoa comum publicando a própria viagem — **não influenciador**. Influenciador tem outra relação com viagem |
+| **5** | Reddit r/viagens, r/brasil | 1–2 | Funciona se o pedido for genuíno e sem link |
 
 **Não use** comunidades de milhas e pontos. É onde está o anti-ICP.
 
@@ -135,21 +135,21 @@ vaga.
 
 ---
 
-## Meta de composição das 20
+## Meta de composição das 12
 
-Não deixe as 20 virarem 20 pessoas iguais a você.
+Não deixe as 12 virarem 12 pessoas iguais a você.
 
 | | Meta |
 |---|---|
-| Perfil 1 · família | 6 |
-| Perfil 2 · casal | 5 |
-| Perfil 3 · grupo de amigos | 5 |
-| Perfil 4 · leva os pais | 2 |
-| Curinga (qualifica mas não se encaixa) | 2 |
-| **Usuários de Android** | **ao menos 12** |
-| **De fora do seu círculo pessoal** | **ao menos 8** |
+| Perfil 1 · família | 4 |
+| Perfil 2 · casal | 3 |
+| Perfil 3 · grupo de amigos | 3 |
+| Perfil 4 · leva os pais | 1 |
+| Curinga (qualifica mas não se encaixa) | 1 |
+| **Usuários de Android** | **ao menos 8** |
+| **De fora do seu círculo pessoal** | **ao menos 6** |
 
-Os dois últimos são os que mais importam. Vinte amigos seus com iPhone
+Os dois últimos são os que mais importam. Doze amigos seus com iPhone
 respondendo que a ideia é ótima é o resultado mais perigoso possível: parece
 validação e não é.
 

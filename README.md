@@ -131,7 +131,7 @@ meses?*
 
 | Portão | Data | Passa com |
 |---|---|---|
-| **G0** | 27/09 | 20 entrevistas · 15 que não sabiam dos próprios direitos |
+| **G0** | 27/09 | 12 entrevistas · 10 que não sabiam dos próprios direitos |
 | **G1** | 11/10 | 10 pré-vendas pagas, sendo 4 de fora do círculo pessoal |
 | **G2** | 29/11 | 20 viagens pagas · 100% dos direitos informados corretos |
 | **G3** | 03/01 | 100 viagens pagas · alcance crescendo 3 meses seguidos |
