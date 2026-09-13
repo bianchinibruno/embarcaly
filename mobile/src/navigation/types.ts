@@ -4,6 +4,7 @@ export type TabParamList = {
   Trips: undefined;
   Now: undefined;
   Itinerary: undefined;
+  Socorro: undefined;
   Docs: undefined;
 };
 
@@ -14,4 +15,6 @@ export type RootStackParamList = {
   /** Sem id, cria. Com id, edita. */
   TripForm: { id?: string };
   ItemForm: { id?: string };
+  /** Registrar ou remover o atraso de uma reserva. */
+  DelayForm: { id: string };
 };

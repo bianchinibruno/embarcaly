@@ -8,11 +8,13 @@ import { useColorScheme } from 'react-native';
 import { TripsScreen } from '../screens/TripsScreen';
 import { NowScreen } from '../screens/NowScreen';
 import { ItineraryScreen } from '../screens/ItineraryScreen';
+import { SocorroScreen } from '../screens/SocorroScreen';
 import { DocsScreen } from '../screens/DocsScreen';
 import { ItemScreen } from '../screens/ItemScreen';
 import { PassesScreen } from '../screens/PassesScreen';
 import { TripFormScreen } from '../screens/TripFormScreen';
 import { ItemFormScreen } from '../screens/ItemFormScreen';
+import { DelayFormScreen } from '../screens/DelayFormScreen';
 import { HeaderBack } from '../components/HeaderBack';
 import { font } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
@@ -43,6 +45,7 @@ function TabsNavigator() {
       <Tabs.Screen name="Trips" component={TripsScreen} options={{ title: 'Viagens' }} />
       <Tabs.Screen name="Now" component={NowScreen} options={{ title: 'Agora' }} />
       <Tabs.Screen name="Itinerary" component={ItineraryScreen} options={{ title: 'Itinerário' }} />
+      <Tabs.Screen name="Socorro" component={SocorroScreen} options={{ title: 'Socorro' }} />
       <Tabs.Screen name="Docs" component={DocsScreen} options={{ title: 'Docs' }} />
     </Tabs.Navigator>
   );
@@ -108,6 +111,15 @@ export function RootNavigator() {
           component={ItemFormScreen}
           options={({ route, navigation }) => ({
             title: route.params?.id ? 'Editar reserva' : 'Nova reserva',
+            presentation: 'modal',
+            headerLeft: () => <HeaderBack onPress={navigation.goBack} label="Fechar" />,
+          })}
+        />
+        <Stack.Screen
+          name="DelayForm"
+          component={DelayFormScreen}
+          options={({ navigation }) => ({
+            title: 'Registrar atraso',
             presentation: 'modal',
             headerLeft: () => <HeaderBack onPress={navigation.goBack} label="Fechar" />,
           })}

@@ -158,6 +158,14 @@ export function ItemScreen() {
           </>
         )}
 
+        {item.type === 'air' ? (
+          <Button
+            title={item.delay ? 'Revisar o atraso' : 'Registrar atraso'}
+            variant={item.delay ? 'ghost' : 'stamp'}
+            onPress={() => nav.navigate('DelayForm', { id: item.id })}
+          />
+        ) : null}
+
         <Button
           title="Editar reserva"
           variant="ghost"
