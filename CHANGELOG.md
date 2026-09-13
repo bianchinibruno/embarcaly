@@ -34,6 +34,11 @@ versioning follows [Semantic Versioning](https://semver.org/).
   pricing and launch plan.
 - `CONTINUAR.md` recording project state for session handoff.
 
+### Fixed
+
+- Expo packages realigned with the SDK 57 patch versions expected by
+  `expo-doctor`, which had drifted and was failing CI.
+
 ### Changed
 
 - Prototype moved from the repository root to `prototipo/`; the landing page now
