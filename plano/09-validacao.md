@@ -6,16 +6,23 @@ Quatro portões. Números escritos antes de você ver o resultado.
 
 ## G0 — A dor existe e é lembrada? · Semana 2 · **dom 27/09**
 
+> **Revisado em 13/09.** A [validação de demanda por pesquisa](12-validacao-de-demanda.md)
+> provou a existência e o tamanho do problema melhor do que 20 entrevistas
+> provariam: 100 mil reclamações por ano, e a ANAC construindo plataforma
+> dedicada em 2026. **As metas caíram de 20 para 12 entrevistas.** O que o
+> levantamento não responde — desconhecimento dos direitos e disposição a pagar —
+> continua valendo integralmente.
+
 | Critério | Passa | Resultado |
 |---|---|---|
-| Entrevistas com viajantes | ≥ 20 | ___ |
-| Que lembram de um problema real de viagem nos últimos 24 meses | ≥ 12 | ___ |
+| Entrevistas com viajantes | ≥ 12 | ___ |
+| Que lembram de um problema real de viagem nos últimos 24 meses | ≥ 8 | ___ |
 | Que **não sabiam** do direito a hospedagem com 4h de atraso | ≥ 15 | ___ |
-| Que viajam com alguém dependendo deles | ≥ 12 | ___ |
-| Que perderam dinheiro ou uma reserva por causa de um atraso | ≥ 6 | ___ |
-| **Que mostraram a planilha, o print ou a pasta de e-mail** | ≥ 12 | ___ |
-| **Usuários de Android entre os 20** | ≥ 12 | ___ |
-| **De fora do seu círculo pessoal** | ≥ 8 | ___ |
+| Que viajam com alguém dependendo deles | ≥ 8 | ___ |
+| Que perderam dinheiro ou uma reserva por causa de um atraso | ≥ 4 | ___ |
+| **Que mostraram a planilha, o print ou a pasta de e-mail** | ≥ 8 | ___ |
+| **Usuários de Android entre os 12** | ≥ 8 | ___ |
+| **De fora do seu círculo pessoal** | ≥ 6 | ___ |
 
 **Dois critérios carregam este portão.**
 

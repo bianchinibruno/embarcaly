@@ -41,6 +41,7 @@ Centralizar é o produto e é **de graça**. O que se cobra, a **R$39 por viagem
 | [09-validacao.md](09-validacao.md) | Portões G0–G3 e métricas proibidas |
 | [10-riscos.md](10-riscos.md) | 13 riscos, do que decide ao que incomoda |
 | [11-refinamento.md](11-refinamento.md) | Comunidade, automação, escala |
+| [12-validacao-de-demanda.md](12-validacao-de-demanda.md) | **Pesquisa que reduziu o G0 de 20 para 12 entrevistas** |
 
 **Templates** — [recrutamento](templates/recrutamento.md) · [entrevista](templates/entrevista-viajante.md) · [posts](templates/posts.md) · [landing](templates/landing.md) · [diário](templates/diario.md)
 
@@ -48,7 +49,7 @@ Centralizar é o produto e é **de graça**. O que se cobra, a **R$39 por viagem
 
 | Portão | Data | Passa com |
 |---|---|---|
-| **G0** | dom **27/09** | 20 entrevistas · 12 com caso real · 15 que não sabiam dos direitos · 12 em Android |
+| **G0** | dom **27/09** | **12 entrevistas** · 8 com caso real · 10 que não sabiam dos direitos · 8 em Android |
 | **G1** | dom **11/10** | **10 pré-vendas pagas de R$19**, sendo 4 de fora do seu círculo |
 | **G2** | dom **29/11** | 30 viagens acompanhadas · 20 pagas · 100% dos direitos corretos |
 | **G3** | dom **03/01** | 100 viagens pagas · 25% de recompra · alcance crescendo 3 meses |

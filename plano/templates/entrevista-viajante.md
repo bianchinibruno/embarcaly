@@ -1,6 +1,11 @@
 # Roteiro de entrevista · 20 minutos
 
-Meta: **20 entrevistas até domingo 27/09.** Doze na semana 1, oito na semana 2.
+Meta: **12 entrevistas até domingo 27/09.** Sete na semana 1, cinco na semana 2.
+
+> **Reduzido de 20 para 12** pela [validação de demanda](../12-validacao-de-demanda.md).
+> O bloco 1 pode ser cortado para duas perguntas — o que ele media já está no
+> filtro de triagem. **Os blocos 3 e 4 não se tocam:** são o desconhecimento dos
+> direitos e o preço, e são a razão da entrevista existir.
 
 ---
 
@@ -179,13 +184,13 @@ Faça agora, não depois. A memória decai rápido.
 
 | | Meta | Feito |
 |---|---|---|
-| Entrevistas | 20 | ___ |
-| Com caso real | 12 | ___ |
-| Que **não** sabiam do direito a hotel | 15 | ___ |
-| Que mostraram o improviso | 12 | ___ |
-| **Em Android** | **12** | ___ |
-| **De fora do meu círculo** | **8** | ___ |
-| Perfil 1 · 2 · 3 · 4 | 6 · 5 · 5 · 2 | ___ |
+| Entrevistas | 12 | ___ |
+| Com caso real | 8 | ___ |
+| Que **não** sabiam do direito a hotel | 10 | ___ |
+| Que mostraram o improviso | 8 | ___ |
+| **Em Android** | **8** | ___ |
+| **De fora do meu círculo** | **6** | ___ |
+| Perfil 1 · 2 · 3 · 4 | 4 · 3 · 3 · 2 | ___ |
 
 ---
 

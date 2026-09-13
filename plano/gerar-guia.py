@@ -588,20 +588,22 @@ para(y, "Sair do aeroporto sem o RIB é o erro que mais enfraquece um caso de "
 # ================================================================ FL.06
 y = pagina(titulo="Se disserem não", etiqueta="5 · onde levar o caso, de graça")
 
-y = para(y, "Tudo abaixo é gratuito e não precisa de advogado. Siga a ordem. Cada "
+y = para(y, "Tudo abaixo é gratuito e não precisa de advogado. Siga a ordem: cada "
             "etapa fortalece a seguinte.", tam=10.5, ent=16)
 y -= 5 * mm
 
 canais = [
     ("01", "A PRÓPRIA COMPANHIA",
      "Abra reclamação no canal oficial e anote o protocolo. Parece inútil e não é: "
-     "prova que você tentou resolver antes."),
-    ("02", "CONSUMIDOR.GOV.BR",
-     "Plataforma do governo. As companhias respondem em até 10 dias e a resposta "
-     "fica pública. Melhor taxa de resolução do país."),
-    ("03", "ANAC",
-     "Pelo site ou pelo 163. Não te indeniza, mas fiscaliza e multa. O registro "
-     "entra no histórico da companhia."),
+     "prova que você tentou resolver antes, e os canais seguintes pedem isso."),
+    ("02", "ANAC PASSAGEIRO",
+     "Canal direto criado pela ANAC em 2026, só para o setor aéreo. A companhia "
+     "tem 10 dias corridos para responder, e existe painel público com o "
+     "desempenho de cada empresa. superapp.anac.gov.br/reclamacao/incluir"),
+    ("03", "CONSUMIDOR.GOV.BR",
+     "Plataforma geral do governo, que segue valendo. Passageiros aéreos "
+     "registram cerca de 100 mil reclamações por ano ali, com mais de 80% "
+     "resolvidas."),
     ("04", "PROCON",
      "Do seu estado ou município. Tem poder de mediação e de multa."),
     ("05", "JUIZADO ESPECIAL CÍVEL",
