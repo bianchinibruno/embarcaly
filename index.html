@@ -6,22 +6,22 @@
 <meta name="theme-color" content="#1C1E3C">
 <meta name="color-scheme" content="light">
 
-<title>Embarcaly — a companhia deve hotel pra você</title>
-<meta name="description" content="Passou de 4 horas de atraso, a companhia é obrigada a te hospedar. Guia gratuito da Resolução ANAC 400, e o app que junta voo, hotel, carro e passeio num lugar só.">
+<title>Embarcaly — um atraso não quebra um voo, quebra a viagem toda</title>
+<meta name="description" content="Voo, hotel, carro e passeio num lugar só. Quando um elo cai, o Embarcaly refaz a cadeia inteira e diz, com o artigo, o que a companhia é obrigada a pagar. R$39 por viagem, sem assinatura.">
 
 <link rel="canonical" href="https://embarcaly.com/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Embarcaly">
-<meta property="og:title" content="A companhia deve hotel pra você. Ninguém vai falar.">
-<meta property="og:description" content="+1h internet. +2h comida. +4h hotel. Guia gratuito dos seus direitos, pela Resolução ANAC 400.">
+<meta property="og:title" content="Um atraso não quebra um voo. Quebra a viagem toda.">
+<meta property="og:description" content="A locadora fecha, o hotel derruba a reserva, o passeio de amanhã cai. O Embarcaly refaz a conta e diz o que a companhia deve pagar.">
 <meta property="og:url" content="https://embarcaly.com/">
 <meta property="og:image" content="https://embarcaly.com/og-image.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A companhia deve hotel pra você. Ninguém vai falar.">
-<meta name="twitter:description" content="+1h internet. +2h comida. +4h hotel. Guia gratuito dos seus direitos.">
+<meta name="twitter:title" content="Um atraso não quebra um voo. Quebra a viagem toda.">
+<meta name="twitter:description" content="A locadora fecha, o hotel derruba a reserva, o passeio de amanhã cai. O Embarcaly refaz a conta.">
 <meta name="twitter:image" content="https://embarcaly.com/og-image.png">
 
 <link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
@@ -176,15 +176,15 @@
   .relogio .tempo { font-family: var(--dado); font-size: 2.4rem; font-weight: 600; color: var(--laranja); line-height: 1; letter-spacing: -0.02em; }
   .relogio .voo { font-family: var(--dado); font-size: 0.7rem; color: var(--fraco-esc); text-align: right; line-height: 1.6; }
 
-  .regua { display: flex; gap: 0.9rem; margin-top: 1.4rem; }
-  .regua .trilho { display: flex; flex-direction: column; align-items: center; }
-  .regua .marco { width: 11px; height: 11px; background: var(--ok-esc); }
-  .regua .marco.aberto { background: transparent; border: 2px solid var(--laranja); }
-  .regua .tramo { width: 2px; height: 26px; background: var(--ok-esc); }
-  .regua .tramo.at { background: var(--laranja); }
-  .regua .itens { flex: 1; display: flex; flex-direction: column; gap: 1.625rem; }
-  .regua .item { display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; height: 11px; font-size: 0.875rem; font-weight: 500; }
-  .regua .item.espera { color: var(--claro); }
+  .pilha { display: flex; flex-direction: column; gap: 1px; background: var(--fio-esc); margin-top: 1.3rem; }
+  .mini { background: var(--carta); padding: 0.7rem 0.9rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.15rem 0.75rem; border-left: 3px solid var(--fio-esc); }
+  .mini.cr { border-left-color: var(--crit-esc); }
+  .mini.at { border-left-color: var(--laranja); }
+  .mini.ok { border-left-color: var(--ok-esc); }
+  .mini .q { font-size: 0.875rem; font-weight: 500; }
+  .mini .h { grid-column: 1; font-family: var(--dado); font-size: 0.75rem; color: var(--fraco-esc); }
+  .mini .h b { color: var(--branco); font-weight: 600; }
+  .mini .sit { grid-column: 2; grid-row: 1; align-self: center; }
 
   .satelites { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.85rem; }
   .satelite { background: var(--papel); color: var(--azul); padding: 0.75rem 0.95rem; box-shadow: 0 16px 34px -22px rgba(0,0,0,0.6); font-size: 0.8125rem; line-height: 1.4; }
@@ -333,7 +333,6 @@
 </style>
 </head>
 <body>
-
 <!-- ======================= TOPO ======================= -->
 <div class="escuro faixa">
   <div class="dentro topo">
@@ -347,10 +346,11 @@
       <span class="nome">embarca<i>ly</i></span>
     </div>
     <nav class="menu">
+      <a class="oculta-mini" href="#cadeia">O que quebra</a>
+      <a class="oculta-mini" href="#produto">O produto</a>
       <a class="oculta-mini" href="#direitos">Seus direitos</a>
-      <a class="oculta-mini" href="#cadeia">A cadeia</a>
       <a class="oculta-mini" href="#tarifa">Preço</a>
-      <a class="btn" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia</a>
+      <a class="btn" href="#espera">Entrar na lista</a>
     </nav>
   </div>
 </div>
@@ -365,27 +365,31 @@
   </svg>
   <div class="dentro grade-abre">
     <div>
-      <span class="rot">Resolução ANAC nº 400/2016</span>
-      <h1 style="margin-top:1rem">A companhia deve hotel pra você.<span class="dois">Ninguém vai falar.</span></h1>
+      <span class="rot">Para quem organiza o grupo</span>
+      <h1 style="margin-top:1rem">Um atraso não quebra um voo.<span class="dois">Quebra a viagem toda.</span></h1>
       <p class="guia" style="margin-top:1.3rem">
-        Passou de quatro horas de atraso, hospedagem e traslado são obrigação dela.
-        Passou de duas, é comida. Em 2018, 17 milhões de brasileiros tiveram voo
-        atrasado ou cancelado. <b>Dois por cento pediram alguma coisa.</b>
+        Três horas de atraso e a locadora fecha antes de você pousar. O hotel derruba a
+        reserva sem avisar. O passeio de amanhã cedo vira noite mal dormida. <b>Essa conta
+        ninguém faz por você</b>, e ela chega toda de uma vez, no celular, na fila do balcão.
+      </p>
+      <p class="guia">
+        O Embarcaly guarda a viagem inteira. Quando um elo cai, ele refaz a cadeia em
+        segundos e diz, com o artigo na mão, o que a companhia é obrigada a pagar.
       </p>
 
       <div class="acoes">
-        <a class="btn" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia grátis</a>
-        <span class="anota">8 FOLHAS · PDF · SEM CADASTRO</span>
+        <a class="btn" href="#espera">Entrar na lista de espera</a>
+        <span class="anota">LANÇAMENTO NO ANDROID · SEM ASSINATURA</span>
       </div>
 
       <div class="ticks">
-        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Artigo citado em cada direito</span>
-        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Começa no Android</span>
-        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Sem assinatura</span>
+        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Voo, hotel, carro e passeio juntos</span>
+        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Refaz a cadeia quando um elo cai</span>
+        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Funciona sem internet</span>
       </div>
     </div>
 
-    <div style="position:relative">
+    <div>
       <div class="relogio">
         <div class="cabeca">
           <div>
@@ -394,26 +398,28 @@
           </div>
           <div class="voo">LA3477<br>POA &rarr; GRU</div>
         </div>
-        <div class="regua">
-          <div class="trilho">
-            <span class="marco"></span><span class="tramo"></span>
-            <span class="marco"></span><span class="tramo at"></span>
-            <span class="marco aberto"></span>
+        <div class="pilha">
+          <div class="mini cr">
+            <span class="q">Locadora GRU</span>
+            <span class="h"><s>21:40</s> &rarr; <b>sem retirada</b></span>
+            <span class="sit cr">Perdido</span>
           </div>
-          <div class="itens">
-            <div class="item"><span>Comunicação</span><span class="sit ok">+1h</span></div>
-            <div class="item"><span>Alimentação</span><span class="sit ok">+2h</span></div>
-            <div class="item espera"><span>Hospedagem</span><span class="sit at">Em 15min</span></div>
+          <div class="mini at">
+            <span class="q">Hotel Ibirapuera</span>
+            <span class="h"><s>23:10</s> &rarr; <b>01:20</b></span>
+            <span class="sit at">Avisar</span>
+          </div>
+          <div class="mini ok">
+            <span class="q">City tour, amanhã</span>
+            <span class="h">09:00 &middot; sobram 7h40</span>
+            <span class="sit ok">De pé</span>
           </div>
         </div>
       </div>
       <div class="satelites">
         <div class="satelite sat-a">
           <span class="fonte">RES. 400, ART. 27, III</span>
-          Hotel e traslado por conta da companhia
-        </div>
-        <div class="satelite sat-b">
-          A locadora fecha às 22h. Você chega <b class="dado">01h20</b>.
+          Acima de 4 horas, o hotel é por conta da companhia
         </div>
       </div>
     </div>
@@ -423,28 +429,112 @@
 <!-- ======================= NÚMEROS ======================= -->
 <div class="numeros faixa">
   <div class="dentro">
-    <div class="cel"><span class="v">17 mi</span><span class="t">de brasileiros tiveram voo atrasado ou cancelado em 2018</span></div>
+    <div class="cel"><span class="v">112 mil</span><span class="t">voos cancelados por ano no Brasil</span></div>
+    <div class="cel"><span class="v">17 mi</span><span class="t">de brasileiros com voo atrasado ou cancelado em 2018</span></div>
     <div class="cel"><span class="v">2%</span><span class="t">pediram alguma coisa à companhia</span></div>
-    <div class="cel"><span class="v">0</span><span class="t">vezes que alguém no balcão vai oferecer sem você pedir</span></div>
   </div>
 </div>
 
-<!-- ======================= 1 · ASSISTÊNCIA ======================= -->
-<section id="direitos" class="faixa">
+<!-- ======================= 1 · O QUE QUEBRA ======================= -->
+<section id="cadeia" class="escuro faixa">
   <div class="dentro">
-    <span class="rot">01 · o que destrava, e quando</span>
-    <h2>A contagem começa no horário previsto da partida.</h2>
+    <span class="rot">01 · o que quebra</span>
+    <h2>A conta que ninguém faz por você</h2>
     <p class="guia">
-      Vale para atraso, cancelamento e preterição. Eles deveriam oferecer sem você
-      pedir, e quase nunca oferecem. O motivo não muda nada: mau tempo, problema
-      técnico ou malha aérea, <b>a assistência é devida do mesmo jeito.</b>
+      Minha última viagem tinha treze reservas em sete fornecedores. O voo atrasou três
+      horas em Lisboa e o painel do aeroporto me informou do voo, só. <b>O resto eu
+      recalculei sozinho</b>, no celular, enquanto a fila andava.
+    </p>
+
+    <div class="cadeia">
+      <div class="elo cr">
+        <div class="cab"><span class="nome-e">Transfer para o hotel</span><span class="sit cr">Perdido</span></div>
+        <div class="horas"><span class="antes">19:10</span><span class="seta">&rarr;</span><span class="depois">sem motorista</span></div>
+        <p class="txt">Ele sai 19:40 e o voo pousa 19:55. Remarcar ou cancelar, agora.</p>
+      </div>
+      <div class="elo at">
+        <div class="cab"><span class="nome-e">Check-in no hotel</span><span class="sit at">Avisar</span></div>
+        <div class="horas"><span class="antes">21:00</span><span class="seta">&rarr;</span><span class="depois">23:40</span></div>
+        <p class="txt">A recepção fecha 23:00. Avisar da chegada tardia antes disso.</p>
+      </div>
+      <div class="elo cr">
+        <div class="cab"><span class="nome-e">Passeio de amanhã</span><span class="sit cr">Inviável</span></div>
+        <div class="horas"><span class="antes">08:00</span><span class="seta">&rarr;</span><span class="depois">remarcar</span></div>
+        <p class="txt">Saída três horas depois do check-in. Passar para quinta.</p>
+      </div>
+    </div>
+
+    <div class="nota-bloco">
+      <h3>Por que ninguém resolve isso</h3>
+      <p class="txt" style="margin:0">O maior organizador do mercado guarda as reservas e cala.
+      O melhor rastreador de voo avisa do voo e cala. Os aplicativos da companhia só sabem do
+      próprio voo. <b>Cada um tem uma peça, e nenhum tem a viagem.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 2 · O PRODUTO ======================= -->
+<section id="produto" class="faixa">
+  <div class="dentro">
+    <span class="rot">02 · o produto</span>
+    <h2>Três camadas. Só a terceira se paga.</h2>
+    <p class="guia">
+      Juntar a viagem é de graça para sempre, porque sem ela o resto não funciona. O que se
+      cobra é o dia em que ela quebra. E começa <b>no Android</b>, num país onde 81% dos
+      celulares são Android e o melhor organizador brasileiro só existe no iPhone.
+    </p>
+
+    <div class="camadas">
+      <div class="camada">
+        <span class="n">01</span>
+        <span class="tarifa-c">Grátis</span>
+        <div class="corpo">
+          <div class="tit">Centralizar</div>
+          <p class="txt">Você encaminha o e-mail da confirmação. Ele monta a viagem e guarda os documentos.</p>
+        </div>
+      </div>
+      <div class="camada">
+        <span class="n">02</span>
+        <span class="tarifa-c">Grátis</span>
+        <div class="corpo">
+          <div class="tit">Conduzir</div>
+          <p class="txt">Agora, depois e mais tarde. A próxima ação e o documento daquele momento, sem internet.</p>
+        </div>
+      </div>
+      <div class="camada paga">
+        <span class="n">03</span>
+        <span class="tarifa-c">R$39</span>
+        <div class="corpo">
+          <div class="tit">Socorrer</div>
+          <p class="txt">Um elo cai, a cadeia inteira é refeita. Cada direito com o artigo e a frase pronta para ler no balcão.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <a class="btn vazio" href="prototipo/">Ver o protótipo</a>
+      <span class="anota">ABRE NO NAVEGADOR, SEM INSTALAR</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 3 · OS DIREITOS ======================= -->
+<section id="direitos" class="faixa" style="background:var(--branco); border-block:1px solid var(--fio)">
+  <div class="dentro">
+    <span class="rot">03 · o dia do problema</span>
+    <h2>A lei já está do seu lado. Falta saber pedir.</h2>
+    <p class="guia">
+      A contagem começa no horário previsto da partida e vale para atraso, cancelamento e
+      preterição. A companhia deveria oferecer sem você pedir, e quase nunca oferece. O motivo
+      não muda nada: mau tempo, problema técnico ou malha aérea, <b>a assistência é devida do
+      mesmo jeito</b>.
     </p>
 
     <div class="direitos">
       <div class="direito">
         <div class="topo-d"><span class="marco">+1H</span><span class="sit ok">Liberado</span></div>
         <div class="nome-d">Comunicação</div>
-        <p class="txt">Internet e telefone por conta da companhia. Dois minutos de ligação para avisar quem está te esperando.</p>
+        <p class="txt">Internet e telefone por conta da companhia. Dois minutos de ligação para avisar quem espera por você.</p>
         <div class="fonte">Res. 400, art. 27, I</div>
       </div>
       <div class="direito">
@@ -456,33 +546,28 @@
       <div class="direito destaque">
         <div class="topo-d"><span class="marco">+4H</span><span class="sit at">Hotel</span></div>
         <div class="nome-d">Hospedagem e traslado</div>
-        <p class="txt">Hotel mais o transporte de ida e volta até ele. Se você está na cidade onde mora, pode ser só o transporte.</p>
+        <p class="txt">Hotel mais o transporte de ida e volta até ele. Na cidade onde você mora, pode ser só o transporte.</p>
         <div class="fonte">Res. 400, art. 27, III</div>
       </div>
     </div>
 
     <div class="nota-bloco">
       <h3>A que ninguém conhece</h3>
-      <p class="txt" style="margin:0">Eles precisam te informar do atraso e atualizar a cada 30 minutos. <b>Silêncio já é descumprimento</b>, e vira prova a seu favor.</p>
+      <p class="txt" style="margin:0">A companhia precisa informar do atraso e atualizar a cada
+      30 minutos. <b>Silêncio já é descumprimento</b>, e vira prova a seu favor.</p>
     </div>
-  </div>
-</section>
 
-<!-- ======================= 2 · QUATRO SAÍDAS ======================= -->
-<section class="azul faixa">
-  <div class="dentro">
-    <span class="rot">02 · acima de 4h, cancelamento, preterição</span>
-    <h2>Quatro saídas. Eles oferecem uma.</h2>
-    <p class="guia">
-      O erro mais caro do passageiro brasileiro é aceitar a primeira coisa que
-      colocam na mesa. <b>A escolha é sua.</b> Peça pelo nome.
+    <h3 style="margin-top:2.6rem">Acima de quatro horas, você escolhe. Eles oferecem uma.</h3>
+    <p class="guia" style="margin-top:0.5rem">
+      O erro mais caro do passageiro brasileiro é aceitar a primeira coisa que colocam na mesa.
+      <b>A escolha é sua.</b> Peça pelo nome.
     </p>
 
     <div class="passos">
       <div class="passo">
         <div class="n">01</div>
         <div class="tit">Reacomodação</div>
-        <p class="txt">Outro voo para o mesmo destino na primeira oportunidade, inclusive em outra companhia, sem você pagar diferença.</p>
+        <p class="txt">Outro voo para o mesmo destino na primeira oportunidade, inclusive em outra companhia, sem pagar diferença.</p>
       </div>
       <div class="passo">
         <div class="n">02</div>
@@ -502,104 +587,22 @@
     </div>
 
     <div class="acoes">
-      <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia</a>
-      <span class="anota">TEM O QUE FALAR NO BALCÃO E O QUE GUARDAR COMO PROVA</span>
+      <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia grátis</a>
+      <span class="anota">8 FOLHAS · PDF · SEM CADASTRO</span>
     </div>
   </div>
 </section>
 
-<!-- ======================= 3 · A CADEIA ======================= -->
-<section id="cadeia" class="escuro faixa">
-  <div class="dentro">
-    <span class="rot">03 · o problema atrás disso</span>
-    <h2>Um atraso não quebra um voo.<br>Quebra a viagem toda.</h2>
-    <p class="guia">
-      Minha última viagem tinha treze reservas em sete fornecedores. O voo atrasou
-      três horas em Lisboa. O painel do aeroporto me informou do voo e parou por aí.
-      <b>O resto eu resolvi sozinho, no celular, na fila.</b>
-    </p>
-
-    <div class="cadeia">
-      <div class="elo cr">
-        <div class="cab"><span class="nome-e">Transfer para o hotel</span><span class="sit cr">Perdido</span></div>
-        <div class="horas"><span class="antes">19:10</span><span class="seta">&rarr;</span><span class="depois">sem motorista</span></div>
-        <p class="txt">Ele sai às 19:40 e o voo só pousa 19:55. Remarcar ou cancelar.</p>
-      </div>
-      <div class="elo at">
-        <div class="cab"><span class="nome-e">Check-in Hotel Baixa</span><span class="sit at">Avisar</span></div>
-        <div class="horas"><span class="antes">21:00</span><span class="seta">&rarr;</span><span class="depois">23:40</span></div>
-        <p class="txt">A recepção fecha às 23:00. Avisar chegada tardia antes disso.</p>
-      </div>
-      <div class="elo cr">
-        <div class="cab"><span class="nome-e">Passeio Sintra</span><span class="sit cr">Inviável</span></div>
-        <div class="horas"><span class="antes">08:00</span><span class="seta">&rarr;</span><span class="depois">remarcar</span></div>
-        <p class="txt">Saída três horas depois do check-in. Passar para quinta.</p>
-      </div>
-    </div>
-
-    <div class="nota-bloco">
-      <h3>Ninguém monta essa conta</h3>
-      <p class="txt" style="margin:0">O maior organizador do mercado guarda as reservas e cala. O melhor rastreador de voo avisa do voo e cala. Os apps da companhia só sabem do próprio voo. <b>A conta de quem perde o quê fica com você.</b></p>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= 4 · O PRODUTO ======================= -->
-<section class="faixa">
-  <div class="dentro">
-    <span class="rot">04 · o produto</span>
-    <h2>Três camadas, e só a terceira se paga.</h2>
-    <p class="guia">
-      Voo, hotel, carro e passeio na mesma listagem. Funciona sem internet, em
-      português, e <b>no Android</b>. O melhor organizador de viagem brasileiro hoje
-      só existe no iPhone, num país onde 81% dos celulares são Android.
-    </p>
-
-    <div class="camadas">
-      <div class="camada">
-        <span class="n">01</span>
-        <span class="tarifa-c">Grátis</span>
-        <div class="corpo">
-          <div class="tit">Centralizar</div>
-          <p class="txt">Você encaminha o e-mail da confirmação. Ele monta a viagem e guarda os documentos.</p>
-        </div>
-      </div>
-      <div class="camada">
-        <span class="n">02</span>
-        <span class="tarifa-c">Grátis</span>
-        <div class="corpo">
-          <div class="tit">Conduzir</div>
-          <p class="txt">Agora, depois, mais tarde. A próxima ação e o documento daquele momento.</p>
-        </div>
-      </div>
-      <div class="camada paga">
-        <span class="n">03</span>
-        <span class="tarifa-c">R$39</span>
-        <div class="corpo">
-          <div class="tit">Socorrer</div>
-          <p class="txt">Quando um elo quebra, refaz a cadeia inteira e diz o que a companhia deve, com o artigo e a frase pronta para o balcão.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="acoes">
-      <a class="btn vazio" href="prototipo/">Ver o protótipo</a>
-      <span class="anota">ABRE NO NAVEGADOR, SEM INSTALAR</span>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= 5 · TARIFA ======================= -->
+<!-- ======================= 4 · TARIFA ======================= -->
 <section id="tarifa" class="azul faixa">
   <div class="dentro grade-preco">
     <div>
-      <span class="rot">05 · tarifa</span>
+      <span class="rot">04 · tarifa</span>
       <h2 style="margin-top:0.7rem">Você paga quando viaja.</h2>
       <p class="guia" style="margin-top:0.85rem">
-        Não é assinatura. Vale de uma semana antes do embarque até três dias depois
-        da volta. <b>Organizar a viagem é de graça para sempre.</b> Você viaja uma ou
-        duas vezes por ano, e assinatura anual cobra os outros dez meses em que o
-        aplicativo fica fechado.
+        Não é assinatura. Vale de uma semana antes do embarque até três dias depois da volta.
+        Você viaja uma ou duas vezes por ano, e <b>assinatura anual cobra os outros dez meses</b>
+        em que o aplicativo fica fechado.
       </p>
 
       <div class="comparativo">
@@ -613,30 +616,29 @@
       <div class="valor"><span class="v">R$39</span><span class="u">POR VIAGEM</span></div>
       <div class="inclui">
         <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FBF87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Organizar a viagem inteira</div>
-        <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FBF87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Registrar atraso e ver a contagem</div>
-        <div class="li pago"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Direitos com artigo e frase pronta</div>
+        <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FBF87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Registrar o atraso e ver a contagem</div>
         <div class="li pago"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>A cadeia inteira recalculada</div>
+        <div class="li pago"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Direitos com artigo e frase pronta</div>
       </div>
       <div class="legenda-preco">VERDE: GRÁTIS PARA SEMPRE<br>LARANJA: O QUE SE PAGA</div>
     </div>
   </div>
 </section>
 
-<!-- ======================= 6 · CONVERSA ======================= -->
+<!-- ======================= 5 · CONVERSA ======================= -->
 <section class="faixa">
   <div class="dentro grade-espera">
     <div>
-      <span class="rot">06 · antes de escrever mais uma linha de código</span>
+      <span class="rot">05 · antes de escrever mais uma linha de código</span>
       <h2 style="margin-top:0.7rem">Você é quem organiza a viagem do grupo?</h2>
       <p class="guia" style="margin-top:0.85rem">
         A pessoa que monta o roteiro, guarda os vouchers e responde a que horas é tudo.
-        <b>Quero te ouvir vinte minutos.</b> Não tenho nada para vender: quero entender
-        como você faz hoje antes de decidir o que construir. Mando o guia completo e te
-        aviso primeiro quando sair.
+        <b>Quero te ouvir vinte minutos.</b> Não tenho nada para vender: quero entender como
+        você faz hoje antes de decidir o que construir.
       </p>
       <p class="guia">
-        Preenche aqui e eu te respondo para marcar. <b>Você não precisa abrir o seu
-        e-mail</b> — o formulário envia sozinho.
+        Preenche aqui e eu te respondo para marcar. Você não precisa abrir o seu e-mail — o
+        formulário envia sozinho.
       </p>
       <div class="acoes">
         <span class="anota">20 MINUTOS · POR CHAMADA · SEM NADA PARA VENDER</span>
@@ -646,7 +648,7 @@
     <div>
       <form id="conversa" action="https://formspree.io/f/mgaejzrr" method="POST">
         <input type="hidden" name="_subject" value="Embarcaly · quero conversar (entrevista)">
-        <input type="hidden" name="origem" value="landing institucional · seção 06">
+        <input type="hidden" name="origem" value="landing institucional · seção 05">
 
         <div class="campo">
           <label for="c-nome">Como te chamo</label>
@@ -707,16 +709,16 @@
   </div>
 </section>
 
-<!-- ======================= 7 · LISTA DE ESPERA ======================= -->
-<section class="faixa" style="background:var(--branco); border-top:1px solid var(--fio)">
+<!-- ======================= 6 · LISTA DE ESPERA ======================= -->
+<section id="espera" class="faixa" style="background:var(--branco); border-top:1px solid var(--fio)">
   <div class="dentro grade-espera">
     <div>
-      <span class="rot">07 · lista de espera</span>
+      <span class="rot">06 · lista de espera</span>
       <h2 style="margin-top:0.7rem">Te aviso quando o aplicativo for lançado.</h2>
       <p class="guia" style="margin-top:0.85rem">
-        Uma mensagem, no dia do lançamento. Não tem newsletter. Enquanto isso, leve o
-        guia: são oito folhas com os prazos, os artigos e as frases prontas, feitas
-        para abrir no celular na fila do balcão.
+        Uma mensagem, no dia do lançamento. Não tem newsletter. Enquanto isso, leve o guia:
+        oito folhas com os prazos, os artigos e as frases prontas, feitas para abrir no celular
+        na fila do balcão.
       </p>
       <div class="acoes">
         <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia grátis</a>
@@ -725,9 +727,10 @@
 
     <div>
       <!-- Formspree "institucional" — plano grátis, 50 envios/mês, COMPARTILHADO
-           com o formulário de conversa da seção 06. Estourou a cota, o envio some
+           com o formulário de conversa da seção 05. Estourou a cota, o envio some
            sem erro na página: confira o contador no painel. -->
-      <form id="espera" action="https://formspree.io/f/mgaejzrr" method="POST">
+      <form id="espera-form" action="https://formspree.io/f/mgaejzrr" method="POST">
+        <input type="hidden" name="_subject" value="Embarcaly · lista de espera">
         <div class="campo">
           <label for="email">E-mail</label>
           <input type="email" id="email" name="email" required autocomplete="email" placeholder="voce@email.com">
@@ -765,8 +768,8 @@
       <div id="recado" hidden></div>
 
       <p class="fino">
-        Guardo o e-mail e essas três respostas para te avisar do lançamento. Não passo
-        para ninguém. Peça a exclusão quando quiser.
+        Guardo o e-mail e essas três respostas para te avisar do lançamento. Não passo para
+        ninguém. Peça a exclusão quando quiser.
       </p>
     </div>
   </div>
@@ -800,23 +803,22 @@
       <div>
         <span class="rot">Aviso</span>
         <p class="aviso" style="margin-top:0.6rem">
-          O Embarcaly é um aplicativo de organização de viagem. Não é escritório de
-          advocacia, não presta serviço jurídico e não representa você perante
-          companhia aérea, órgão público ou tribunal. Também não é agência de viagens:
-          não vende passagem, hospedagem nem pacote.
+          O Embarcaly é um aplicativo de organização de viagem. Não é escritório de advocacia,
+          não presta serviço jurídico e não representa você perante companhia aérea, órgão
+          público ou tribunal. Também não é agência de viagens: não vende passagem, hospedagem
+          nem pacote.
         </p>
         <p class="aviso">
-          Documento informativo baseado na Resolução ANAC nº 400/2016 e no Código de
-          Defesa do Consumidor. <b>Não constitui consultoria jurídica.</b> Norma muda e
-          caso concreto tem particularidade. Conhecer o direito não garante o
-          atendimento dele. Na dúvida, procure o Procon, a ANAC ou um advogado.
-          Versão vigente em anac.gov.br.
+          Informação baseada na Resolução ANAC nº 400/2016 e no Código de Defesa do Consumidor.
+          <b>Não constitui consultoria jurídica.</b> Norma muda e caso concreto tem
+          particularidade. Conhecer o direito não garante o atendimento dele. Na dúvida, procure
+          o Procon, a ANAC ou um advogado. Versão vigente em anac.gov.br.
         </p>
       </div>
     </div>
 
     <div class="base-rodape">
-      <span class="ed">EMBARCALY · BRUNO BIANCHINI · ED. 02 · SET 2026</span>
+      <span class="ed">EMBARCALY · BRUNO BIANCHINI · ED. 03 · SET 2026</span>
       <span class="ed">SISTEMA VISUAL V3</span>
     </div>
   </div>
@@ -867,7 +869,7 @@
 
     // Lista de espera. A ordem das lojas é decisão travada (D3): Play antes da
     // Apple. Quem marca iPhone não pode ouvir a mesma promessa de quem marca Android.
-    ligar('espera', 'recado', 'Entrar na lista', function (form) {
+    ligar('espera-form', 'recado', 'Entrar na lista', function (form) {
       return form.sistema.value === 'iPhone'
         ? 'Pronto. O Embarcaly começa no Android, então o iPhone vem depois — te aviso assim que tiver data.'
         : 'Pronto. Te aviso no dia que entrar na Play Store.';
