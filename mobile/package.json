@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "main": "index.ts",
   "dependencies": {
-    "@expo-google-fonts/azeret-mono": "^0.4.1",
-    "@expo-google-fonts/familjen-grotesk": "^0.4.2",
+    "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
+    "@expo-google-fonts/poppins": "^0.4.1",
     "@expo/metro-runtime": "~57.0.15",
     "@react-native-community/datetimepicker": "9.1.0",
     "@react-navigation/bottom-tabs": "^7.18.18",
