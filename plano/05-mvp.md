@@ -12,7 +12,7 @@ receita.
 ## As 5 funcionalidades
 
 ### F1 — Importar a viagem encaminhando o e-mail
-O usuário encaminha a confirmação para `viagem@embarcaly.com.br` e a reserva
+O usuário encaminha a confirmação para `viagem@embarcaly.com` e a reserva
 aparece no app. Cobrir os cinco remetentes que dão 80% do volume brasileiro:
 **Latam, Gol, Azul, Booking e Decolar**.
 **Por que é a primeira:** o consumidor não digita. Se a entrada exigir

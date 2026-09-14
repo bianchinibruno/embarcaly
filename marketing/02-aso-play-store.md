@@ -186,7 +186,7 @@ primeiros e decide.
 | Classificação | Livre |
 | Tags | organizador, itinerário, viagem, voo, direitos |
 | E-mail de contato | contato@embarcaly.com |
-| Política de privacidade | `bianchinibruno.github.io/embarcaly/privacidade` **(criar antes de enviar)** |
+| Política de privacidade | `embarcaly.com/privacidade` **(criar antes de enviar)** |
 | Compras no app | Sim — desbloqueio por viagem |
 
 > ⚠️ **A política de privacidade é bloqueante.** A Play recusa o envio sem uma

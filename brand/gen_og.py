@@ -134,7 +134,7 @@ c.drawString(M, 144, "Passou de 2, é comida. Guia gratuito, 8 folhas.")
 
 c.setFont("PM-Md", 12)
 c.setFillColor(FRACO)
-c.drawString(M, 96, "B I A N C H I N I B R U N O . G I T H U B . I O / E M B A R C A L Y")
+c.drawString(M, 96, "E M B A R C A L Y . C O M")
 
 # ---- barra de rodape ----
 c.setFillColor(LARANJA)

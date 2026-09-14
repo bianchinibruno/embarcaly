@@ -317,7 +317,7 @@ carimbo_rotativo(W - M - 32 * mm, 52 * mm,
 c.setFont("CP", 7.4)
 c.setFillColor(CHUMBO_3)
 c.drawString(X0, 24 * mm, "EMBARCALY  /  BRUNO BIANCHINI")
-c.drawString(X0, 19 * mm, "bianchinibruno.github.io/embarcaly")
+c.drawString(X0, 19 * mm, "embarcaly.com")
 
 # ================================================================ FL.02
 y = pagina(titulo="Assistência material", etiqueta="1 · o que destrava, e quando")
@@ -721,7 +721,7 @@ for ln in wrap("Quero te ouvir vinte minutos antes de escrever mais uma linha de
 y -= 38 * mm
 
 y = campo(y, "contato", "contato@embarcaly.com", larg=CW * 0.62)
-y = campo(y, "produto", "bianchinibruno.github.io/embarcaly", larg=CW * 0.62)
+y = campo(y, "produto", "embarcaly.com", larg=CW * 0.62)
 
 carimbo_rotativo(W - M - 28 * mm, y + 20 * mm,
                  [("embarcaly", 11)], ang=-7)
