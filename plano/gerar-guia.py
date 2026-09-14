@@ -720,7 +720,7 @@ for ln in wrap("Quero te ouvir vinte minutos antes de escrever mais uma linha de
     yy -= 13.5
 y -= 38 * mm
 
-y = campo(y, "contato", "bbianchini97@gmail.com", larg=CW * 0.62)
+y = campo(y, "contato", "contato@embarcaly.com", larg=CW * 0.62)
 y = campo(y, "produto", "bianchinibruno.github.io/embarcaly", larg=CW * 0.62)
 
 carimbo_rotativo(W - M - 28 * mm, y + 20 * mm,

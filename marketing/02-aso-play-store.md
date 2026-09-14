@@ -185,7 +185,7 @@ primeiros e decide.
 | Categoria | Viagens e local |
 | Classificação | Livre |
 | Tags | organizador, itinerário, viagem, voo, direitos |
-| E-mail de contato | bbianchini97@gmail.com |
+| E-mail de contato | contato@embarcaly.com |
 | Política de privacidade | `bianchinibruno.github.io/embarcaly/privacidade` **(criar antes de enviar)** |
 | Compras no app | Sim — desbloqueio por viagem |
 

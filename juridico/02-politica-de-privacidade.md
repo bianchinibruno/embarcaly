@@ -4,7 +4,7 @@
 > **Bloqueia o envio à Play Store**, que exige esta política numa URL pública.
 
 **Controlador:** Bruno Bianchini, pessoa física
-**Contato e encarregado (LGPD):** bbianchini97@gmail.com
+**Contato e encarregado (LGPD):** contato@embarcaly.com
 **Versão:** minuta 1 · **Vigência:** —
 
 ---
@@ -70,7 +70,7 @@ Você pode pedir: confirmação de tratamento, acesso, correção, anonimizaçã
 exclusão, portabilidade, informação sobre compartilhamento, e revogação de
 consentimento.
 
-**Como pedir:** e-mail para bbianchini97@gmail.com. Resposta em até 15 dias.
+**Como pedir:** e-mail para contato@embarcaly.com. Resposta em até 15 dias.
 
 Para os dados no aparelho, você não precisa pedir a ninguém: exclua a viagem, ou
 desinstale.
@@ -101,7 +101,7 @@ Mudança relevante é avisada no aplicativo com 30 dias de antecedência.
 
 ## 11. Contato
 
-bbianchini97@gmail.com · resposta em até 15 dias.
+contato@embarcaly.com · resposta em até 15 dias.
 
 ---
 

@@ -11,7 +11,7 @@
 ## 1. Quem somos, e o que este aplicativo é
 
 O Embarcaly é um aplicativo de organização de viagem, desenvolvido e mantido por
-Bruno Bianchini, pessoa física, contato bbianchini97@gmail.com.
+Bruno Bianchini, pessoa física, contato contato@embarcaly.com.
 
 O aplicativo reúne num só lugar as reservas que **você** cadastra — voo,
 hospedagem, transporte, passeio — e calcula, a partir desses dados, a sequência
@@ -130,7 +130,7 @@ Consumidor.
 
 ## 11. Contato
 
-bbianchini97@gmail.com
+contato@embarcaly.com
 
 ---
 
