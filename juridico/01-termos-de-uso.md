@@ -111,9 +111,15 @@ imediatamente quando você exclui a viagem.
 
 **7.1.** Organizar a viagem é gratuito, sem limite de viagens e sem prazo.
 
-**7.2.** O acompanhamento ativo de uma viagem custa **R$39 por viagem**, pago uma
-vez, válido de sete dias antes do embarque até três dias após o retorno.
-**Não é assinatura e não há renovação automática.**
+**7.2.** O acompanhamento ativo é pago, e existe em mais de uma modalidade. As
+modalidades disponíveis e o valor vigente de cada uma são exibidos **antes da
+compra**, no aplicativo e na loja. Nenhuma cobrança acontece sem essa exibição e
+sem a sua confirmação.
+
+> Em 14/09/2026 a precificação passou a ter três modalidades — por viagem, por
+> ano e vitalício — e **os valores ainda não estão definidos**. O texto publicado
+> deixou de citar número de propósito: preço fixado em termos de uso vira
+> promessa, e mudar exige aviso de 30 dias.
 
 **7.3.** Você pode pedir devolução integral em até **7 dias após o retorno**, sem
 precisar justificar. O pedido é feito pelo e-mail de contato.

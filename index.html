@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light">
 
 <title>App para organizar viagens | Embarcaly</title>
-<meta name="description" content="Voo, hotel, carro e passeio num lugar só. Quando um elo cai, o Embarcaly refaz a cadeia inteira e diz, com o artigo, o que a companhia é obrigada a pagar. R$39 por viagem, sem assinatura.">
+<meta name="description" content="Voo, hotel, carro e passeio num lugar só. Quando um elo cai, o Embarcaly refaz a cadeia inteira e diz, com o artigo, o que a companhia é obrigada a pagar.">
 
 <link rel="canonical" href="https://embarcaly.com/">
 <meta property="og:type" content="website">
@@ -119,7 +119,7 @@
   .btn {
     display: inline-block;
     background: var(--laranja);
-    color: var(--azul);              /* branco sobre laranja reprova em contraste */
+    color: var(--branco);
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
@@ -146,7 +146,7 @@
 
   /* Vem depois de `.escuro a` de propósito: sem isto o texto do botão herda
      o laranja do bloco escuro e some sobre o próprio fundo laranja. */
-  .escuro a.btn, .azul a.btn, .menu a.btn { color: var(--azul); }
+  .escuro a.btn, .azul a.btn, .menu a.btn { color: var(--branco); }
   .escuro a.btn:hover, .azul a.btn:hover, .menu a.btn:hover { color: var(--branco); }
   .escuro a.btn.vazio, .azul a.btn.vazio { color: var(--branco); }
   .escuro a.btn.vazio:hover, .azul a.btn.vazio:hover { color: var(--azul); }
@@ -175,6 +175,20 @@
   .relogio .cabeca { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.9rem; }
   .relogio .tempo { font-family: var(--dado); font-size: 2.4rem; font-weight: 600; color: var(--laranja); line-height: 1; letter-spacing: -0.02em; }
   .relogio .voo { font-family: var(--dado); font-size: 0.7rem; color: var(--fraco-esc); text-align: right; line-height: 1.6; }
+
+  .planos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--fio-esc); border: 1px solid var(--fio-esc); margin-top: 2.1rem; }
+  .plano { background: var(--breu); padding: 1.5rem 1.6rem; }
+  .plano.destaque-p { background: var(--carta); border-top: 3px solid var(--laranja); }
+  .plano .nome-p { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.02em; }
+  .plano .valor-p { font-family: var(--dado); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--laranja); margin-top: 0.5rem; }
+  .plano .txt { font-size: 0.875rem; font-weight: 300; color: var(--claro); line-height: 1.55; margin: 0.7rem 0 0; }
+
+  .nota-oferta { border: 1px solid var(--laranja); padding: 1rem 1.2rem; margin-top: 1.4rem; }
+  .nota-oferta .rot { display: block; margin-bottom: 0.4rem; }
+  .nota-oferta p { font-size: 0.9375rem; font-weight: 300; line-height: 1.55; margin: 0; color: var(--apoio); }
+  .nota-oferta p b { font-weight: 600; color: var(--azul); }
+  .escuro .nota-oferta p, .azul .nota-oferta p { color: var(--claro); }
+  .escuro .nota-oferta p b, .azul .nota-oferta p b { color: var(--branco); }
 
   .dores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem; margin-top: 2.1rem; }
   .dor .antes-d { font-size: 1.0625rem; font-weight: 600; color: var(--fraco); text-decoration: line-through; text-decoration-color: var(--laranja); text-decoration-thickness: 2px; }
@@ -321,7 +335,7 @@
     .grade-abre, .grade-preco, .grade-espera, .grade-rodape { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
     .sat-a, .sat-b { margin-inline: 0; }
     .abre .marcadagua { left: -18rem; opacity: 0.4; }
-    .direitos, .cadeia, .dores { grid-template-columns: minmax(0, 1fr); }
+    .direitos, .cadeia, .dores, .planos { grid-template-columns: minmax(0, 1fr); }
     .passos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .numeros .dentro { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
     .nota-bloco { grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
@@ -378,7 +392,6 @@
 
       <div class="acoes">
         <a class="btn" href="#espera">Entrar na lista de espera</a>
-        <span class="anota">COMEÇA NO ANDROID · R$39 POR VIAGEM</span>
       </div>
     </div>
 
@@ -446,72 +459,8 @@
   </div>
 </section>
 
-<!-- ======================= 2 · PREÇO ======================= -->
-<section id="preco" class="escuro faixa">
-  <div class="dentro grade-preco">
-    <div>
-      <span class="rot">Preço</span>
-      <h2 style="margin-top:0.7rem">Organizar é de graça. Sempre.</h2>
-      <p class="guia" style="margin-top:0.85rem">
-        Cobro R$39 uma vez, por viagem, e só pelo dia em que ela quebra. Não é assinatura:
-        se você não viajar, não paga nada. Vale de uma semana antes do embarque até três
-        dias depois da volta.
-      </p>
-      <div class="acoes">
-        <a class="btn vazio" href="prototipo/">Ver o protótipo</a>
-        <span class="anota">ABRE NO NAVEGADOR, SEM INSTALAR</span>
-      </div>
-    </div>
-
-    <div class="cartao-preco">
-      <div class="valor"><span class="v">R$39</span><span class="u">POR VIAGEM</span></div>
-      <div class="inclui">
-        <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FBF87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Juntar a viagem inteira, sempre grátis</div>
-        <div class="li pago"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>A cadeia refeita quando um elo cai</div>
-        <div class="li pago"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>O que exigir, com o artigo e a frase pronta</div>
-      </div>
-      <div class="legenda-preco">VERDE: GRÁTIS &middot; LARANJA: O QUE SE PAGA</div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= 3 · DIREITOS ======================= -->
-<section id="direitos" class="faixa" style="background:var(--branco); border-block:1px solid var(--fio)">
-  <div class="dentro">
-    <span class="rot">Quando atrasa</span>
-    <h2>A companhia deve mais do que você imagina</h2>
-    <p class="guia">
-      Em 2018, 17 milhões de brasileiros tiveram voo atrasado ou cancelado. Dois por cento
-      pediram alguma coisa. Não é falta de direito, é que ninguém avisa.
-    </p>
-
-    <div class="direitos">
-      <div class="direito">
-        <div class="topo-d"><span class="marco">+1H</span><span class="sit ok">Liberado</span></div>
-        <div class="nome-d">Internet e telefone</div>
-        <div class="fonte">Res. 400, art. 27, I</div>
-      </div>
-      <div class="direito">
-        <div class="topo-d"><span class="marco">+2H</span><span class="sit ok">Liberado</span></div>
-        <div class="nome-d">Comida</div>
-        <div class="fonte">Res. 400, art. 27, II</div>
-      </div>
-      <div class="direito destaque">
-        <div class="topo-d"><span class="marco">+4H</span><span class="sit at">Hotel</span></div>
-        <div class="nome-d">Hospedagem e traslado</div>
-        <div class="fonte">Res. 400, art. 27, III</div>
-      </div>
-    </div>
-
-    <div class="acoes">
-      <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia grátis</a>
-      <span class="anota">8 FOLHAS · PDF · SEM CADASTRO</span>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= 4 · CONVERSA ======================= -->
-<section class="faixa">
+<!-- ======================= 2 · CONVERSA ======================= -->
+<section class="faixa" style="background:var(--branco); border-block:1px solid var(--fio)">
   <div class="dentro grade-espera">
     <div>
       <span class="rot">Ainda estou construindo</span>
@@ -521,8 +470,12 @@
         nada para vender. Preenche aqui que eu te respondo para marcar, e você não precisa
         abrir o seu e-mail.
       </p>
+      <div class="nota-oferta">
+        <span class="rot">Para quem topar</span>
+        <p>Quem conversar comigo entra no <b>plano vitalício por um preço especial</b>, que não
+        vai existir depois. É a minha forma de pagar os seus vinte minutos.</p>
+      </div>
       <div class="acoes">
-        <span class="anota">20 MINUTOS · POR CHAMADA</span>
       </div>
     </div>
 
@@ -589,8 +542,76 @@
   </div>
 </section>
 
+<!-- ======================= 3 · PREÇO ======================= -->
+<section id="preco" class="escuro faixa">
+  <div class="dentro">
+    <span class="rot">Preço</span>
+    <h2>Organizar é de graça. Sempre.</h2>
+    <p class="guia">
+      Nunca vou cobrar para você juntar a viagem num lugar só. O que se paga é o socorro: o dia
+      em que ela quebra, com a cadeia refeita e o que a companhia tem que pagar. Você escolhe como.
+    </p>
+
+    <div class="planos">
+      <div class="plano">
+        <div class="nome-p">Por viagem</div>
+        <div class="valor-p">Valor em definição</div>
+        <p class="txt">Paga uma vez e vale só daquela viagem. Para quem viaja uma ou duas vezes por ano.</p>
+      </div>
+      <div class="plano">
+        <div class="nome-p">Por ano</div>
+        <div class="valor-p">Valor em definição</div>
+        <p class="txt">Todas as viagens do ano, sem ficar contando. Para quem viaja a trabalho.</p>
+      </div>
+      <div class="plano destaque-p">
+        <div class="nome-p">Vitalício</div>
+        <div class="valor-p">Valor em definição</div>
+        <p class="txt">Paga uma vez e nunca mais. Vai ser limitado, e quem entrar antes do lançamento paga menos.</p>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <a class="btn" href="#espera">Quero saber o preço primeiro</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 4 · DIREITOS ======================= -->
+<section id="direitos" class="faixa" style="background:var(--branco); border-block:1px solid var(--fio)">
+  <div class="dentro">
+    <span class="rot">Quando atrasa</span>
+    <h2>A companhia deve mais do que você imagina</h2>
+    <p class="guia">
+      Em 2018, 17 milhões de brasileiros tiveram voo atrasado ou cancelado. Dois por cento
+      pediram alguma coisa. Não é falta de direito, é que ninguém avisa.
+    </p>
+
+    <div class="direitos">
+      <div class="direito">
+        <div class="topo-d"><span class="marco">+1H</span><span class="sit ok">Liberado</span></div>
+        <div class="nome-d">Internet e telefone</div>
+        <div class="fonte">Res. 400, art. 27, I</div>
+      </div>
+      <div class="direito">
+        <div class="topo-d"><span class="marco">+2H</span><span class="sit ok">Liberado</span></div>
+        <div class="nome-d">Comida</div>
+        <div class="fonte">Res. 400, art. 27, II</div>
+      </div>
+      <div class="direito destaque">
+        <div class="topo-d"><span class="marco">+4H</span><span class="sit at">Hotel</span></div>
+        <div class="nome-d">Hospedagem e traslado</div>
+        <div class="fonte">Res. 400, art. 27, III</div>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia grátis</a>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= 5 · LISTA DE ESPERA ======================= -->
-<section id="espera" class="faixa" style="background:var(--branco); border-top:1px solid var(--fio)">
+<section id="espera" class="faixa">
   <div class="dentro grade-espera">
     <div>
       <span class="rot">Lista de espera</span>
@@ -599,6 +620,11 @@
         Uma mensagem, uma vez. Não tem newsletter. Enquanto isso, leva o guia de direitos:
         são oito folhas feitas para abrir no celular na fila do balcão.
       </p>
+      <div class="nota-oferta">
+        <span class="rot">Para quem entrar agora</span>
+        <p>Quem assinar no lançamento tem direito ao <b>vitalício por um valor especial e
+        único</b>, reservado só para a lista de espera.</p>
+      </div>
     </div>
 
     <div>
@@ -680,7 +706,7 @@
     </div>
 
     <div class="base-rodape">
-      <span class="ed">EMBARCALY · BRUNO BIANCHINI · SET 2026</span>
+      <span class="ed">EMBARCALY · SET 2026</span>
       <span class="ed">EMBARCALY.COM</span>
     </div>
   </div>
