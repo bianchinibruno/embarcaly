@@ -2,10 +2,10 @@
 """
 Guia de direitos do passageiro — Embarcaly.
 
-Sistema visual v2 · superfície IMPRESSA.
-O documento se comporta como formulário oficial de aviação: papel greenbar,
-duas tintas (chumbo + carimbo violeta), marcas de registro, furos de arquivo,
-textura de fibra e desalinho de registro proposital.
+Sistema visual v3 · superfície impressa.
+Azul estrutura, laranja aponta. Os recursos de papel do v2 — fibra, furo de
+arquivo, marca de gráfica e carimbo torto — saíram: o v3 é chapado, e a
+profundidade vem do valor do azul, não de textura.
 """
 import os
 import random
@@ -21,23 +21,25 @@ REPO = os.path.dirname(AQUI)
 F = os.path.join(REPO, "brand", "fonts")
 OUT = os.path.join(AQUI, "guia-direitos-do-passageiro.pdf")
 
-pdfmetrics.registerFont(TTFont("AN", os.path.join(F, "ArchivoNarrow-500.ttf")))
-pdfmetrics.registerFont(TTFont("AN-Bd", os.path.join(F, "ArchivoNarrow-700.ttf")))
-pdfmetrics.registerFont(TTFont("AR", os.path.join(F, "Archivo-400.ttf")))
-pdfmetrics.registerFont(TTFont("AR-Sb", os.path.join(F, "Archivo-600.ttf")))
-pdfmetrics.registerFont(TTFont("CP", os.path.join(F, "CourierPrime-400.ttf")))
-pdfmetrics.registerFont(TTFont("CP-Bd", os.path.join(F, "CourierPrime-700.ttf")))
+# Os apelidos continuam os mesmos de proposito: so a fonte por tras deles muda.
+pdfmetrics.registerFont(TTFont("AN", os.path.join(F, "Poppins-600.ttf")))      # display
+pdfmetrics.registerFont(TTFont("AN-Bd", os.path.join(F, "Poppins-700.ttf")))   # display forte
+pdfmetrics.registerFont(TTFont("AR", os.path.join(F, "Poppins-400.ttf")))      # texto
+pdfmetrics.registerFont(TTFont("AR-Sb", os.path.join(F, "Poppins-600.ttf")))   # texto forte
+pdfmetrics.registerFont(TTFont("CP", os.path.join(F, "IBMPlexMono-400.ttf")))  # dado
+pdfmetrics.registerFont(TTFont("CP-Bd", os.path.join(F, "IBMPlexMono-600.ttf")))
 
-# ---------------------------------------------------------------- tintas
-PAPEL     = HexColor("#EFEEE6")   # papel de formulário
-BARRA     = HexColor("#DCE3D8")   # banda greenbar
-BARRA_ESC = HexColor("#CBD6C6")
-CHUMBO    = HexColor("#14170F")   # tinta 1
-CHUMBO_2  = HexColor("#5C6356")
-CHUMBO_3  = HexColor("#8B9185")
-FIO       = HexColor("#B4B8A9")
-CARIMBO   = HexColor("#46356E")   # tinta 2, violeta de carimbo
-CARIMBO_L = HexColor("#7E6BA8")
+# ---------------------------------------------------------------- tintas v3
+PAPEL     = HexColor("#FFFFFF")   # papel
+BARRA     = HexColor("#F2F1EF")   # banda de tabela
+BARRA_ESC = HexColor("#E7E6E2")
+CHUMBO    = HexColor("#33366A")   # azul marinho, a estrutura
+CHUMBO_2  = HexColor("#5A5D80")
+CHUMBO_3  = HexColor("#8A8A96")
+FIO       = HexColor("#DEDDD9")
+CARIMBO   = HexColor("#C96A16")   # laranja de TEXTO: sobre claro o #ED8426 nao passa
+CARIMBO_L = HexColor("#ED8426")   # laranja de preenchimento
+BARRA_PE  = HexColor("#ED8426")   # a faixa colada na base
 
 W, H = A4
 M = 19 * mm
@@ -57,45 +59,25 @@ st = {"pag": 0}
 
 # ---------------------------------------------------------------- material
 def fibra():
-    """Textura de fibra do papel. Sem isso o fundo fica chapado e morto."""
-    for _ in range(2600):
-        x = random.uniform(0, W)
-        y = random.uniform(0, H)
-        t = random.uniform(0.12, 0.55)
-        v = random.uniform(0.03, 0.10)
-        c.setFillColor(Color(0.08, 0.09, 0.06, alpha=v))
-        c.rect(x, y, t, t, stroke=0, fill=1)
+    """Sem efeito no v3. O fundo e chapado por decisao, nao por esquecimento."""
+    return
 
 
 def furos():
-    """Furos de arquivo na calha, como formulário de fichário."""
-    for fy in (H * 0.25, H * 0.5, H * 0.75):
-        c.setFillColor(HexColor("#DAD8CC"))
-        c.circle(M + 4.5 * mm, fy, 2.4 * mm, stroke=0, fill=1)
-        c.setStrokeColor(HexColor("#C2C0B2"))
-        c.setLineWidth(0.5)
-        c.circle(M + 4.5 * mm, fy, 2.4 * mm, stroke=1, fill=0)
+    """Sem efeito no v3. Ferragem de escritorio era vocabulario do v2."""
+    return
 
 
 def registro():
-    """Marcas de registro da gráfica nos cantos."""
-    d = 3.6 * mm
-    c.setLineWidth(0.45)
-    for x, y in ((M * 0.5, H - M * 0.5), (W - M * 0.5, H - M * 0.5),
-                 (M * 0.5, M * 0.5), (W - M * 0.5, M * 0.5)):
-        c.setStrokeColor(CHUMBO_3)
-        c.line(x - d, y, x + d, y)
-        c.line(x, y - d, x, y + d)
-        # desalinho de registro: a segunda tinta não bate exatamente
-        c.setStrokeColor(CARIMBO_L)
-        c.line(x - d + 0.7, y + 0.7, x + d + 0.7, y + 0.7)
+    """Sem efeito no v3. Marca de grafica e desalinho de tinta eram do v2."""
+    return
 
 
 def fundo():
     c.setFillColor(PAPEL)
     c.rect(0, 0, W, H, stroke=0, fill=1)
     # calha
-    c.setFillColor(HexColor("#E6E5DB"))
+    c.setFillColor(HexColor("#F2F1EF"))
     c.rect(0, 0, M + CAL - 3 * mm, H, stroke=0, fill=1)
     c.setStrokeColor(FIO)
     c.setLineWidth(0.5)
@@ -105,7 +87,14 @@ def fundo():
     registro()
 
 
+def barra_pe():
+    """A faixa laranja da base. Fecha toda folha, sem margem."""
+    c.setFillColor(BARRA_PE)
+    c.rect(0, 0, W, 4 * mm, stroke=0, fill=1)
+
+
 def rodape():
+    barra_pe()
     if st["pag"] <= 1:
         return
     c.setStrokeColor(FIO)
@@ -142,7 +131,7 @@ def pagina(num=None, titulo=None, etiqueta=None):
         y -= 38
 
     if titulo:
-        c.setFont("AN-Bd", 31)
+        c.setFont("AN-Bd", 24)
         c.setFillColor(CHUMBO)
         c.drawString(X0, y, titulo)
         y -= 17
@@ -196,11 +185,13 @@ def margem(y, txt):
         c.drawString(M + 0.5 * mm, y - i * 8, ln)
 
 
-def carimbo_rotativo(x, y, linhas, ang=-5.5, esc=1.0):
-    """Carimbo de borracha: caixa, rotação e desalinho de tinta."""
+def carimbo_rotativo(x, y, linhas, ang=0, esc=1.0):
+    """Etiqueta reta. No v2 isto girava; o v3 nao tem carimbo torto.
+
+    O nome da funcao fica para nao quebrar as chamadas das folhas.
+    """
     c.saveState()
     c.translate(x, y)
-    c.rotate(ang)
     c.scale(esc, esc)
     larg = 0
     for ln, tam in linhas:
@@ -208,16 +199,9 @@ def carimbo_rotativo(x, y, linhas, ang=-5.5, esc=1.0):
     larg += 22
     alt = 16 + sum(t * 1.7 for _, t in linhas)
 
-    # fantasma de registro: a tinta bate 0,8pt fora
-    c.setStrokeColor(Color(0.49, 0.42, 0.66, alpha=0.35))
-    c.setLineWidth(1.7)
-    c.rect(-larg / 2 + 0.8, -alt / 2 - 0.8, larg, alt, stroke=1, fill=0)
-
-    c.setStrokeColor(CARIMBO)
-    c.setLineWidth(1.7)
+    c.setStrokeColor(CARIMBO_L)
+    c.setLineWidth(2)
     c.rect(-larg / 2, -alt / 2, larg, alt, stroke=1, fill=0)
-    c.setLineWidth(0.5)
-    c.rect(-larg / 2 + 3, -alt / 2 + 3, larg - 6, alt - 6, stroke=1, fill=0)
 
     yy = alt / 2 - 13
     for ln, tam in linhas:
