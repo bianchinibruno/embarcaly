@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#EFEEE6">
+<meta name="theme-color" content="#1C1E3C">
 <meta name="color-scheme" content="light">
 
 <title>Embarcaly — a companhia deve hotel pra você</title>
@@ -30,699 +30,633 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&family=Archivo+Narrow:wght@500;700&family=Courier+Prime:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
 <style>
+  /* Sistema visual v3. Ver brand/IDENTIDADE.md.
+     Azul estrutura, laranja aponta — e laranja quer dizer uma coisa só:
+     o tempo está contando. */
   :root {
-    --papel:     #EFEEE6;
-    --calha:     #E6E5DB;
-    --barra:     #DCE3D8;
-    --barra-esc: #CBD6C6;
-    --chumbo:    #14170F;
-    --chumbo-2:  #5C6356;
-    --chumbo-3:  #8B9185;
-    --fio:       #B4B8A9;
-    --fio-forte: #8E9384;
-    --carimbo:   #46356E;
-    --carimbo-l: #7E6BA8;
+    --azul:      #33366A;
+    --breu:      #1C1E3C;
+    --carta:     #262A54;
+    --fio-esc:   #414682;
+    --laranja:   #ED8426;
+    --laranja-t: #C96A16;   /* laranja de TEXTO sobre claro: 2,6:1 não passa */
+    --papel:     #F2F1EF;
+    --branco:    #FFFFFF;
+    --fio:       #DEDDD9;
+    --apoio:     #5A5D80;
+    --fraco:     #8A8A96;
+    --claro:     #C9CBE4;
+    --fraco-esc: #7C80AE;
+    --ok:        #1E9E5A;
+    --ok-esc:    #2FBF87;
+    --crit:      #C0392F;
+    --crit-esc:  #FF7A6E;
 
-    --disp: "Archivo Narrow", "Helvetica Neue", Arial, sans-serif;
-    --texto: "Archivo", "Helvetica Neue", Arial, sans-serif;
-    --dado: "Courier Prime", ui-monospace, Courier, monospace;
+    --txt:  "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
+    --dado: "IBM Plex Mono", ui-monospace, Consolas, monospace;
 
-    --max: 60rem;
-    --cal: 3.25rem;
-    --gut: clamp(1rem, 4vw, 2.25rem);
+    --max: 72rem;
+    --gut: clamp(1.25rem, 5vw, 5rem);
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-
   html { scroll-behavior: smooth; background: var(--papel); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
   body {
     margin: 0;
     background: var(--papel);
-    color: var(--chumbo);
-    font-family: var(--texto);
-    font-size: 16.5px;
+    color: var(--azul);
+    font-family: var(--txt);
+    font-weight: 400;
+    font-size: 1rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    position: relative;
   }
 
-  /* fibra do papel: ruído real, não gradiente */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.42;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23f)' opacity='0.32'/%3E%3C/svg%3E");
-  }
+  .faixa { padding-inline: var(--gut); }
+  .dentro { max-width: var(--max); margin-inline: auto; }
 
-  img { max-width: 100%; display: block; }
-  ::selection { background: var(--carimbo); color: var(--papel); }
+  .escuro { background: var(--breu); color: var(--branco); }
+  .azul   { background: var(--azul); color: var(--branco); }
 
-  /* ---------- folha ---------- */
+  .dado { font-family: var(--dado); font-variant-numeric: tabular-nums; }
 
-  .folha {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding-left: var(--cal);
-    position: relative;
-    z-index: 2;
-  }
-
-  /* calha de furos de arquivo, repetidos folha abaixo */
-  .folha::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: calc(var(--cal) - 0.6rem);
-    background: var(--calha);
-    border-right: 1px solid var(--fio);
-    background-image:
-      radial-gradient(circle at 50% 115px,
-        #DAD8CC 0 6.2px, #C2C0B2 6.2px 7.2px, transparent 7.2px);
-    background-repeat: repeat-y;
-    background-size: 100% 230px;
-  }
-
-  .corpo { padding: 0 var(--gut) 0 var(--gut); }
-
-  /* marcas de registro da gráfica */
-  .registro {
-    position: absolute;
-    width: 22px; height: 22px;
-    z-index: 3;
-    pointer-events: none;
-  }
-  .registro::before, .registro::after {
-    content: "";
-    position: absolute;
-    background: var(--chumbo-3);
-  }
-  .registro::before { left: 0; right: 0; top: 50%; height: 1px; }
-  .registro::after { top: 0; bottom: 0; left: 50%; width: 1px; }
-  .registro i {
-    position: absolute;
-    left: 1px; right: -1px; top: calc(50% - 1px);
-    height: 1px;
-    background: var(--carimbo-l);
-    opacity: 0.55;
-  }
-  .reg-a { top: 12px; right: 12px; }
-  .reg-b { bottom: 12px; right: 12px; }
-
-  /* ---------- tipografia ---------- */
-
-  h1, h2, h3 { margin: 0; }
-
-  h1 {
-    font-family: var(--disp);
-    font-size: clamp(2.5rem, 9.5vw, 4.6rem);
-    font-weight: 700;
-    line-height: 1.06;
-    letter-spacing: -0.012em;
+  .rot {
+    font-family: var(--dado);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
+    color: var(--laranja-t);
   }
-  h1 .baixo { color: var(--chumbo-3); display: block; font-size: 0.42em; margin-top: 0.7rem; letter-spacing: 0.01em; }
+  .escuro .rot, .azul .rot { color: var(--laranja); }
 
-  h2 {
-    font-family: var(--disp);
-    font-size: clamp(1.6rem, 5vw, 2.3rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.005em;
-    margin-bottom: 1rem;
-  }
+  h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
+  h1 { font-size: clamp(2.35rem, 6.4vw, 3.75rem); letter-spacing: -0.045em; line-height: 1.03; }
+  h2 { font-size: clamp(1.7rem, 4.2vw, 2.5rem); }
+  h3 { font-size: 1.3rem; letter-spacing: -0.02em; }
+  p { margin: 0 0 0.9rem; }
+  .guia { font-size: clamp(1rem, 1.7vw, 1.0625rem); font-weight: 300; line-height: 1.6; max-width: 40rem; }
+  .escuro .guia, .azul .guia { color: var(--claro); }
+  .guia b, .guia strong { font-weight: 500; color: var(--azul); }
+  .escuro .guia b, .azul .guia b { color: var(--branco); }
+  b, strong { font-weight: 600; }
 
-  h3 {
-    font-family: var(--disp);
-    font-size: 1.15rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-  }
+  /* Situação. As três únicas cores fora do azul e do laranja. */
+  .sit { font-family: var(--dado); font-size: 0.625rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; }
+  .sit.ok { color: var(--ok); }
+  .sit.at { color: var(--laranja-t); }
+  .sit.cr { color: var(--crit); }
+  .escuro .sit.ok, .azul .sit.ok { color: var(--ok-esc); }
+  .escuro .sit.at, .azul .sit.at { color: var(--laranja); }
+  .escuro .sit.cr, .azul .sit.cr { color: var(--crit-esc); }
 
-  p { margin: 0 0 1rem; max-width: 35rem; color: var(--chumbo-2); }
-  p:last-child { margin-bottom: 0; }
-  p b, li b, span b { color: var(--chumbo); font-weight: 600; }
-
-  .secao {
-    font-family: var(--dado);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--carimbo);
-    display: block;
-    margin-bottom: 0.85rem;
-  }
-
-  /* ---------- cabeçalho de formulário ---------- */
-
-  .cabeca {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    font-family: var(--dado);
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    color: var(--chumbo-3);
-    text-transform: uppercase;
-    padding-top: 1.4rem;
-    padding-bottom: 0.5rem;
-  }
-  .regua-forte { height: 2px; background: var(--chumbo); }
-  .regua { height: 1px; background: var(--fio); }
-
-  section { padding: clamp(2.6rem, 7vw, 4rem) 0; border-top: 1px solid var(--fio); }
-  header.abre { padding: clamp(2.2rem, 6vw, 3.5rem) 0 clamp(2.2rem, 6vw, 3rem); }
-
-  /* ---------- greenbar ---------- */
-
-  .listagem { margin-top: 1.6rem; }
-  .listagem .cab {
-    display: grid;
-    gap: 0 1rem;
-    font-family: var(--dado);
-    font-size: 0.62rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--chumbo-3);
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid var(--chumbo);
-  }
-  .listagem .lin {
-    display: grid;
-    gap: 0.15rem 1rem;
-    align-items: baseline;
-    padding: 0.85rem 0.7rem;
-    margin: 0 -0.7rem;
-  }
-  .listagem .lin:nth-child(even) { background: var(--barra); }
-  .listagem .fim { height: 2px; background: var(--chumbo); }
-
-  .c3 { grid-template-columns: 5.5rem 7.5rem 1fr; }
-  .c2 { grid-template-columns: 6.5rem 1fr; }
-
-  .marco {
-    font-family: var(--dado);
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    font-variant-numeric: tabular-nums;
-    color: var(--chumbo);
-  }
-  .cod {
-    font-family: var(--dado);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--carimbo);
-    text-transform: uppercase;
-  }
-  .cod.fraco { color: var(--chumbo-3); }
-  .cod.forte {
-    background: var(--carimbo);
-    color: var(--papel);
-    padding: 0.12rem 0.4rem;
-    display: inline-block;
-  }
-  .item { font-family: var(--texto); font-weight: 600; font-size: 1rem; color: var(--chumbo); }
-  .nota { grid-column: 3; color: var(--chumbo-2); font-size: 0.9rem; }
-  .c2 .nota { grid-column: 2; }
-  .hora {
-    font-family: var(--dado);
-    font-size: 0.95rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    color: var(--chumbo);
-  }
-
-  /* ---------- blocos ---------- */
-
-  .bloco {
-    background: var(--barra);
-    border-left: 3px solid var(--carimbo);
-    padding: 1.2rem 1.3rem;
-    margin-top: 1.4rem;
-    max-width: 40rem;
-  }
-  .bloco h3 { color: var(--carimbo); margin-bottom: 0.35rem; }
-  .bloco p { font-size: 0.96rem; color: var(--chumbo); max-width: none; }
-
-  .moldura {
-    border: 1.5px solid var(--carimbo);
-    padding: 1.2rem 1.3rem;
-    margin-top: 1.5rem;
-    max-width: 40rem;
-  }
-  .moldura h3 { color: var(--carimbo); margin-bottom: 0.35rem; }
-  .moldura p { font-size: 0.96rem; color: var(--chumbo); max-width: none; }
-
-  /* ---------- lista numerada ---------- */
-
-  .num { margin-top: 1.4rem; }
-  .num .it {
-    display: grid;
-    grid-template-columns: 2.6rem 1fr;
-    gap: 0.15rem 0.9rem;
-    padding: 0.95rem 0;
-    border-bottom: 1px solid var(--fio);
-    align-items: baseline;
-  }
-  .num .it:first-child { border-top: 1px solid var(--fio-forte); }
-  .num .it .n {
-    font-family: var(--dado);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--carimbo);
-    font-variant-numeric: tabular-nums;
-  }
-  .num .it b { font-family: var(--disp); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; }
-  .num .it span { grid-column: 2; color: var(--chumbo-2); font-size: 0.94rem; }
-
-  /* ---------- ações ---------- */
-
-  .acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; margin-top: 1.8rem; }
-
+  /* Pílula de ação: o único canto redondo do sistema. */
   .btn {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--dado);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.85rem 1.4rem;
-    background: var(--carimbo);
-    color: var(--papel);
-    border: 1.5px solid var(--carimbo);
-    cursor: pointer;
-    transition: background .12s linear, color .12s linear;
-  }
-  .btn:hover { background: transparent; color: var(--carimbo); }
-  .btn.vazio { background: transparent; color: var(--carimbo); }
-  .btn.vazio:hover { background: var(--carimbo); color: var(--papel); }
-
-  .anota {
-    font-family: var(--dado);
-    font-size: 0.68rem;
-    letter-spacing: 0.05em;
-    color: var(--chumbo-3);
-    text-transform: uppercase;
-  }
-
-  /* ---------- carimbo ---------- */
-
-  .carimbo-peca {
-    position: relative;
     display: inline-block;
-    transform: rotate(-5.5deg);
-    margin: 2.2rem 0 0.6rem;
-    font-family: var(--dado);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--carimbo);
-    border: 2px solid var(--carimbo);
-    padding: 0.75rem 1.3rem;
-    line-height: 1.35;
-    text-align: center;
-  }
-  .carimbo-peca::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border: 2px solid var(--carimbo-l);
-    opacity: 0.4;
-    transform: translate(1.2px, 1.6px);
-  }
-  .carimbo-peca::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    border: 1px solid var(--carimbo);
-  }
-
-  /* ---------- tarifa ---------- */
-
-  .tarifa { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; margin: 1.5rem 0 0.5rem; }
-  .tarifa .v {
-    font-family: var(--dado);
-    font-size: clamp(2.2rem, 7.5vw, 3.2rem);
-    font-weight: 700;
-    letter-spacing: -0.045em;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-  .tarifa .u {
-    font-family: var(--dado);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--chumbo-3);
-  }
-
-  /* ---------- campos ---------- */
-
-  form { margin-top: 1.6rem; max-width: 26rem; }
-  .campo { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.05rem; }
-  label {
-    font-family: var(--dado);
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--chumbo-3);
-  }
-  input[type="email"], select {
-    font-family: var(--texto);
+    background: var(--laranja);
+    color: var(--azul);              /* branco sobre laranja reprova em contraste */
     font-size: 1rem;
-    color: var(--chumbo);
-    background: transparent;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 1rem 2rem;
     border: 0;
-    border-bottom: 1px solid var(--fio-forte);
-    padding: 0.55rem 0.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: var(--txt);
+    min-height: 3rem;
+  }
+  .btn:hover { background: var(--laranja-t); color: var(--branco); }
+  .btn.vazio { background: transparent; color: var(--azul); border: 1.5px solid var(--azul); font-weight: 600; padding: calc(1rem - 1.5px) calc(1.75rem - 1.5px); }
+  .btn.vazio:hover { background: var(--azul); color: var(--branco); }
+  .escuro .btn.vazio, .azul .btn.vazio { color: var(--branco); border-color: var(--claro); }
+  .escuro .btn.vazio:hover, .azul .btn.vazio:hover { background: var(--branco); color: var(--azul); border-color: var(--branco); }
+
+  .acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.75rem; }
+  .anota { font-family: var(--dado); font-size: 0.75rem; color: var(--fraco); letter-spacing: 0.06em; }
+  .escuro .anota, .azul .anota { color: var(--fraco-esc); }
+
+  a.link { color: var(--laranja-t); }
+  a.link:hover { color: var(--azul); }
+  .escuro a, .azul a { color: var(--laranja); }
+
+  /* Vem depois de `.escuro a` de propósito: sem isto o texto do botão herda
+     o laranja do bloco escuro e some sobre o próprio fundo laranja. */
+  .escuro a.btn, .azul a.btn, .menu a.btn { color: var(--azul); }
+  .escuro a.btn:hover, .azul a.btn:hover, .menu a.btn:hover { color: var(--branco); }
+  .escuro a.btn.vazio, .azul a.btn.vazio { color: var(--branco); }
+  .escuro a.btn.vazio:hover, .azul a.btn.vazio:hover { color: var(--azul); }
+
+  /* ---- topo ---- */
+  .topo { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.1rem; flex-wrap: wrap; }
+  .marca { display: flex; align-items: center; gap: 0.6rem; }
+  .marca .nome { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.04em; }
+  .marca .nome i { font-style: normal; color: var(--laranja); }
+  .menu { display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
+  .menu a { font-size: 0.875rem; font-weight: 400; color: var(--claro); text-decoration: none; }
+  .menu a:hover { color: var(--branco); }
+  .menu .btn { padding: 0.65rem 1.35rem; font-size: 0.875rem; min-height: 0; }
+
+  /* ---- abertura ---- */
+  .abre { position: relative; overflow: hidden; }
+  .abre .marcadagua { position: absolute; left: -14rem; top: -6rem; width: 46rem; height: 46rem; opacity: 0.55; pointer-events: none; }
+  .abre .dentro { position: relative; }
+  .grade-abre { display: grid; grid-template-columns: minmax(0, 1fr) 21.5rem; gap: 3.5rem; align-items: center; padding-block: clamp(3rem, 7vw, 4.75rem) clamp(3.5rem, 8vw, 5.25rem); }
+  .abre h1 .dois { display: block; color: var(--laranja); }
+  .ticks { display: flex; flex-wrap: wrap; gap: 1.1rem 1.75rem; margin-top: 1.6rem; }
+  .tick { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 300; color: var(--claro); }
+
+  /* cartão de contagem */
+  .relogio { background: var(--carta); border-left: 3px solid var(--laranja); padding: 1.4rem 1.5rem; }
+  .relogio .cabeca { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.9rem; }
+  .relogio .tempo { font-family: var(--dado); font-size: 2.4rem; font-weight: 600; color: var(--laranja); line-height: 1; letter-spacing: -0.02em; }
+  .relogio .voo { font-family: var(--dado); font-size: 0.7rem; color: var(--fraco-esc); text-align: right; line-height: 1.6; }
+
+  .regua { display: flex; gap: 0.9rem; margin-top: 1.4rem; }
+  .regua .trilho { display: flex; flex-direction: column; align-items: center; }
+  .regua .marco { width: 11px; height: 11px; background: var(--ok-esc); }
+  .regua .marco.aberto { background: transparent; border: 2px solid var(--laranja); }
+  .regua .tramo { width: 2px; height: 26px; background: var(--ok-esc); }
+  .regua .tramo.at { background: var(--laranja); }
+  .regua .itens { flex: 1; display: flex; flex-direction: column; gap: 1.625rem; }
+  .regua .item { display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; height: 11px; font-size: 0.875rem; font-weight: 500; }
+  .regua .item.espera { color: var(--claro); }
+
+  .satelites { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.85rem; }
+  .satelite { background: var(--papel); color: var(--azul); padding: 0.75rem 0.95rem; box-shadow: 0 16px 34px -22px rgba(0,0,0,0.6); font-size: 0.8125rem; line-height: 1.4; }
+  .satelite .fonte { font-family: var(--dado); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--laranja-t); display: block; margin-bottom: 0.2rem; }
+  .sat-a { margin-left: -2.5rem; }
+  .sat-b { margin-right: -2.5rem; }
+
+  /* ---- faixa de números ---- */
+  .numeros { background: var(--laranja); color: var(--azul); }
+  .numeros .dentro { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; padding-block: 1.6rem; }
+  .numeros .cel { display: flex; align-items: baseline; gap: 0.85rem; }
+  .numeros .v { font-family: var(--dado); font-size: 2.05rem; font-weight: 600; letter-spacing: -0.03em; white-space: nowrap; }
+  .numeros .t { font-size: 0.875rem; font-weight: 500; line-height: 1.35; }
+
+  /* ---- seções ---- */
+  section { padding-block: clamp(3.25rem, 7vw, 4.75rem); }
+  section > .dentro > h2 { margin-top: 0.7rem; }
+  section > .dentro > .guia { margin-top: 0.85rem; }
+
+  /* cartões de direito */
+  .direitos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--fio); border: 1px solid var(--fio); margin-top: 2.1rem; }
+  .direito { background: var(--branco); padding: 1.6rem 1.75rem; }
+  .direito.destaque { background: var(--azul); color: var(--branco); }
+  .direito .topo-d { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; }
+  .direito .marco { font-family: var(--dado); font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; }
+  .direito.destaque .marco { color: var(--laranja); }
+  .direito .nome-d { font-size: 1.2rem; font-weight: 600; margin-top: 0.7rem; letter-spacing: -0.02em; }
+  .direito .txt { font-size: 0.875rem; font-weight: 300; color: var(--apoio); line-height: 1.55; margin-top: 0.4rem; }
+  .direito.destaque .txt { color: var(--claro); }
+  .direito .fonte { font-family: var(--dado); font-size: 0.6875rem; color: var(--fraco); margin-top: 0.9rem; }
+  .direito.destaque .fonte { color: var(--claro); }
+
+  /* bloco de nota com barra laranja */
+  .nota-bloco { background: var(--branco); border: 1px solid var(--fio); border-left: 4px solid var(--laranja); padding: 1.4rem 1.6rem; margin-top: 1rem; display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: 1.75rem; align-items: center; }
+  .nota-bloco .txt { font-size: 0.9375rem; font-weight: 300; color: var(--apoio); line-height: 1.55; }
+  .nota-bloco .txt b { color: var(--azul); font-weight: 500; }
+  .escuro .nota-bloco { background: var(--carta); border-color: var(--fio-esc); border-left-color: var(--laranja); }
+  .escuro .nota-bloco .txt { color: var(--claro); }
+  .escuro .nota-bloco .txt b { color: var(--branco); }
+
+  /* lista numerada */
+  .passos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.75rem; margin-top: 2.1rem; }
+  .passo .n { font-family: var(--dado); font-size: 2rem; font-weight: 600; color: var(--laranja-t); letter-spacing: -0.03em; line-height: 1; }
+  .escuro .passo .n, .azul .passo .n { color: var(--laranja); }
+  .passo .tit { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; margin-top: 0.5rem; }
+  .passo .txt { font-size: 0.9375rem; font-weight: 300; color: var(--apoio); line-height: 1.6; margin-top: 0.35rem; }
+  .escuro .passo .txt, .azul .passo .txt { color: var(--claro); }
+
+  /* cadeia quebrada */
+  .cadeia { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2.1rem; }
+  .elo { background: var(--carta); padding: 1.35rem 1.5rem; border-left: 3px solid var(--fio-esc); }
+  .elo.cr { border-left-color: var(--crit-esc); }
+  .elo.at { border-left-color: var(--laranja); }
+  .elo.ok { border-left-color: var(--ok-esc); }
+  .elo .cab { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; }
+  .elo .nome-e { font-size: 1.05rem; font-weight: 600; }
+  .elo .horas { display: flex; align-items: baseline; gap: 0.65rem; margin-top: 0.7rem; font-family: var(--dado); }
+  .elo .antes { font-size: 0.875rem; color: var(--fraco-esc); text-decoration: line-through; }
+  .elo .seta { color: var(--fraco-esc); }
+  .elo .depois { font-size: 0.9375rem; font-weight: 600; }
+  .elo.cr .depois { color: var(--crit-esc); }
+  .elo .txt { font-size: 0.8125rem; font-weight: 300; color: var(--claro); line-height: 1.5; margin-top: 0.7rem; }
+
+  /* camadas do produto */
+  .camadas { border: 1px solid var(--fio); background: var(--branco); margin-top: 2.1rem; }
+  .camada { display: grid; grid-template-columns: 3.5rem 7rem minmax(0, 1fr); gap: 1.25rem; padding: 1.1rem 1.5rem; align-items: baseline; border-bottom: 1px solid var(--fio); }
+  .camada:last-child { border-bottom: 0; }
+  .camada .n { font-family: var(--dado); font-size: 1rem; font-weight: 600; color: var(--fraco); }
+  .camada .tarifa-c { font-family: var(--dado); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ok); }
+  .camada.paga .tarifa-c { color: var(--laranja-t); }
+  .camada .tit { font-size: 1.0625rem; font-weight: 600; }
+  .camada .txt { font-size: 0.875rem; font-weight: 300; color: var(--apoio); line-height: 1.55; margin-top: 0.2rem; }
+
+  /* preço */
+  .grade-preco { display: grid; grid-template-columns: minmax(0, 1fr) 24rem; gap: 3.5rem; align-items: center; }
+  .cartao-preco { background: var(--carta); border-left: 3px solid var(--laranja); padding: 2rem 2.25rem; }
+  .cartao-preco .valor { display: flex; align-items: baseline; gap: 0.75rem; }
+  .cartao-preco .v { font-family: var(--dado); font-size: 3.1rem; font-weight: 600; color: var(--laranja); line-height: 1; letter-spacing: -0.03em; }
+  .cartao-preco .u { font-family: var(--dado); font-size: 0.8125rem; color: var(--claro); letter-spacing: 0.06em; }
+  .inclui { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.4rem; }
+  .inclui .li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.875rem; font-weight: 300; color: var(--claro); line-height: 1.45; }
+  .inclui .li.pago { font-weight: 400; color: var(--branco); }
+  .inclui svg { flex: 0 0 auto; margin-top: 0.18rem; }
+  .legenda-preco { font-family: var(--dado); font-size: 0.6875rem; color: var(--fraco-esc); margin-top: 1.25rem; line-height: 1.7; letter-spacing: 0.06em; }
+
+  .comparativo { border: 1px solid var(--fio-esc); margin-top: 1.5rem; max-width: 30rem; }
+  .comparativo .l { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--fio-esc); font-size: 0.9375rem; }
+  .comparativo .l:last-child { border-bottom: 0; }
+  .comparativo .l b { font-weight: 500; }
+  .comparativo .p { font-family: var(--dado); font-size: 0.8125rem; color: var(--claro); }
+  .comparativo .l.nosso .p { color: var(--laranja); font-weight: 600; }
+
+  /* formulário */
+  .grade-espera { display: grid; grid-template-columns: minmax(0, 1fr) 25rem; gap: 3.5rem; align-items: start; }
+  form { background: var(--branco); border: 1px solid var(--fio); padding: 1.9rem 2rem; }
+  .campo { margin-bottom: 1rem; }
+  .campo label { display: block; font-family: var(--dado); font-size: 0.625rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fraco); margin-bottom: 0.35rem; }
+  .campo input, .campo select {
     width: 100%;
+    font-family: var(--txt);
+    font-size: 0.9375rem;
+    color: var(--azul);
+    background: var(--branco);
+    border: 1px solid var(--fio);
     border-radius: 0;
-    -webkit-appearance: none;
-    appearance: none;
+    padding: 0.8rem 0.85rem;
+    min-height: 2.75rem;
   }
-  input::placeholder { color: var(--chumbo-3); }
-  select {
-    background-image: linear-gradient(45deg, transparent 50%, var(--chumbo-3) 50%),
-                      linear-gradient(135deg, var(--chumbo-3) 50%, transparent 50%);
-    background-position: calc(100% - 12px) 58%, calc(100% - 7px) 58%;
-    background-size: 5px 5px, 5px 5px;
-    background-repeat: no-repeat;
-    padding-right: 2rem;
+  .campo input:focus, .campo select:focus { outline: 0; border-color: var(--laranja); }
+  form .btn { width: 100%; margin-top: 0.5rem; }
+  form .btn:disabled { opacity: 0.5; cursor: default; }
+  #recado { margin-top: 1rem; font-size: 0.9375rem; font-weight: 300; color: var(--apoio); line-height: 1.55; }
+  .fino { font-size: 0.8125rem; font-weight: 300; color: var(--fraco); line-height: 1.5; margin-top: 0.9rem; }
+
+  /* rodapé */
+  footer { padding-block: 2.75rem 0; }
+  .grade-rodape { display: grid; grid-template-columns: minmax(0, 1fr) 32rem; gap: 3.5rem; align-items: start; }
+  .rodape-links { display: flex; flex-wrap: wrap; gap: 1.6rem; margin-top: 1.1rem; }
+  .rodape-links a { font-size: 0.875rem; font-weight: 300; color: var(--claro); text-decoration: none; }
+  .rodape-links a:hover { color: var(--laranja); }
+  .aviso { font-size: 0.8125rem; font-weight: 300; color: var(--claro); line-height: 1.65; margin: 0 0 0.65rem; }
+  .aviso b { color: var(--branco); font-weight: 500; }
+  .ed { font-family: var(--dado); font-size: 0.6875rem; color: var(--fraco-esc); letter-spacing: 0.1em; }
+  .base-rodape { border-top: 1px solid var(--fio-esc); margin-top: 2rem; padding-block: 1.1rem; display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  .barra { height: 12px; background: var(--laranja); }
+
+  /* ---- responsivo ---- */
+  @media (max-width: 62rem) {
+    .grade-abre, .grade-preco, .grade-espera, .grade-rodape { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+    .sat-a, .sat-b { margin-inline: 0; }
+    .abre .marcadagua { left: -18rem; opacity: 0.4; }
+    .direitos, .cadeia { grid-template-columns: minmax(0, 1fr); }
+    .passos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .numeros .dentro { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .nota-bloco { grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
   }
-  input:focus-visible, select:focus-visible, .btn:focus-visible, a:focus-visible {
-    outline: 2px solid var(--carimbo);
-    outline-offset: 3px;
-  }
-  .fino { font-size: 0.84rem; color: var(--chumbo-3); margin-top: 0.9rem; max-width: 26rem; }
-  #recado {
-    margin-top: 1rem;
-    padding: 0.85rem 1rem;
-    background: var(--barra);
-    border-left: 3px solid var(--carimbo);
-    font-size: 0.94rem;
-    color: var(--chumbo);
-    max-width: 26rem;
-  }
-
-  /* ---------- rodapé ---------- */
-
-  footer { border-top: 2px solid var(--chumbo); padding: 2rem 0 3.2rem; }
-  .rodape-links {
-    display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem;
-    font-family: var(--dado); font-size: 0.7rem; letter-spacing: 0.06em;
-    margin-bottom: 1.4rem; text-transform: uppercase;
-  }
-  footer a { color: var(--chumbo); text-decoration: none; border-bottom: 1px solid var(--fio-forte); }
-  footer a:hover { color: var(--carimbo); border-color: var(--carimbo); }
-  .aviso { font-size: 0.81rem; color: var(--chumbo-3); max-width: 40rem; line-height: 1.55; }
-  .aviso b { color: var(--chumbo-2); font-weight: 600; }
-  .ed { margin-top: 1.3rem; font-family: var(--dado); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--chumbo-3); text-transform: uppercase; }
-
-  a.link { color: var(--carimbo); text-decoration: none; border-bottom: 1px solid var(--carimbo-l); }
-
-  /* ---------- responsivo ---------- */
-
-  @media (max-width: 44rem) {
-    :root { --cal: 1.6rem; }
-    .registro { display: none; }
-    .listagem .cab { display: none; }
-    .c3, .c2 { grid-template-columns: 1fr auto; }
-    .c3 .item, .c2 .item, .c3 .nota, .c2 .nota { grid-column: 1 / -1; }
-    .num .it { grid-template-columns: 1fr; }
-    .num .it span { grid-column: 1; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; animation: none !important; }
+  @media (max-width: 40rem) {
+    .passos { grid-template-columns: minmax(0, 1fr); }
+    .camada { grid-template-columns: 2.5rem minmax(0, 1fr); }
+    .camada .tarifa-c { grid-column: 2; }
+    .camada .corpo { grid-column: 2; }
+    .menu { gap: 1rem; }
+    .menu .oculta-mini { display: none; }
+    .acoes .btn { width: 100%; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<div class="folha">
-  <div class="registro reg-a"><i></i></div>
-  <div class="registro reg-b"><i></i></div>
-
-  <div class="corpo">
-
-    <div class="cabeca">
-      <span>Documento informativo / distribuição livre</span>
-      <span>Ed. 01 · Set 2026</span>
+<!-- ======================= TOPO ======================= -->
+<div class="escuro faixa">
+  <div class="dentro topo">
+    <div class="marca">
+      <svg width="26" height="26" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="8" y="6" width="32" height="6.5" fill="#ED8426"/>
+        <rect x="8" y="20.75" width="23" height="6.5" fill="#FFFFFF"/>
+        <rect x="8" y="35.5" width="32" height="6.5" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="8" y="6" width="6.5" height="36" fill="#FFFFFF"/>
+      </svg>
+      <span class="nome">embarca<i>ly</i></span>
     </div>
-    <div class="regua-forte"></div>
+    <nav class="menu">
+      <a class="oculta-mini" href="#direitos">Seus direitos</a>
+      <a class="oculta-mini" href="#cadeia">A cadeia</a>
+      <a class="oculta-mini" href="#tarifa">Preço</a>
+      <a class="btn" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia</a>
+    </nav>
+  </div>
+</div>
 
-    <header class="abre">
-      <span class="secao">Resolução ANAC nº 400/2016</span>
-      <h1>A companhia deve hotel pra você.<span class="baixo">Ninguém vai falar.</span></h1>
-
-      <p style="margin-top:1.6rem;font-size:1.05rem">
-        Passou de quatro horas de atraso, eles são obrigados a te hospedar e pagar
-        o transporte. Passou de duas, devem comida. Em 2018, 17 milhões de
-        brasileiros tiveram voo atrasado ou cancelado. <b>Dois por cento pediram
-        alguma coisa.</b>
+<!-- ======================= ABERTURA ======================= -->
+<header class="escuro faixa abre">
+  <svg class="marcadagua" viewBox="0 0 48 48" aria-hidden="true">
+    <rect x="8" y="6" width="32" height="6.5" fill="#262A54"/>
+    <rect x="8" y="20.75" width="23" height="6.5" fill="#262A54"/>
+    <rect x="8" y="35.5" width="32" height="6.5" fill="#23264A"/>
+    <rect x="8" y="6" width="6.5" height="36" fill="#262A54"/>
+  </svg>
+  <div class="dentro grade-abre">
+    <div>
+      <span class="rot">Resolução ANAC nº 400/2016</span>
+      <h1 style="margin-top:1rem">A companhia deve hotel pra você.<span class="dois">Ninguém vai falar.</span></h1>
+      <p class="guia" style="margin-top:1.3rem">
+        Passou de quatro horas de atraso, hospedagem e traslado são obrigação dela.
+        Passou de duas, é comida. Em 2018, 17 milhões de brasileiros tiveram voo
+        atrasado ou cancelado. <b>Dois por cento pediram alguma coisa.</b>
       </p>
-
-      <div class="listagem">
-        <div class="cab c3"><span>Decorrido</span><span>Situação</span><span>Direito</span></div>
-        <div class="lin c3"><span class="marco">+1h</span><span class="cod">Liberado</span><span class="item">Internet e telefone</span></div>
-        <div class="lin c3"><span class="marco">+2h</span><span class="cod">Liberado</span><span class="item">Comida</span></div>
-        <div class="lin c3"><span class="marco">+4h</span><span class="cod">Liberado</span><span class="item">Hotel e transporte</span></div>
-        <div class="fim"></div>
-      </div>
 
       <div class="acoes">
-        <a class="btn" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia</a>
-        <span class="anota">PDF · 8 folhas · sem cadastro</span>
+        <a class="btn" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia grátis</a>
+        <span class="anota">8 FOLHAS · PDF · SEM CADASTRO</span>
       </div>
 
-      <div class="carimbo-peca">Guarde<br>no celular</div>
-    </header>
+      <div class="ticks">
+        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Artigo citado em cada direito</span>
+        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Começa no Android</span>
+        <span class="tick"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Sem assinatura</span>
+      </div>
+    </div>
 
-    <section>
-      <span class="secao">1 · o que destrava, e quando</span>
-      <h2>Assistência material</h2>
-      <p>
-        A contagem começa no horário originalmente previsto para a partida. Vale
-        para atraso, cancelamento e preterição. Eles deveriam oferecer sem você
-        pedir. <b>Quase nunca oferecem.</b>
+    <div style="position:relative">
+      <div class="relogio">
+        <div class="cabeca">
+          <div>
+            <div class="tempo">3h45</div>
+            <div class="sit at" style="margin-top:0.3rem">Contando</div>
+          </div>
+          <div class="voo">LA3477<br>POA &rarr; GRU</div>
+        </div>
+        <div class="regua">
+          <div class="trilho">
+            <span class="marco"></span><span class="tramo"></span>
+            <span class="marco"></span><span class="tramo at"></span>
+            <span class="marco aberto"></span>
+          </div>
+          <div class="itens">
+            <div class="item"><span>Comunicação</span><span class="sit ok">+1h</span></div>
+            <div class="item"><span>Alimentação</span><span class="sit ok">+2h</span></div>
+            <div class="item espera"><span>Hospedagem</span><span class="sit at">Em 15min</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="satelites">
+        <div class="satelite sat-a">
+          <span class="fonte">RES. 400, ART. 27, III</span>
+          Hotel e traslado por conta da companhia
+        </div>
+        <div class="satelite sat-b">
+          A locadora fecha às 22h. Você chega <b class="dado">01h20</b>.
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ======================= NÚMEROS ======================= -->
+<div class="numeros faixa">
+  <div class="dentro">
+    <div class="cel"><span class="v">17 mi</span><span class="t">de brasileiros tiveram voo atrasado ou cancelado em 2018</span></div>
+    <div class="cel"><span class="v">2%</span><span class="t">pediram alguma coisa à companhia</span></div>
+    <div class="cel"><span class="v">0</span><span class="t">vezes que alguém no balcão vai oferecer sem você pedir</span></div>
+  </div>
+</div>
+
+<!-- ======================= 1 · ASSISTÊNCIA ======================= -->
+<section id="direitos" class="faixa">
+  <div class="dentro">
+    <span class="rot">01 · o que destrava, e quando</span>
+    <h2>A contagem começa no horário previsto da partida.</h2>
+    <p class="guia">
+      Vale para atraso, cancelamento e preterição. Eles deveriam oferecer sem você
+      pedir, e quase nunca oferecem. O motivo não muda nada: mau tempo, problema
+      técnico ou malha aérea, <b>a assistência é devida do mesmo jeito.</b>
+    </p>
+
+    <div class="direitos">
+      <div class="direito">
+        <div class="topo-d"><span class="marco">+1H</span><span class="sit ok">Liberado</span></div>
+        <div class="nome-d">Comunicação</div>
+        <p class="txt">Internet e telefone por conta da companhia. Dois minutos de ligação para avisar quem está te esperando.</p>
+        <div class="fonte">Res. 400, art. 27, I</div>
+      </div>
+      <div class="direito">
+        <div class="topo-d"><span class="marco">+2H</span><span class="sit ok">Liberado</span></div>
+        <div class="nome-d">Alimentação</div>
+        <p class="txt">Voucher, refeição ou lanche conforme o horário. Se o atraso pegou o almoço, é almoço.</p>
+        <div class="fonte">Res. 400, art. 27, II</div>
+      </div>
+      <div class="direito destaque">
+        <div class="topo-d"><span class="marco">+4H</span><span class="sit at">Hotel</span></div>
+        <div class="nome-d">Hospedagem e traslado</div>
+        <p class="txt">Hotel mais o transporte de ida e volta até ele. Se você está na cidade onde mora, pode ser só o transporte.</p>
+        <div class="fonte">Res. 400, art. 27, III</div>
+      </div>
+    </div>
+
+    <div class="nota-bloco">
+      <h3>A que ninguém conhece</h3>
+      <p class="txt" style="margin:0">Eles precisam te informar do atraso e atualizar a cada 30 minutos. <b>Silêncio já é descumprimento</b>, e vira prova a seu favor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 2 · QUATRO SAÍDAS ======================= -->
+<section class="azul faixa">
+  <div class="dentro">
+    <span class="rot">02 · acima de 4h, cancelamento, preterição</span>
+    <h2>Quatro saídas. Eles oferecem uma.</h2>
+    <p class="guia">
+      O erro mais caro do passageiro brasileiro é aceitar a primeira coisa que
+      colocam na mesa. <b>A escolha é sua.</b> Peça pelo nome.
+    </p>
+
+    <div class="passos">
+      <div class="passo">
+        <div class="n">01</div>
+        <div class="tit">Reacomodação</div>
+        <p class="txt">Outro voo para o mesmo destino na primeira oportunidade, inclusive em outra companhia, sem você pagar diferença.</p>
+      </div>
+      <div class="passo">
+        <div class="n">02</div>
+        <div class="tit">Reembolso integral</div>
+        <p class="txt">Todo o valor pago de volta, com a taxa de embarque junto.</p>
+      </div>
+      <div class="passo">
+        <div class="n">03</div>
+        <div class="tit">Outra modalidade</div>
+        <p class="txt">Ônibus, van, o que resolver o trecho. Por conta deles.</p>
+      </div>
+      <div class="passo">
+        <div class="n">04</div>
+        <div class="tit">Remarcação</div>
+        <p class="txt">Data e horário que sirvam para você, sem custo e sem multa.</p>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia</a>
+      <span class="anota">TEM O QUE FALAR NO BALCÃO E O QUE GUARDAR COMO PROVA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 3 · A CADEIA ======================= -->
+<section id="cadeia" class="escuro faixa">
+  <div class="dentro">
+    <span class="rot">03 · o problema atrás disso</span>
+    <h2>Um atraso não quebra um voo.<br>Quebra a viagem toda.</h2>
+    <p class="guia">
+      Minha última viagem tinha treze reservas em sete fornecedores. O voo atrasou
+      três horas em Lisboa. O painel do aeroporto me informou do voo e parou por aí.
+      <b>O resto eu resolvi sozinho, no celular, na fila.</b>
+    </p>
+
+    <div class="cadeia">
+      <div class="elo cr">
+        <div class="cab"><span class="nome-e">Transfer para o hotel</span><span class="sit cr">Perdido</span></div>
+        <div class="horas"><span class="antes">19:10</span><span class="seta">&rarr;</span><span class="depois">sem motorista</span></div>
+        <p class="txt">Ele sai às 19:40 e o voo só pousa 19:55. Remarcar ou cancelar.</p>
+      </div>
+      <div class="elo at">
+        <div class="cab"><span class="nome-e">Check-in Hotel Baixa</span><span class="sit at">Avisar</span></div>
+        <div class="horas"><span class="antes">21:00</span><span class="seta">&rarr;</span><span class="depois">23:40</span></div>
+        <p class="txt">A recepção fecha às 23:00. Avisar chegada tardia antes disso.</p>
+      </div>
+      <div class="elo cr">
+        <div class="cab"><span class="nome-e">Passeio Sintra</span><span class="sit cr">Inviável</span></div>
+        <div class="horas"><span class="antes">08:00</span><span class="seta">&rarr;</span><span class="depois">remarcar</span></div>
+        <p class="txt">Saída três horas depois do check-in. Passar para quinta.</p>
+      </div>
+    </div>
+
+    <div class="nota-bloco">
+      <h3>Ninguém monta essa conta</h3>
+      <p class="txt" style="margin:0">O TripIt guarda as reservas e cala. O Flighty avisa do voo e cala. Os apps da companhia só sabem do próprio voo. <b>A conta de quem perde o quê fica com você.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 4 · O PRODUTO ======================= -->
+<section class="faixa">
+  <div class="dentro">
+    <span class="rot">04 · o produto</span>
+    <h2>Três camadas, e só a terceira se paga.</h2>
+    <p class="guia">
+      Voo, hotel, carro e passeio na mesma listagem. Funciona sem internet, em
+      português, e <b>no Android</b>. O melhor organizador de viagem brasileiro hoje
+      só existe no iPhone, num país onde 81% dos celulares são Android.
+    </p>
+
+    <div class="camadas">
+      <div class="camada">
+        <span class="n">01</span>
+        <span class="tarifa-c">Grátis</span>
+        <div class="corpo">
+          <div class="tit">Centralizar</div>
+          <p class="txt">Você encaminha o e-mail da confirmação. Ele monta a viagem e guarda os documentos.</p>
+        </div>
+      </div>
+      <div class="camada">
+        <span class="n">02</span>
+        <span class="tarifa-c">Grátis</span>
+        <div class="corpo">
+          <div class="tit">Conduzir</div>
+          <p class="txt">Agora, depois, mais tarde. A próxima ação e o documento daquele momento.</p>
+        </div>
+      </div>
+      <div class="camada paga">
+        <span class="n">03</span>
+        <span class="tarifa-c">R$39</span>
+        <div class="corpo">
+          <div class="tit">Socorrer</div>
+          <p class="txt">Quando um elo quebra, refaz a cadeia inteira e diz o que a companhia deve, com o artigo e a frase pronta para o balcão.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <a class="btn vazio" href="prototipo/">Ver o protótipo</a>
+      <span class="anota">ABRE NO NAVEGADOR, SEM INSTALAR</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 5 · TARIFA ======================= -->
+<section id="tarifa" class="azul faixa">
+  <div class="dentro grade-preco">
+    <div>
+      <span class="rot">05 · tarifa</span>
+      <h2 style="margin-top:0.7rem">Você paga quando viaja.</h2>
+      <p class="guia" style="margin-top:0.85rem">
+        Não é assinatura. Vale de uma semana antes do embarque até três dias depois
+        da volta. <b>Organizar a viagem é de graça para sempre.</b> Você viaja uma ou
+        duas vezes por ano, e assinatura anual cobra os outros dez meses em que o
+        aplicativo fica fechado.
       </p>
 
-      <div class="listagem">
-        <div class="cab c2"><span>Decorrido</span><span>O que eles devem</span></div>
-        <div class="lin c2">
-          <span class="marco">+1h</span>
-          <span class="item">Comunicação</span>
-          <span class="nota">Internet e telefone por conta da companhia. Dois minutos de ligação pra avisar quem está te esperando.</span>
-        </div>
-        <div class="lin c2">
-          <span class="marco">+2h</span>
-          <span class="item">Alimentação</span>
-          <span class="nota">Voucher, refeição ou lanche conforme o horário. Se o atraso pegou o almoço, é almoço.</span>
-        </div>
-        <div class="lin c2">
-          <span class="marco">+4h</span>
-          <span class="item">Hospedagem</span>
-          <span class="nota">Hotel mais transporte de ida e volta até ele. Se você está na cidade onde mora, pode ser só o transporte.</span>
-        </div>
-        <div class="fim"></div>
+      <div class="comparativo">
+        <div class="l"><b>TripIt Pro</b><span class="p">US$49 / ano</span></div>
+        <div class="l"><b>Tripsy Pro · só iPhone</b><span class="p">US$59 / ano</span></div>
+        <div class="l nosso"><b>Embarcaly</b><span class="p">R$39 / viagem</span></div>
       </div>
+    </div>
 
-      <div class="moldura">
-        <h3>A que ninguém conhece</h3>
-        <p>Eles precisam te informar do atraso e atualizar a cada 30 minutos. Silêncio já é descumprimento, e vira prova a seu favor.</p>
+    <div class="cartao-preco">
+      <div class="valor"><span class="v">R$39</span><span class="u">POR VIAGEM</span></div>
+      <div class="inclui">
+        <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FBF87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Organizar a viagem inteira</div>
+        <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FBF87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Registrar atraso e ver a contagem</div>
+        <div class="li pago"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>Direitos com artigo e frase pronta</div>
+        <div class="li pago"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED8426" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,12.5 9,17.5 20,6.5"/></svg>A cadeia inteira recalculada</div>
       </div>
+      <div class="legenda-preco">VERDE: GRÁTIS PARA SEMPRE<br>LARANJA: O QUE SE PAGA</div>
+    </div>
+  </div>
+</section>
 
-      <p style="margin-top:1.4rem;font-size:0.94rem">
-        O motivo do atraso não muda nada. Mau tempo, problema técnico, malha
-        aérea: a assistência é devida do mesmo jeito.
+<!-- ======================= 6 · CONVERSA ======================= -->
+<section class="faixa">
+  <div class="dentro">
+    <span class="rot">06 · antes de escrever mais uma linha de código</span>
+    <h2>Você é quem organiza a viagem do grupo?</h2>
+    <p class="guia">
+      A pessoa que monta o roteiro, guarda os vouchers e responde a que horas é tudo.
+      <b>Quero te ouvir vinte minutos.</b> Não tenho nada para vender: quero entender
+      como você faz hoje antes de decidir o que construir. Mando o guia completo e te
+      aviso primeiro quando sair.
+    </p>
+    <div class="acoes">
+      <a class="btn" href="mailto:bbianchini97@gmail.com?subject=Pesquisa%20Embarcaly&amp;body=Topo%20conversar%2020%20min.%0A%0AViagem%20com%204%2B%20reservas%20nos%20ultimos%2018%20meses%3A%20%0AQuem%20montou%20o%20roteiro%3A%20%0AiPhone%20ou%20Android%3A%20%0AMelhores%20horarios%3A%20">Quero conversar</a>
+      <span class="anota">20 MINUTOS, POR CHAMADA</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 7 · LISTA DE ESPERA ======================= -->
+<section class="faixa" style="background:var(--branco); border-top:1px solid var(--fio)">
+  <div class="dentro grade-espera">
+    <div>
+      <span class="rot">07 · lista de espera</span>
+      <h2 style="margin-top:0.7rem">Te aviso quando o aplicativo for lançado.</h2>
+      <p class="guia" style="margin-top:0.85rem">
+        Uma mensagem, no dia do lançamento. Não tem newsletter. Enquanto isso, leve o
+        guia: são oito folhas com os prazos, os artigos e as frases prontas, feitas
+        para abrir no celular na fila do balcão.
       </p>
-    </section>
-
-    <section>
-      <span class="secao">2 · acima de 4h, cancelamento, preterição</span>
-      <h2>Quatro saídas. Eles oferecem uma.</h2>
-      <p>
-        O erro mais caro do passageiro brasileiro é aceitar a primeira coisa que
-        colocam na mesa. <b>A escolha é sua.</b> Peça pelo nome.
-      </p>
-
-      <div class="num">
-        <div class="it">
-          <span class="n">01</span><b>Reacomodação</b>
-          <span>Outro voo pro mesmo destino na primeira oportunidade, inclusive em outra companhia, sem você pagar diferença.</span>
-        </div>
-        <div class="it">
-          <span class="n">02</span><b>Reembolso integral</b>
-          <span>Todo o valor pago de volta, com a taxa de embarque junto.</span>
-        </div>
-        <div class="it">
-          <span class="n">03</span><b>Outra modalidade</b>
-          <span>Ônibus, van, o que resolver o trecho. Por conta deles.</span>
-        </div>
-        <div class="it">
-          <span class="n">04</span><b>Remarcação</b>
-          <span>Data e horário que sirvam pra você, sem custo e sem multa.</span>
-        </div>
-      </div>
-
       <div class="acoes">
-        <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia</a>
-        <span class="anota">Tem o que falar no balcão e o que guardar como prova</span>
+        <a class="btn vazio" href="guia-direitos-do-passageiro.pdf" download>Baixar o guia grátis</a>
       </div>
-    </section>
+    </div>
 
-    <section>
-      <span class="secao">3 · o problema atrás disso</span>
-      <h2>Um atraso não quebra um voo. Quebra a viagem toda.</h2>
-      <p>
-        Minha última viagem tinha treze reservas em sete fornecedores. O voo
-        atrasou três horas em Lisboa. O painel do aeroporto me informou do voo e
-        parou por aí. O resto eu resolvi sozinho, no celular, na fila.
-      </p>
-
-      <div class="listagem">
-        <div class="cab c3"><span>Horário</span><span>Situação</span><span>Reserva</span></div>
-        <div class="lin c3">
-          <span class="hora">14:20</span>
-          <span class="cod forte">Atrasado</span>
-          <span class="item">GRU → LIS · LA8084</span>
-          <span class="nota">Nova previsão 18:05.</span>
-        </div>
-        <div class="lin c3">
-          <span class="hora">19:10</span>
-          <span class="cod">Perdido</span>
-          <span class="item">Transfer aeroporto → hotel</span>
-          <span class="nota">Motorista sai às 19:40. Remarcar ou cancelar.</span>
-        </div>
-        <div class="lin c3">
-          <span class="hora">21:00</span>
-          <span class="cod">Avisar</span>
-          <span class="item">Check-in Hotel Baixa</span>
-          <span class="nota">Recepção fecha 23:00. Avisar chegada tardia.</span>
-        </div>
-        <div class="lin c3">
-          <span class="hora">08:00</span>
-          <span class="cod">Inviável</span>
-          <span class="item">Passeio Sintra · amanhã</span>
-          <span class="nota">Saída 3h depois do check-in. Remarcar pra quinta.</span>
-        </div>
-        <div class="fim"></div>
-      </div>
-
-      <p style="margin-top:1.6rem">
-        Nenhum aplicativo do mercado monta essa listagem. O TripIt guarda as
-        reservas e cala. O Flighty avisa do voo e cala. Os apps da companhia só
-        sabem do próprio voo. <b>A conta de quem perde o quê fica com você.</b>
-      </p>
-    </section>
-
-    <section>
-      <span class="secao">4 · o produto</span>
-      <h2>Embarcaly</h2>
-      <p>
-        Voo, hotel, carro e passeio na mesma listagem. Funciona sem internet, em
-        português, e <b>no Android</b>. O melhor organizador de viagem brasileiro
-        hoje só existe no iPhone, num país onde 81% dos celulares são Android.
-      </p>
-
-      <div class="listagem">
-        <div class="cab c3"><span>Camada</span><span>Tarifa</span><span>O que faz</span></div>
-        <div class="lin c3">
-          <span class="hora">01</span>
-          <span class="cod fraco">Grátis</span>
-          <span class="item">Centralizar</span>
-          <span class="nota">Você encaminha o e-mail da confirmação. Ele monta a viagem e guarda os documentos.</span>
-        </div>
-        <div class="lin c3">
-          <span class="hora">02</span>
-          <span class="cod fraco">Grátis</span>
-          <span class="item">Conduzir</span>
-          <span class="nota">Agora, depois, mais tarde. A próxima ação e o documento daquele momento.</span>
-        </div>
-        <div class="lin c3">
-          <span class="hora">03</span>
-          <span class="cod forte">R$39</span>
-          <span class="item">Socorrer</span>
-          <span class="nota">Quando um elo quebra, refaz a cadeia inteira e diz o que a companhia deve. É a listagem acima, montada sozinha.</span>
-        </div>
-        <div class="fim"></div>
-      </div>
-
-      <div class="acoes">
-        <a class="btn vazio" href="prototipo/">Ver o protótipo</a>
-        <span class="anota">Abre no navegador, sem instalar</span>
-      </div>
-    </section>
-
-    <section>
-      <span class="secao">5 · tarifa</span>
-      <h2>Você paga quando viaja</h2>
-
-      <div class="tarifa"><span class="v">R$39</span><span class="u">por viagem</span></div>
-      <p>
-        Vale de uma semana antes do embarque até três dias depois da volta.
-        Organizar a viagem é de graça pra sempre.
-      </p>
-
-      <div class="listagem" style="max-width:32rem">
-        <div class="cab c2"><span>Concorrente</span><span>Cobrança</span></div>
-        <div class="lin c2"><span class="item">TripIt Pro</span><span class="cod fraco">US$49 / ano</span></div>
-        <div class="lin c2"><span class="item">Tripsy Pro · só iPhone</span><span class="cod fraco">US$59 / ano</span></div>
-        <div class="lin c2"><span class="item">Embarcaly</span><span class="cod forte">R$39 / viagem</span></div>
-        <div class="fim"></div>
-      </div>
-
-      <p style="margin-top:1.4rem">
-        Você viaja uma ou duas vezes por ano. Assinatura anual cobra os outros dez
-        meses em que o aplicativo fica fechado.
-      </p>
-
-      <div class="bloco">
-        <h3>O que ele não faz</h3>
-        <p>Não vende passagem, não caça promoção, não emite cartão de embarque e não é escritório de advocacia. Ele cuida da viagem depois que você comprou, e mostra o que a lei garante pra você mesmo cobrar.</p>
-      </div>
-    </section>
-
-    <section>
-      <span class="secao">6 · antes de escrever mais uma linha de código</span>
-      <h2>Você é quem organiza a viagem do grupo?</h2>
-      <p>
-        A pessoa que monta o roteiro, guarda os vouchers e responde a que horas é
-        tudo. <b>Quero te ouvir vinte minutos.</b>
-      </p>
-      <p>
-        Não tenho nada pra vender. Quero entender como você faz hoje antes de
-        decidir o que construir. Mando o guia completo e te aviso primeiro quando
-        sair.
-      </p>
-      <div class="acoes">
-        <a class="btn" href="mailto:bbianchini97@gmail.com?subject=Pesquisa%20Embarcaly&amp;body=Topo%20conversar%2020%20min.%0A%0AViagem%20com%204%2B%20reservas%20nos%20ultimos%2018%20meses%3A%20%0AQuem%20montou%20o%20roteiro%3A%20%0AiPhone%20ou%20Android%3A%20%0AMelhores%20horarios%3A%20">Quero conversar</a>
-        <span class="anota">20 minutos, por chamada</span>
-      </div>
-    </section>
-
-    <section>
-      <span class="secao">7 · lista de espera</span>
-      <h2>Te aviso quando o aplicativo for lançado.</h2>
-      <p>Uma mensagem, no dia do lançamento. Não tem newsletter.</p>
-
+    <div>
       <!-- Formspree "institucional" — plano grátis, 50 envios/mês. Estourou a
            cota, o envio some sem erro na página: confira o contador no painel.
            O bloco SEU_ID no script abaixo é rede de segurança e não roda mais. -->
@@ -764,31 +698,60 @@
       <div id="recado" hidden></div>
 
       <p class="fino">
-        Guardo o e-mail e essas três respostas pra te avisar do lançamento. Não
-        passo pra ninguém. Peça a exclusão quando quiser.
+        Guardo o e-mail e essas três respostas para te avisar do lançamento. Não passo
+        para ninguém. Peça a exclusão quando quiser.
       </p>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <footer>
-      <div class="rodape-links">
-        <a href="guia-direitos-do-passageiro.pdf" download>Guia em PDF</a>
-        <a href="prototipo/">Protótipo</a>
-        <a href="https://github.com/bianchinibruno/embarcaly">GitHub</a>
-        <a href="mailto:bbianchini97@gmail.com">Contato</a>
+<!-- ======================= RODAPÉ ======================= -->
+<footer class="escuro faixa">
+  <div class="dentro">
+    <div class="grade-rodape">
+      <div>
+        <div class="marca">
+          <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="8" y="6" width="32" height="6.5" fill="#ED8426"/>
+            <rect x="8" y="20.75" width="23" height="6.5" fill="#FFFFFF"/>
+            <rect x="8" y="35.5" width="32" height="6.5" fill="#FFFFFF" opacity="0.55"/>
+            <rect x="8" y="6" width="6.5" height="36" fill="#FFFFFF"/>
+          </svg>
+          <span class="nome">embarca<i>ly</i></span>
+        </div>
+        <div class="rodape-links">
+          <a href="guia-direitos-do-passageiro.pdf" download>Guia em PDF</a>
+          <a href="prototipo/">Protótipo</a>
+          <a href="https://github.com/bianchinibruno/embarcaly">GitHub</a>
+          <a href="mailto:bbianchini97@gmail.com">Contato</a>
+        </div>
       </div>
 
-      <p class="aviso">
-        Documento informativo baseado na Resolução ANAC nº 400/2016 e no Código de
-        Defesa do Consumidor. <b>Não constitui consultoria jurídica.</b> Norma muda
-        e caso concreto tem particularidade. Na dúvida, procure o Procon, a ANAC ou
-        um advogado. Versão vigente em anac.gov.br.
-      </p>
+      <div>
+        <span class="rot">Aviso</span>
+        <p class="aviso" style="margin-top:0.6rem">
+          O Embarcaly é um aplicativo de organização de viagem. Não é escritório de
+          advocacia, não presta serviço jurídico e não representa você perante
+          companhia aérea, órgão público ou tribunal. Também não é agência de viagens:
+          não vende passagem, hospedagem nem pacote.
+        </p>
+        <p class="aviso">
+          Documento informativo baseado na Resolução ANAC nº 400/2016 e no Código de
+          Defesa do Consumidor. <b>Não constitui consultoria jurídica.</b> Norma muda e
+          caso concreto tem particularidade. Conhecer o direito não garante o
+          atendimento dele. Na dúvida, procure o Procon, a ANAC ou um advogado.
+          Versão vigente em anac.gov.br.
+        </p>
+      </div>
+    </div>
 
-      <div class="ed">Embarcaly · Bruno Bianchini · Ed. 01 · Set 2026</div>
-    </footer>
-
+    <div class="base-rodape">
+      <span class="ed">EMBARCALY · BRUNO BIANCHINI · ED. 02 · SET 2026</span>
+      <span class="ed">SISTEMA VISUAL V3</span>
+    </div>
   </div>
-</div>
+</footer>
+<div class="barra"></div>
 
 <script>
   (function () {

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o kit de marca do Embarcaly: SVGs e PNGs a partir da geometria do Conceito A."""
+"""Gera o kit de marca do Embarcaly: SVGs e PNGs na paleta do sistema visual v3."""
 import os
 from PIL import Image, ImageDraw
 
@@ -7,12 +7,13 @@ BASE = r"C:\Users\Bruno Bianchini\OneDrive\Documents\repos\embarcaly\brand"
 PNG = os.path.join(BASE, "png")
 os.makedirs(PNG, exist_ok=True)
 
-# ---- paleta ----
-INK        = "#171C20"
-STAMP      = "#B0432B"
-PAPER      = "#FBFAF7"
-INK_DARK   = "#E9EDEE"   # marca sobre fundo escuro
-STAMP_DARK = "#D4715A"
+# ---- paleta v3 ----
+INK        = "#33366A"   # marca sobre fundo claro
+STAMP      = "#ED8426"   # a barra do agora
+PAPER      = "#FFFFFF"   # fundo claro
+BREU       = "#1C1E3C"   # fundo do icone e do aplicativo
+INK_DARK   = "#FFFFFF"   # marca sobre fundo escuro
+STAMP_DARK = "#ED8426"
 
 # ---- geometria canonica (viewBox 48x48) ----
 # Proporcao de E de verdade: braco de cima e de baixo iguais, do meio mais curto.
@@ -24,7 +25,7 @@ BARS = [
     ("depois",     15.0, 20.75, 19.0, 6.5, "ink"),
     ("mais_tarde", 15.0, 32.50, 26.0, 6.5, "ink_soft"),
 ]
-RX = 1.0
+RX = 0.0
 SOFT = 0.55
 
 
@@ -57,7 +58,7 @@ write("embarcaly-mark-mono.svg",
       + svg_rects("currentColor", "currentColor") + "\n</svg>\n")
 
 # ---------- lockup horizontal ----------
-FONT_STACK = "Familjen Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif"
+FONT_STACK = "Poppins, Segoe UI, Helvetica Neue, Helvetica, Arial, sans-serif"
 
 
 def lockup(ink, stamp):
@@ -94,9 +95,9 @@ def icon_svg(size, bg, ink, stamp, radius_ratio=0.2226):
     )
 
 
-write("embarcaly-icon.svg",       icon_svg(512, INK, PAPER, STAMP))
+write("embarcaly-icon.svg",       icon_svg(512, BREU, INK_DARK, STAMP_DARK))
 write("embarcaly-icon-light.svg", icon_svg(512, PAPER, INK, STAMP))
-write("favicon.svg",              icon_svg(64, INK, PAPER, STAMP, radius_ratio=0.16))
+write("favicon.svg",              icon_svg(64, BREU, INK_DARK, STAMP_DARK, radius_ratio=0.16))
 
 # ---------- PNGs ----------
 SS = 4  # supersampling
@@ -128,7 +129,7 @@ def draw_mark(size, ink, stamp, bg=None, radius_ratio=None, cover=0.75):
             fill = base + (255,)
         x0, y0 = off + x * scale, off + y * scale
         d.rounded_rectangle([x0, y0, x0 + w * scale, y0 + h * scale],
-                            radius=max(1.0, RX * scale), fill=fill)
+                            radius=max(0.0, RX * scale), fill=fill)
     return img.resize((size, size), Image.LANCZOS)
 
 
@@ -140,7 +141,7 @@ def save(img, name):
 
 # icones de loja e sistema (fundo tinta, marca papel)
 for s in (1024, 512, 192, 180, 120):
-    save(draw_mark(s, PAPER, STAMP, bg=INK), f"icon-{s}.png")
+    save(draw_mark(s, INK_DARK, STAMP_DARK, bg=BREU), f"icon-{s}.png")
 
 # icone claro, para fundos escuros de sistema
 save(draw_mark(1024, INK, STAMP, bg=PAPER), "icon-light-1024.png")
@@ -151,10 +152,10 @@ save(draw_mark(1024, INK_DARK, STAMP_DARK, cover=0.92), "mark-dark-1024.png")
 
 # favicons
 for s in (32, 16):
-    save(draw_mark(s, PAPER, STAMP, bg=INK, radius_ratio=0.16), f"favicon-{s}.png")
+    save(draw_mark(s, INK_DARK, STAMP_DARK, bg=BREU, radius_ratio=0.16), f"favicon-{s}.png")
 
 # favicon.ico multi-resolucao
-ico = draw_mark(256, PAPER, STAMP, bg=INK, radius_ratio=0.16)
+ico = draw_mark(256, INK_DARK, STAMP_DARK, bg=BREU, radius_ratio=0.16)
 ico.save(os.path.join(PNG, "favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48), (256, 256)])
 print("ico  -> png/favicon.ico")
 

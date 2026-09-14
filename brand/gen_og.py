@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Imagem de compartilhamento (Open Graph), 1200x630, sistema v2 · superfície impressa."""
+"""Imagem de compartilhamento (Open Graph), 1200x630, sistema visual v3.
+
+Azul estrutura, laranja aponta. Sem o E ampliado ao fundo: num cartao de
+1200x630 nao ha area livre para ele, e o manual proibe grafismo atras de texto.
+"""
 import os
-import random
 import pymupdf
-from reportlab.lib.colors import HexColor, Color
+from reportlab.lib.colors import HexColor
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -14,142 +17,128 @@ F = os.path.join(AQUI, "fonts")
 TMP = os.path.join(AQUI, "_og.pdf")
 OUT = os.path.join(REPO, "og-image.png")
 
-pdfmetrics.registerFont(TTFont("AN", os.path.join(F, "ArchivoNarrow-500.ttf")))
-pdfmetrics.registerFont(TTFont("AN-Bd", os.path.join(F, "ArchivoNarrow-700.ttf")))
-pdfmetrics.registerFont(TTFont("AR", os.path.join(F, "Archivo-400.ttf")))
-pdfmetrics.registerFont(TTFont("AR-Sb", os.path.join(F, "Archivo-600.ttf")))
-pdfmetrics.registerFont(TTFont("CP", os.path.join(F, "CourierPrime-400.ttf")))
-pdfmetrics.registerFont(TTFont("CP-Bd", os.path.join(F, "CourierPrime-700.ttf")))
+pdfmetrics.registerFont(TTFont("PP", os.path.join(F, "Poppins-400.ttf")))
+pdfmetrics.registerFont(TTFont("PP-Lt", os.path.join(F, "Poppins-300.ttf")))
+pdfmetrics.registerFont(TTFont("PP-Md", os.path.join(F, "Poppins-500.ttf")))
+pdfmetrics.registerFont(TTFont("PP-Sb", os.path.join(F, "Poppins-600.ttf")))
+pdfmetrics.registerFont(TTFont("PP-Bd", os.path.join(F, "Poppins-700.ttf")))
+pdfmetrics.registerFont(TTFont("PM", os.path.join(F, "IBMPlexMono-400.ttf")))
+pdfmetrics.registerFont(TTFont("PM-Md", os.path.join(F, "IBMPlexMono-500.ttf")))
+pdfmetrics.registerFont(TTFont("PM-Sb", os.path.join(F, "IBMPlexMono-600.ttf")))
 
-PAPEL    = HexColor("#EFEEE6")
-CALHA    = HexColor("#E6E5DB")
-BARRA    = HexColor("#DCE3D8")
-CHUMBO   = HexColor("#14170F")
-CHUMBO_2 = HexColor("#5C6356")
-CHUMBO_3 = HexColor("#8B9185")
-FIO      = HexColor("#B4B8A9")
-CARIMBO  = HexColor("#46356E")
-CARIMBO_L = HexColor("#7E6BA8")
+# ---- paleta v3 ----
+BREU    = HexColor("#1C1E3C")
+CARTA   = HexColor("#262A54")
+FIO     = HexColor("#414682")
+BRANCO  = HexColor("#FFFFFF")
+CLARO   = HexColor("#C9CBE4")
+FRACO   = HexColor("#7C80AE")
+LARANJA = HexColor("#ED8426")
+VERDE   = HexColor("#2FBF87")
 
 W, H = 1200, 630
-CAL = 54
-M = 52
-X0 = CAL + M
+M = 64
+BARRA = 12
 
-random.seed(400)
+# ---- geometria do E, a mesma de gen_brand.py (viewBox 48x48) ----
+BARS = [
+    (7.0,  9.00, 6.5, 30.0),   # haste
+    (15.0, 9.00, 26.0, 6.5),   # agora
+    (15.0, 20.75, 19.0, 6.5),  # depois
+    (15.0, 32.50, 26.0, 6.5),  # mais tarde
+]
 
 c = canvas.Canvas(TMP, pagesize=(W, H))
-c.setFillColor(PAPEL)
+c.setFillColor(BREU)
 c.rect(0, 0, W, H, stroke=0, fill=1)
 
-# calha e furos
-c.setFillColor(CALHA)
-c.rect(0, 0, CAL, H, stroke=0, fill=1)
+# ---- assinatura ----
+mx, my, mesc = M, H - M - 30, 0.62
+for i, (x, y, w, h) in enumerate(BARS):
+    c.setFillColor(LARANJA if i == 1 else BRANCO)
+    c.setFillAlpha(0.55 if i == 3 else 1)
+    c.rect(mx + x * mesc, my + (48 - y - h) * mesc, w * mesc, h * mesc, stroke=0, fill=1)
+c.setFillAlpha(1)
+
+c.setFont("PP-Bd", 23)
+c.setFillColor(BRANCO)
+c.drawString(mx + 40, my + 8, "embarca")
+c.setFillColor(LARANJA)
+c.drawString(mx + 40 + c.stringWidth("embarca", "PP-Bd", 23), my + 8, "ly")
+
+# ---- rotulo ----
+c.setFont("PM-Md", 12)
+c.setFillColor(LARANJA)
+c.drawString(M, H - 156, "R E S O L U Ç Ã O   A N A C   N º   4 0 0 / 2 0 1 6")
+
+# ---- manchete ----
+c.setFont("PP-Bd", 54)
+c.setFillColor(BRANCO)
+c.drawString(M, H - 218, "A companhia deve hotel")
+c.drawString(M, H - 276, "pra você.")
+c.setFillColor(LARANJA)
+c.drawString(M, H - 334, "Ninguém vai falar.")
+
+# ---- escada de direitos ----
+cx, cy, cw, ch = W - M - 396, 118, 396, 268
+c.setFillColor(CARTA)
+c.rect(cx, cy, cw, ch, stroke=0, fill=1)
+c.setFillColor(LARANJA)
+c.rect(cx, cy, 4, ch, stroke=0, fill=1)
+
+c.setFont("PM-Sb", 42)
+c.setFillColor(LARANJA)
+c.drawString(cx + 30, cy + ch - 66, "3h45")
+c.setFont("PM-Md", 12)
+c.drawString(cx + 30, cy + ch - 86, "C O N T A N D O")
+
+c.setFont("PM", 12)
+c.setFillColor(FRACO)
+c.drawRightString(cx + cw - 30, cy + ch - 46, "LA3477")
+c.drawRightString(cx + cw - 30, cy + ch - 64, "POA -> GRU")
+
 c.setStrokeColor(FIO)
 c.setLineWidth(1)
-c.line(CAL, 0, CAL, H)
-for fy in (H * 0.26, H * 0.74):
-    c.setFillColor(HexColor("#DAD8CC"))
-    c.circle(CAL / 2, fy, 8, stroke=0, fill=1)
-    c.setStrokeColor(HexColor("#C2C0B2"))
-    c.setLineWidth(1)
-    c.circle(CAL / 2, fy, 8, stroke=1, fill=0)
+c.line(cx + 30, cy + ch - 110, cx + cw - 30, cy + ch - 110)
 
-# fibra do papel
-for _ in range(4200):
-    x = random.uniform(0, W)
-    y = random.uniform(0, H)
-    t = random.uniform(0.3, 1.2)
-    c.setFillColor(Color(0.08, 0.09, 0.06, alpha=random.uniform(0.03, 0.09)))
-    c.rect(x, y, t, t, stroke=0, fill=1)
+linhas = [
+    ("Comunicação", "+1H", VERDE, True),
+    ("Alimentação", "+2H", VERDE, True),
+    ("Hospedagem", "EM 15MIN", LARANJA, False),
+]
+ly = cy + ch - 142
+for nome, marco, cor, cheio in linhas:
+    c.setFillColor(cor)
+    if cheio:
+        c.rect(cx + 30, ly - 3, 11, 11, stroke=0, fill=1)
+    else:
+        c.setStrokeColor(cor)
+        c.setLineWidth(2)
+        c.rect(cx + 31, ly - 2, 9, 9, stroke=1, fill=0)
+    c.setFont("PP-Md", 16)
+    c.setFillColor(BRANCO if cheio else CLARO)
+    c.drawString(cx + 54, ly, nome)
+    c.setFont("PM-Md", 11)
+    c.setFillColor(cor)
+    c.drawRightString(cx + cw - 30, ly + 1, marco)
+    if nome != "Hospedagem":
+        c.setFillColor(cor)
+        c.rect(cx + 34.5, ly - 40, 2, 34, stroke=0, fill=1)
+    ly -= 48
 
-# cabeçalho de formulário
-c.setFont("CP", 11)
-c.setFillColor(CHUMBO_3)
-c.drawString(X0, H - 44, "DOCUMENTO INFORMATIVO / DISTRIBUIÇÃO LIVRE")
-c.drawRightString(W - M, H - 44, "ED. 01 · SET 2026")
-c.setStrokeColor(CHUMBO)
-c.setLineWidth(2)
-c.line(X0, H - 58, W - M, H - 58)
+# ---- linha de apoio ----
+c.setFont("PP-Lt", 19)
+c.setFillColor(CLARO)
+c.drawString(M, 172, "Passou de 4 horas, hospedagem e traslado são obrigação dela.")
+c.drawString(M, 144, "Passou de 2, é comida. Guia gratuito, 8 folhas.")
 
-# seção
-c.setFont("CP-Bd", 12)
-c.setFillColor(CARIMBO)
-c.drawString(X0, H - 96, "RESOLUÇÃO ANAC Nº 400/2016")
+c.setFont("PM-Md", 12)
+c.setFillColor(FRACO)
+c.drawString(M, 96, "B I A N C H I N I B R U N O . G I T H U B . I O / E M B A R C A L Y")
 
-# manchete
-c.setFont("AN-Bd", 60)
-c.setFillColor(CHUMBO)
-c.drawString(X0, H - 168, "A COMPANHIA DEVE")
-c.drawString(X0, H - 232, "HOTEL PRA VOCÊ.")
-c.setFont("AN-Bd", 26)
-c.setFillColor(CHUMBO_3)
-c.drawString(X0, H - 276, "NINGUÉM VAI FALAR.")
-
-# listagem greenbar
-linhas = [("+1h", "LIBERADO", "Internet e telefone"),
-          ("+2h", "LIBERADO", "Comida"),
-          ("+4h", "LIBERADO", "Hotel e transporte")]
-ly = H - 330
-larg = W - M - X0
-c.setStrokeColor(CHUMBO)
-c.setLineWidth(2)
-c.line(X0, ly, W - M, ly)
-ly -= 6
-alt = 46
-for i, (marco, cod, txt) in enumerate(linhas):
-    if i % 2 == 0:
-        c.setFillColor(BARRA)
-        c.rect(X0, ly - alt, larg, alt, stroke=0, fill=1)
-    c.setFont("CP-Bd", 21)
-    c.setFillColor(CHUMBO)
-    c.drawString(X0 + 10, ly - alt + 15, marco)
-    c.setFont("CP-Bd", 12)
-    c.setFillColor(CARIMBO)
-    c.drawString(X0 + 108, ly - alt + 17, cod)
-    c.setFont("AR-Sb", 17)
-    c.setFillColor(CHUMBO)
-    c.drawString(X0 + 248, ly - alt + 16, txt)
-    ly -= alt
-c.setStrokeColor(CHUMBO)
-c.setLineWidth(2)
-c.line(X0, ly, W - M, ly)
-
-# carimbo torto, com desalinho de registro
-c.saveState()
-c.translate(W - M - 116, 92)
-c.rotate(-5.5)
-bw, bh = 186, 62
-c.setStrokeColor(Color(0.49, 0.42, 0.66, alpha=0.4))
-c.setLineWidth(2.4)
-c.rect(-bw / 2 + 1.4, -bh / 2 - 1.6, bw, bh, stroke=1, fill=0)
-c.setStrokeColor(CARIMBO)
-c.setLineWidth(2.4)
-c.rect(-bw / 2, -bh / 2, bw, bh, stroke=1, fill=0)
-c.setLineWidth(0.8)
-c.rect(-bw / 2 + 4, -bh / 2 + 4, bw - 8, bh - 8, stroke=1, fill=0)
-c.setFont("CP-Bd", 14)
-c.setFillColor(CARIMBO)
-c.drawCentredString(0, 7, "GUARDE")
-c.drawCentredString(0, -13, "NO CELULAR")
-c.restoreState()
-
-# assinatura
-c.setFont("CP-Bd", 12)
-c.setFillColor(CHUMBO)
-c.drawString(X0, 58, "EMBARCALY")
-c.setFont("CP", 12)
-c.setFillColor(CHUMBO_3)
-c.drawString(X0 + 96, 58, "/ GUIA GRATUITO DOS SEUS DIREITOS")
-
-# marcas de registro
-for x, y in ((W - 26, H - 26), (W - 26, 26)):
-    c.setStrokeColor(CHUMBO_3)
-    c.setLineWidth(0.9)
-    c.line(x - 10, y, x + 10, y)
-    c.line(x, y - 10, x, y + 10)
-    c.setStrokeColor(CARIMBO_L)
-    c.line(x - 10 + 1.5, y + 1.5, x + 10 + 1.5, y + 1.5)
+# ---- barra de rodape ----
+c.setFillColor(LARANJA)
+c.rect(0, 0, W, BARRA, stroke=0, fill=1)
 
 c.showPage()
 c.save()
