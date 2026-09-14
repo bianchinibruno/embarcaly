@@ -78,11 +78,11 @@ export function TripsScreen() {
                 accessibilityRole="button"
                 accessibilityLabel={`Abrir viagem ${trip.name}`}
               >
-                <View style={{ height: 4, backgroundColor: finished ? t.edge.bed : t.edge.air }} />
+                <View style={{ height: 4, backgroundColor: finished ? t.rule : t.stamp }} />
                 <View
                   style={[
                     styles.head,
-                    { backgroundColor: finished ? t.stock.bed : t.stock.air, borderBottomColor: t.rule },
+                    { backgroundColor: t.paper2, borderBottomColor: t.rule },
                   ]}
                 >
                   <Text style={[styles.kind, { color: t.ink2 }]}>

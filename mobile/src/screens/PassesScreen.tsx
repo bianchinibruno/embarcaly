@@ -55,7 +55,7 @@ export function PassesScreen() {
                     <Text
                       style={[
                         styles.boxLabel,
-                        { color: state === 'issued' ? t.edge.rail : t.ink3 },
+                        { color: state === 'issued' ? t.ok : t.ink3 },
                       ]}
                     >
                       {passLabel(state)}

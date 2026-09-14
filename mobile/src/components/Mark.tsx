@@ -17,10 +17,10 @@ export function Mark({ size = 24, inverted = false }: { size?: number; inverted?
   const ink = inverted ? t.paper : t.ink;
   return (
     <Svg width={size} height={size} viewBox="0 0 48 48">
-      <Rect x={7} y={9} width={6.5} height={30} rx={1} fill={ink} />
-      <Rect x={15} y={9} width={26} height={6.5} rx={1} fill={t.stamp} />
-      <Rect x={15} y={20.75} width={19} height={6.5} rx={1} fill={ink} />
-      <Rect x={15} y={32.5} width={26} height={6.5} rx={1} fill={ink} opacity={0.55} />
+      <Rect x={7} y={9} width={6.5} height={30} fill={ink} />
+      <Rect x={15} y={9} width={26} height={6.5} fill={t.stamp} />
+      <Rect x={15} y={20.75} width={19} height={6.5} fill={ink} />
+      <Rect x={15} y={32.5} width={26} height={6.5} fill={ink} opacity={0.55} />
     </Svg>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import { font, label as labelStyle, space } from '../theme/tokens';
+import { font, label as labelStyle, radius, space, touch } from '../theme/tokens';
 import { useTheme } from '../theme/useTheme';
 
 /** Rótulo em caixa alta com entreletra larga. */
@@ -60,7 +60,7 @@ export function InfoButton({ onPress, hot = false }: { onPress: () => void; hot?
   );
 }
 
-/** Carimbo de borracha, levemente torto. */
+/** Etiqueta de situação. Reta: o carimbo torto era do sistema de papel. */
 export function Stamp({ children }: { children: React.ReactNode }) {
   const t = useTheme();
   return (
@@ -96,8 +96,8 @@ export function Button({
   style?: ViewStyle;
 }) {
   const t = useTheme();
-  const bg = variant === 'solid' ? t.ink : variant === 'stamp' ? t.stamp : 'transparent';
-  const fg = variant === 'ghost' ? t.ink : t.paper;
+  const bg = variant === 'ghost' ? 'transparent' : t.stampFill;
+  const fg = variant === 'ghost' ? t.ink : t.onStamp;
   return (
     <Pressable
       onPress={onPress}
@@ -132,16 +132,18 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   infoText: { fontFamily: font.monoBold, fontSize: 9, lineHeight: 12 },
-  stamp: {
-    borderWidth: 1.5,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-    transform: [{ rotate: '-3deg' }],
-  },
-  stampText: { fontFamily: font.monoBold, fontSize: 9, letterSpacing: 1.6, textTransform: 'uppercase' },
+  stamp: { borderLeftWidth: 3, paddingLeft: 7, paddingVertical: 1 },
+  stampText: { fontFamily: font.monoMedium, fontSize: 9.5, letterSpacing: 1.2, textTransform: 'uppercase' },
   gap: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingLeft: space.sm },
   gapBar: { width: 1, height: 18 },
   gapText: { fontFamily: font.mono, fontSize: 10, letterSpacing: 1, textTransform: 'uppercase' },
-  btn: { paddingVertical: 14, paddingHorizontal: 16, alignItems: 'center' },
-  btnText: { fontFamily: font.monoBold, fontSize: 11, letterSpacing: 2, textTransform: 'uppercase' },
+  btn: {
+    minHeight: touch,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: radius.pill,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnText: { fontFamily: font.uiHeavy, fontSize: 15 },
 });

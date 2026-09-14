@@ -3,15 +3,16 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import {
-  FamiljenGrotesk_400Regular,
-  FamiljenGrotesk_500Medium,
-  FamiljenGrotesk_700Bold,
-} from '@expo-google-fonts/familjen-grotesk';
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
 import {
-  AzeretMono_400Regular,
-  AzeretMono_500Medium,
-  AzeretMono_600SemiBold,
-} from '@expo-google-fonts/azeret-mono';
+  IBMPlexMono_400Regular,
+  IBMPlexMono_500Medium,
+  IBMPlexMono_600SemiBold,
+} from '@expo-google-fonts/ibm-plex-mono';
 
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { AppStateProvider } from './src/state/AppState';
@@ -19,12 +20,13 @@ import { ConfirmProvider } from './src/components/Confirm';
 
 export default function App() {
   const [loaded] = useFonts({
-    FamiljenGrotesk_400Regular,
-    FamiljenGrotesk_500Medium,
-    FamiljenGrotesk_700Bold,
-    AzeretMono_400Regular,
-    AzeretMono_500Medium,
-    AzeretMono_600SemiBold,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+    IBMPlexMono_400Regular,
+    IBMPlexMono_500Medium,
+    IBMPlexMono_600SemiBold,
   });
 
   // A splash nativa segura a tela até a marca poder ser desenhada na fonte certa.
