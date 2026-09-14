@@ -62,15 +62,22 @@ cronograma dia a dia, orçamento com fluxo de caixa, go-to-market, portões,
 que é o único arquivo do repositório feito para você preencher à mão.
 
 ### Identidade — `brand/IDENTIDADE.md`
-Sistema visual **v2 "Painel"**, superfície impressa: papel greenbar `#EFEEE6`,
-duas tintas (chumbo `#14170F` + carimbo violeta `#46356E`), fibra de papel,
-desalinho de registro, furo de arquivo, marca de gráfica.
-Tipos: **Archivo Narrow** (display), **Archivo** (texto), **Courier Prime** (dado).
-Fontes versionadas em `brand/fonts/`.
+Sistema visual **v3**, herdado da Trilha Certa Viagens e adaptado para produto:
+azul marinho `#33366A`, laranja `#ED8426`, e o escuro `#1C1E3C` como fundo do app.
+Tipos: **Poppins** (texto) e **IBM Plex Mono** (dado). Fontes versionadas em
+`brand/fonts/`.
 
-> Duas armadilhas superadas e registradas no documento: creme+terracota (cluster
-> de IA nº1) e preto chapado com neon (cluster nº2). O que resolveu foi
-> **material**, não paleta.
+> **Laranja quer dizer uma coisa só: o tempo está contando.** Aponte para
+> qualquer laranja da peça e pergunte o que está contando ali. Sem resposta,
+> esse laranja sai.
+
+O v2 "Painel" de papel impresso está arquivado em
+[`brand/IDENTIDADE-v2-arquivado.md`](brand/IDENTIDADE-v2-arquivado.md), junto com
+as duas armadilhas que ele resolveu: creme+terracota e preto chapado com neon.
+
+> 🔴 **Decisão em aberto:** o aviso legal diz que o Embarcaly *não é agência de
+> viagens*, e a Trilha Certa é uma. As duas marcas agora compartilham paleta e
+> tipografia. Resolva a relação antes de assinar qualquer peça com as duas.
 
 ### App — `mobile/`
 | Módulo | O que faz | Testes |

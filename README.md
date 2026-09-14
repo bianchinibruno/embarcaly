@@ -115,12 +115,17 @@ não leria no portão, e mataria o produto na primeira viagem real.
 
 ## Design
 
-Direção de arte tirada do próprio universo do problema: **bilhete impresso**.
-Papel tintado por tipo de reserva, picote, código monoespaçado e carimbo.
+**Sistema visual v3.** Azul marinho `#33366A` estrutura, laranja `#ED8426`
+aponta, e o laranja quer dizer uma coisa só: **o tempo está contando**. Fora
+disso a tela é azul e branca.
 
-Cada tipo tem seu papel — azul para voo, areia para hotel, verde para trem, rosa
-para passeio, lilás para carro. Você reconhece o tipo antes de ler a palavra.
-Cor não decora, classifica.
+Poppins para texto, IBM Plex Mono para dado — hora, voo, prazo e artigo da norma.
+Onde a agência assina com a mão, o produto assina com o dado.
+
+Verde, laranja e vermelho são **estado de voo**, não decoração: liberado,
+contando, perdido. Cor não decora, classifica.
+
+Manual completo em [`brand/IDENTIDADE.md`](brand/IDENTIDADE.md).
 
 ## Status
 

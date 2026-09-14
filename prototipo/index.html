@@ -1,31 +1,37 @@
 <title>Embarcaly Jogável</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Azeret+Mono:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
 <style>
   :root{
-    --desk:#D5D9D8;--paper:#FBFAF7;--paper-2:#F4F2EC;
-    --ink:#171C20;--ink-2:#3E474D;--ink-3:#7A848A;
-    --rule:#C9CDCB;--hair:#E2E1DA;--stamp:#B0432B;
-    --stock-air:#DBE7F0;--stock-bed:#F0E6D5;--stock-rail:#DDE8DD;--stock-act:#F1DFE0;--stock-car:#E6E2EF;
-    --edge-air:#7FA0BA;--edge-bed:#BFA274;--edge-rail:#82A382;--edge-act:#C08E92;--edge-car:#9B92B6;
-    --ui:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
-    --mono:"Azeret Mono",ui-monospace,Consolas,monospace;
+    --desk:#161831;--paper:#1C1E3C;--paper-2:#262A54;
+    --ink:#FFFFFF;--ink-2:#C9CBE4;--ink-3:#7C80AE;
+    --rule:#414682;--hair:#2C3060;--stamp:#ED8426;
+    /* No v3 o tipo da reserva e dito pelo icone, nao pela cor: as dez chaves
+       continuam existindo e apontam todas para a mesma superficie. */
+    --stock-air:#262A54;--stock-bed:#262A54;--stock-rail:#262A54;--stock-act:#262A54;--stock-car:#262A54;
+    --edge-air:#414682;--edge-bed:#414682;--edge-rail:#414682;--edge-act:#414682;--edge-car:#414682;
+    --ui:"Poppins","Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --desk:#0E1215;--paper:#1A2025;--paper-2:#151A1E;
-    --ink:#E9EDEE;--ink-2:#B2BCC1;--ink-3:#79858B;
-    --rule:#2C3439;--hair:#242B30;--stamp:#D4715A;
-    --stock-air:#182833;--stock-bed:#2A2418;--stock-rail:#182619;--stock-act:#2B1D20;--stock-car:#211E2C;
-    --edge-air:#4E7893;--edge-bed:#8A7346;--edge-rail:#4E7752;--edge-act:#8E5F66;--edge-car:#6B6390;
+    --desk:#161831;--paper:#1C1E3C;--paper-2:#262A54;
+    --ink:#FFFFFF;--ink-2:#C9CBE4;--ink-3:#7C80AE;
+    --rule:#414682;--hair:#2C3060;--stamp:#ED8426;
+    /* No v3 o tipo da reserva e dito pelo icone, nao pela cor: as dez chaves
+       continuam existindo e apontam todas para a mesma superficie. */
+    --stock-air:#262A54;--stock-bed:#262A54;--stock-rail:#262A54;--stock-act:#262A54;--stock-car:#262A54;
+    --edge-air:#414682;--edge-bed:#414682;--edge-rail:#414682;--edge-act:#414682;--edge-car:#414682;
   }}
   :root[data-theme="dark"]{
-    --desk:#0E1215;--paper:#1A2025;--paper-2:#151A1E;
-    --ink:#E9EDEE;--ink-2:#B2BCC1;--ink-3:#79858B;
-    --rule:#2C3439;--hair:#242B30;--stamp:#D4715A;
-    --stock-air:#182833;--stock-bed:#2A2418;--stock-rail:#182619;--stock-act:#2B1D20;--stock-car:#211E2C;
-    --edge-air:#4E7893;--edge-bed:#8A7346;--edge-rail:#4E7752;--edge-act:#8E5F66;--edge-car:#6B6390;
+    --desk:#161831;--paper:#1C1E3C;--paper-2:#262A54;
+    --ink:#FFFFFF;--ink-2:#C9CBE4;--ink-3:#7C80AE;
+    --rule:#414682;--hair:#2C3060;--stamp:#ED8426;
+    /* No v3 o tipo da reserva e dito pelo icone, nao pela cor: as dez chaves
+       continuam existindo e apontam todas para a mesma superficie. */
+    --stock-air:#262A54;--stock-bed:#262A54;--stock-rail:#262A54;--stock-act:#262A54;--stock-car:#262A54;
+    --edge-air:#414682;--edge-bed:#414682;--edge-rail:#414682;--edge-act:#414682;--edge-car:#414682;
   }
 
   *{box-sizing:border-box}

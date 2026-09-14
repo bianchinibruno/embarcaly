@@ -329,8 +329,8 @@ acento neon. Trocar um padrão por outro não resolve.
 Você apontou o certo — *"fundo forte"*. O tell mais forte não é a cor, é a
 ausência de matéria. Fundo chapado, grade perfeita, zero imperfeição.
 
-**Sistema v2 "Painel", superfície impressa** —
-[`brand/IDENTIDADE.md`](brand/IDENTIDADE.md):
+**Sistema v2 "Painel", superfície impressa** — hoje arquivado em
+[`brand/IDENTIDADE-v2-arquivado.md`](brand/IDENTIDADE-v2-arquivado.md):
 
 | | |
 |---|---|
@@ -347,6 +347,27 @@ ausência de matéria. Fundo chapado, grade perfeita, zero imperfeição.
 2. **Desalinho de registro** — a segunda tinta bate 0,8pt fora da primeira
 3. **Carimbo torto** — 4 a 7 graus, moldura dupla
 4. **Ferragem de escritório** — furo de arquivo, marca de gráfica, picote
+
+### Tentativa 4 · o v3, herdado da Trilha Certa
+
+Em 14/09/2026 o sistema mudou de novo, e desta vez por decisão de negócio, não
+por diagnóstico visual: o v3 herda a paleta e a tipografia da **Trilha Certa
+Viagens**, e adapta o que um produto precisa adaptar.
+
+| | |
+|---|---|
+| Azul marinho | `#33366A` — estrutura |
+| Laranja | `#ED8426` — **o tempo está contando**, e nada além disso |
+| Fundo do app | `#1C1E3C` |
+| Texto | **Poppins** |
+| Dado | **IBM Plex Mono** — onde a agência assina com a mão, o produto assina com o dado |
+
+Duas trocas de sentido em relação ao manual da agência: a manuscrita **sai**, e
+verde e vermelho deixam de ser recurso de comparação para virar **estado de voo**.
+
+O v2 fica registrado aqui porque a lição dele continua valendo — o que separa uma
+peça feita de uma peça gerada é intenção, não paleta. Detalhes em
+[`brand/IDENTIDADE.md`](brand/IDENTIDADE.md).
 
 **Regras duras:** zero canto arredondado, zero sombra, zero gradiente, nada
 centralizado, e **no impresso existe uma tinta de cor só** — situação se comunica
