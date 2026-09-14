@@ -2,7 +2,7 @@
 """
 Gerador das artes de campanha do Embarcaly.
 
-Sistema visual v2 · superfície impressa (brand/IDENTIDADE.md).
+Sistema visual v3 (brand/IDENTIDADE.md). Escuro é o padrão da peça.
 Produz, prontos para publicar:
 
   artes/carrossel-<slug>/fl-NN.png   1080x1350, carrossel de Instagram
@@ -24,28 +24,34 @@ REPO = os.path.dirname(AQUI)
 F = os.path.join(REPO, "brand", "fonts")
 SAIDA = os.path.join(AQUI, "artes")
 
+# Os apelidos continuam os mesmos: so a fonte por tras deles muda.
 for nome, arq in [
-    ("AN", "ArchivoNarrow-500.ttf"), ("AN-Bd", "ArchivoNarrow-700.ttf"),
-    ("AR", "Archivo-400.ttf"), ("AR-Sb", "Archivo-600.ttf"),
-    ("CP", "CourierPrime-400.ttf"), ("CP-Bd", "CourierPrime-700.ttf"),
+    ("AN", "Poppins-600.ttf"), ("AN-Bd", "Poppins-700.ttf"),
+    ("AR", "Poppins-400.ttf"), ("AR-Sb", "Poppins-600.ttf"),
+    ("CP", "IBMPlexMono-400.ttf"), ("CP-Bd", "IBMPlexMono-600.ttf"),
 ]:
     pdfmetrics.registerFont(TTFont(nome, os.path.join(F, arq)))
 
-PAPEL     = HexColor("#EFEEE6")
-CALHA     = HexColor("#E6E5DB")
-BARRA     = HexColor("#DCE3D8")
-BARRA_ESC = HexColor("#CBD6C6")
-CHUMBO    = HexColor("#14170F")
-CHUMBO_2  = HexColor("#5C6356")
-CHUMBO_3  = HexColor("#8B9185")
-FIO       = HexColor("#B4B8A9")
-CARIMBO   = HexColor("#46356E")
-CARIMBO_L = HexColor("#7E6BA8")
+# Os papeis continuam os mesmos — PAPEL e o fundo, CHUMBO e a tinta — mas no v3
+# eles se invertem: o fundo e azul escuro e a tinta e branca. Manter os nomes faz
+# cada chamada de desenho ja existente cair no lugar certo.
+PAPEL     = HexColor("#1C1E3C")   # fundo da peca
+CALHA     = HexColor("#262A54")
+BARRA     = HexColor("#262A54")   # banda de tabela
+BARRA_ESC = HexColor("#2F3463")
+CHUMBO    = HexColor("#FFFFFF")   # tinta principal
+CHUMBO_2  = HexColor("#C9CBE4")
+CHUMBO_3  = HexColor("#7C80AE")
+FIO       = HexColor("#414682")
+CARIMBO   = HexColor("#ED8426")   # contando, agir agora
+CARIMBO_L = HexColor("#ED8426")
+AZUL      = HexColor("#33366A")   # texto sobre preenchimento laranja
+BARRA_PE  = HexColor("#ED8426")   # a faixa colada na base
 
 
 # ------------------------------------------------------------------ base
 class Peca:
-    """Uma peça impressa. Papel, fibra, ferragem e duas tintas."""
+    """Uma peça do v3. Fundo azul escuro, tinta branca, laranja no que conta."""
 
     def __init__(self, larg, alt, margem=None, semente=400):
         self.W, self.H = larg, alt
@@ -68,35 +74,20 @@ class Peca:
             c.setStrokeColor(FIO)
             c.setLineWidth(1)
             c.line(cal, 0, cal, self.H)
-            for fy in (self.H * 0.24, self.H * 0.52, self.H * 0.80):
-                c.setFillColor(HexColor("#DAD8CC"))
-                c.circle(cal / 2, fy, cal * 0.17, stroke=0, fill=1)
-                c.setStrokeColor(HexColor("#C2C0B2"))
-                c.circle(cal / 2, fy, cal * 0.17, stroke=1, fill=0)
-        self.fibra()
 
     def fibra(self):
+        """Sem efeito no v3. Grao so em superficie clara, nunca sobre o escuro."""
+        return
+
+    def barra_pe(self, alt=None):
+        """A faixa laranja colada na base. Fecha toda folha, sem margem."""
         c = self.c
-        n = int(self.W * self.H / 380)
-        for _ in range(n):
-            x = self.rnd.uniform(0, self.W)
-            y = self.rnd.uniform(0, self.H)
-            t = self.rnd.uniform(0.4, 1.5)
-            c.setFillColor(Color(0.08, 0.09, 0.06, alpha=self.rnd.uniform(0.03, 0.09)))
-            c.rect(x, y, t, t, stroke=0, fill=1)
+        c.setFillColor(BARRA_PE)
+        c.rect(0, 0, self.W, alt or max(8, self.W * 0.011), stroke=0, fill=1)
 
     def registro(self, cantos=(("d", "c"), ("d", "b"))):
-        c = self.c
-        d = self.W * 0.018
-        for hx, vy in cantos:
-            x = self.W - self.M * 0.45 if hx == "d" else self.M * 0.45
-            y = self.H - self.M * 0.45 if vy == "c" else self.M * 0.45
-            c.setStrokeColor(CHUMBO_3)
-            c.setLineWidth(1.1)
-            c.line(x - d, y, x + d, y)
-            c.line(x, y - d, x, y + d)
-            c.setStrokeColor(CARIMBO_L)
-            c.line(x - d + 1.6, y + 1.6, x + d + 1.6, y + 1.6)
+        """Sem efeito no v3. Marca de grafica era vocabulario do v2."""
+        return
 
     def wrap(self, txt, fonte, tam, larg):
         out, atual = [], ""
@@ -123,21 +114,20 @@ class Peca:
             y -= ent
         return y
 
-    def carimbo(self, x, y, linhas, ang=-5.5, tam=None):
+    def carimbo(self, x, y, linhas, ang=0, tam=None):
+        """Etiqueta reta. No v2 isto girava; o v3 nao tem carimbo torto.
+
+        O nome da funcao fica para nao quebrar as chamadas das pecas.
+        """
         c = self.c
         tam = tam or self.W * 0.026
         c.saveState()
         c.translate(x, y)
-        c.rotate(ang)
         larg = max(pdfmetrics.stringWidth(l.upper(), "CP-Bd", tam) for l in linhas) + tam * 2.2
         alt = tam * (1.9 * len(linhas) + 1.1)
-        c.setStrokeColor(Color(0.49, 0.42, 0.66, alpha=0.38))
-        c.setLineWidth(tam * 0.17)
-        c.rect(-larg / 2 + tam * 0.1, -alt / 2 - tam * 0.12, larg, alt, stroke=1, fill=0)
         c.setStrokeColor(CARIMBO)
+        c.setLineWidth(tam * 0.11)
         c.rect(-larg / 2, -alt / 2, larg, alt, stroke=1, fill=0)
-        c.setLineWidth(tam * 0.05)
-        c.rect(-larg / 2 + tam * 0.3, -alt / 2 + tam * 0.3, larg - tam * 0.6, alt - tam * 0.6, stroke=1, fill=0)
         yy = alt / 2 - tam * 1.55
         for l in linhas:
             c.setFont("CP-Bd", tam)
@@ -202,6 +192,7 @@ def slide(pasta, n, total, desenhar, semente=400):
     desenhar(p)
 
     p.registro(cantos=(("d", "b"),))
+    p.barra_pe()
     p.salvar(tmp, os.path.join(pasta, "fl-%02d.png" % n))
 
 
@@ -561,6 +552,7 @@ def prints_loja():
         c.setFillColor(CHUMBO_3)
         c.drawString(p.M, p.M, "RESOLUÇÃO ANAC Nº 400/2016")
         p.registro(cantos=(("d", "b"),))
+        p.barra_pe()
         p.salvar(tmp, os.path.join(pasta, "print-%d.png" % i))
 
     # gráfico de destaque
@@ -582,6 +574,7 @@ def prints_loja():
     c.drawString(p.M, 76, "EMBARCALY")
     p.carimbo(860, 250, ["android"], ang=-6, tam=26)
     p.registro(cantos=(("d", "c"), ("d", "b")))
+    p.barra_pe()
     p.salvar(tmp, os.path.join(pasta, "capa.png"))
     print("  loja: 6 prints + capa")
 
