@@ -1,11 +1,18 @@
-# Política de privacidade — MINUTA
+# Política de privacidade — texto-fonte
 
-> 🔴 **MINUTA. NÃO PUBLICAR SEM REVISÃO DE ADVOGADO.**
-> **Bloqueia o envio à Play Store**, que exige esta política numa URL pública.
+> 🟠 **PUBLICADA em 14/09/2026 como versão 1.0**, em
+> [embarcaly.com/privacidade](https://embarcaly.com/privacidade/) — fonte em
+> `privacidade/index.html`. **A revisão de advogado continua pendente**
+> (cronograma semana 8, R$400): publicar não é o mesmo que revisar.
+>
+> A página publicada tem três trechos que **não estão neste texto**, porque
+> descrevem o que o site faz hoje e a minuta só descrevia o aplicativo:
+> o Formspree nomeado com a transferência internacional, o Google Fonts, e o
+> aviso de que o aplicativo ainda não existe. **Ao editar, edite os dois.**
 
 **Controlador:** Bruno Bianchini, pessoa física
 **Contato e encarregado (LGPD):** contato@embarcaly.com
-**Versão:** minuta 1 · **Vigência:** —
+**Versão:** 1.0 · **Vigência:** desde 14/09/2026
 
 ---
 
