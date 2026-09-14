@@ -624,18 +624,85 @@
 
 <!-- ======================= 6 · CONVERSA ======================= -->
 <section class="faixa">
-  <div class="dentro">
-    <span class="rot">06 · antes de escrever mais uma linha de código</span>
-    <h2>Você é quem organiza a viagem do grupo?</h2>
-    <p class="guia">
-      A pessoa que monta o roteiro, guarda os vouchers e responde a que horas é tudo.
-      <b>Quero te ouvir vinte minutos.</b> Não tenho nada para vender: quero entender
-      como você faz hoje antes de decidir o que construir. Mando o guia completo e te
-      aviso primeiro quando sair.
-    </p>
-    <div class="acoes">
-      <a class="btn" href="mailto:contato@embarcaly.com?subject=Pesquisa%20Embarcaly&amp;body=Topo%20conversar%2020%20min.%0A%0AViagem%20com%204%2B%20reservas%20nos%20ultimos%2018%20meses%3A%20%0AQuem%20montou%20o%20roteiro%3A%20%0AiPhone%20ou%20Android%3A%20%0AMelhores%20horarios%3A%20">Quero conversar</a>
-      <span class="anota">20 MINUTOS, POR CHAMADA</span>
+  <div class="dentro grade-espera">
+    <div>
+      <span class="rot">06 · antes de escrever mais uma linha de código</span>
+      <h2 style="margin-top:0.7rem">Você é quem organiza a viagem do grupo?</h2>
+      <p class="guia" style="margin-top:0.85rem">
+        A pessoa que monta o roteiro, guarda os vouchers e responde a que horas é tudo.
+        <b>Quero te ouvir vinte minutos.</b> Não tenho nada para vender: quero entender
+        como você faz hoje antes de decidir o que construir. Mando o guia completo e te
+        aviso primeiro quando sair.
+      </p>
+      <p class="guia">
+        Preenche aqui e eu te respondo para marcar. <b>Você não precisa abrir o seu
+        e-mail</b> — o formulário envia sozinho.
+      </p>
+      <div class="acoes">
+        <span class="anota">20 MINUTOS · POR CHAMADA · SEM NADA PARA VENDER</span>
+      </div>
+    </div>
+
+    <div>
+      <form id="conversa" action="https://formspree.io/f/mgaejzrr" method="POST">
+        <input type="hidden" name="_subject" value="Embarcaly · quero conversar (entrevista)">
+        <input type="hidden" name="origem" value="landing institucional · seção 06">
+
+        <div class="campo">
+          <label for="c-nome">Como te chamo</label>
+          <input type="text" id="c-nome" name="nome" required autocomplete="name" placeholder="Seu nome">
+        </div>
+        <div class="campo">
+          <label for="c-email">E-mail para eu responder</label>
+          <input type="email" id="c-email" name="email" required autocomplete="email" placeholder="voce@email.com">
+        </div>
+        <div class="campo">
+          <label for="c-organiza">Quem monta o roteiro do grupo</label>
+          <select id="c-organiza" name="quem_organiza" required>
+            <option value="">Escolha</option>
+            <option>Sou eu</option>
+            <option>Eu e mais alguém</option>
+            <option>Outra pessoa organiza</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="c-reservas">Viagem com 4 ou mais reservas nos últimos 18 meses</label>
+          <select id="c-reservas" name="reservas_18m" required>
+            <option value="">Escolha</option>
+            <option>Sim</option>
+            <option>Não</option>
+            <option>Não lembro</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="c-sistema">Seu celular</label>
+          <select id="c-sistema" name="sistema" required>
+            <option value="">Escolha</option>
+            <option>Android</option>
+            <option>iPhone</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="c-horario">Melhor horário para a chamada</label>
+          <select id="c-horario" name="horario" required>
+            <option value="">Escolha</option>
+            <option>Manhã, dia de semana</option>
+            <option>Tarde, dia de semana</option>
+            <option>Noite, dia de semana</option>
+            <option>Fim de semana</option>
+          </select>
+        </div>
+
+        <button class="btn" type="submit">Quero conversar</button>
+      </form>
+
+      <div id="recado-conversa" hidden></div>
+
+      <p class="fino">
+        Guardo só isso, para marcar a conversa e te avisar do lançamento. Não passo para
+        ninguém. Peça a exclusão quando quiser — <a class="link" href="privacidade/">como
+        trato seus dados</a>.
+      </p>
     </div>
   </div>
 </section>
@@ -657,9 +724,9 @@
     </div>
 
     <div>
-      <!-- Formspree "institucional" — plano grátis, 50 envios/mês. Estourou a
-           cota, o envio some sem erro na página: confira o contador no painel.
-           O bloco SEU_ID no script abaixo é rede de segurança e não roda mais. -->
+      <!-- Formspree "institucional" — plano grátis, 50 envios/mês, COMPARTILHADO
+           com o formulário de conversa da seção 06. Estourou a cota, o envio some
+           sem erro na página: confira o contador no painel. -->
       <form id="espera" action="https://formspree.io/f/mgaejzrr" method="POST">
         <div class="campo">
           <label for="email">E-mail</label>
@@ -725,6 +792,7 @@
           <a href="https://instagram.com/embarcaly" rel="me">Instagram</a>
           <a href="https://github.com/bianchinibruno/embarcaly">GitHub</a>
           <a href="privacidade/">Privacidade</a>
+          <a href="termos/">Termos</a>
           <a href="mailto:contato@embarcaly.com">Contato</a>
         </div>
       </div>
@@ -757,57 +825,60 @@
 
 <script>
   (function () {
-    var form = document.getElementById('espera');
-    var recado = document.getElementById('recado');
-    if (!form) return;
+    var ERRO = 'Não consegui enviar agora. Tenta de novo ou escreve pra '
+      + '<a class="link" href="mailto:contato@embarcaly.com">contato@embarcaly.com</a>.';
 
-    function mostrar(texto, html) {
-      recado.hidden = false;
-      if (html) { recado.innerHTML = texto; } else { recado.textContent = texto; }
-    }
+    // Liga um formulário ao Formspree sem sair da página: a pessoa não precisa
+    // abrir o próprio e-mail. `sucesso` recebe o form e devolve o texto do recado.
+    function ligar(idForm, idRecado, rotuloBotao, sucesso) {
+      var form = document.getElementById(idForm);
+      var recado = document.getElementById(idRecado);
+      if (!form || !recado) return;
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var acao = form.getAttribute('action') || '';
-
-      if (acao.indexOf('SEU_ID') !== -1) {
-        var corpo = 'Quero entrar na lista de espera do Embarcaly.\n\n'
-          + 'E-mail: ' + form.email.value + '\n'
-          + 'Proxima viagem: ' + form.proxima_viagem.value + '\n'
-          + 'Reservas: ' + form.reservas.value + '\n'
-          + 'Celular: ' + form.sistema.value + '\n';
-        window.location.href = 'mailto:contato@embarcaly.com'
-          + '?subject=' + encodeURIComponent('Lista de espera do Embarcaly')
-          + '&body=' + encodeURIComponent(corpo);
-        mostrar('Abri seu e-mail com a mensagem pronta. É só enviar. Se não abriu, escreve pra '
-          + '<a class="link" href="mailto:contato@embarcaly.com">contato@embarcaly.com</a>.', true);
-        return;
+      function mostrar(texto, html) {
+        recado.hidden = false;
+        if (html) { recado.innerHTML = texto; } else { recado.textContent = texto; }
       }
 
-      // A ordem das lojas é decisão travada (D3): Play antes da Apple. Quem
-      // marca iPhone não pode ouvir a mesma promessa de quem marca Android.
-      var ehIphone = form.sistema.value === 'iPhone';
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var acao = form.getAttribute('action') || '';
+        var botao = form.querySelector('button[type="submit"]');
 
-      var botao = form.querySelector('button[type="submit"]');
-      botao.disabled = true;
-      botao.textContent = 'Enviando';
+        botao.disabled = true;
+        botao.textContent = 'Enviando';
 
-      fetch(acao, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' }
-      }).then(function (r) {
-        if (!r.ok) throw new Error('falhou');
-        form.hidden = true;
-        mostrar(ehIphone
-          ? 'Pronto. O Embarcaly começa no Android, então o iPhone vem depois — te aviso assim que tiver data.'
-          : 'Pronto. Te aviso no dia que entrar na Play Store.');
-      }).catch(function () {
-        botao.disabled = false;
-        botao.textContent = 'Entrar na lista';
-        mostrar('Não consegui enviar agora. Tenta de novo ou escreve pra '
-          + '<a class="link" href="mailto:contato@embarcaly.com">contato@embarcaly.com</a>.', true);
+        fetch(acao, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(function (r) {
+          if (!r.ok) throw new Error('falhou');
+          var texto = sucesso(form);
+          form.hidden = true;
+          mostrar(texto);
+        }).catch(function () {
+          botao.disabled = false;
+          botao.textContent = rotuloBotao;
+          mostrar(ERRO, true);
+        });
       });
+    }
+
+    // Lista de espera. A ordem das lojas é decisão travada (D3): Play antes da
+    // Apple. Quem marca iPhone não pode ouvir a mesma promessa de quem marca Android.
+    ligar('espera', 'recado', 'Entrar na lista', function (form) {
+      return form.sistema.value === 'iPhone'
+        ? 'Pronto. O Embarcaly começa no Android, então o iPhone vem depois — te aviso assim que tiver data.'
+        : 'Pronto. Te aviso no dia que entrar na Play Store.';
+    });
+
+    // Pedido de conversa de 20 minutos.
+    ligar('conversa', 'recado-conversa', 'Quero conversar', function (form) {
+      var nome = (form.nome.value || '').trim().split(' ')[0];
+      return (nome ? 'Recebi, ' + nome + '. ' : 'Recebi. ')
+        + 'Te respondo em até dois dias para marcar, no horário que você escolheu. '
+        + 'Se preferir adiantar, o guia está no botão do topo.';
     });
   })();
 </script>

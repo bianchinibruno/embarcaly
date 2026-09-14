@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1C1E3C">
+<meta name="color-scheme" content="light">
+
+<title>Termos de uso — Embarcaly</title>
+<meta name="description" content="O que o Embarcaly é, o que ele não é, e de que ele não responde. Leia a seção 2 inteira.">
+
+<link rel="canonical" href="https://embarcaly.com/termos/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Embarcaly">
+<meta property="og:title" content="Termos de uso — Embarcaly">
+<meta property="og:description" content="Não é advogado, não é agência, não fala com ninguém por você e pode errar a conta.">
+<meta property="og:url" content="https://embarcaly.com/termos/">
+<meta property="og:image" content="https://embarcaly.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://embarcaly.com/og-image.png">
+
+<link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="../brand/png/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  /* Sistema visual v3. Ver brand/IDENTIDADE.md. Documento: superfície clara. */
+  :root {
+    --azul:      #33366A;
+    --breu:      #1C1E3C;
+    --carta:     #262A54;
+    --fio-esc:   #414682;
+    --laranja:   #ED8426;
+    --laranja-t: #C96A16;
+    --papel:     #F2F1EF;
+    --branco:    #FFFFFF;
+    --fio:       #DEDDD9;
+    --apoio:     #5A5D80;
+    --fraco:     #8A8A96;
+    --claro:     #C9CBE4;
+    --fraco-esc: #7C80AE;
+
+    --txt:  "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
+    --dado: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+    --max: 52rem;
+    --gut: clamp(1.25rem, 5vw, 4.5rem);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--papel); scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--azul);
+    font-family: var(--txt);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .faixa { padding-inline: var(--gut); }
+  .dentro { max-width: var(--max); margin-inline: auto; }
+  .escuro { background: var(--breu); color: var(--branco); }
+
+  .dado { font-family: var(--dado); font-variant-numeric: tabular-nums; }
+  .rot { font-family: var(--dado); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--laranja-t); }
+  .escuro .rot { color: var(--laranja); }
+
+  h1 { font-size: clamp(2rem, 5.5vw, 3rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin: 0; }
+  h2 { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; margin: 0; }
+  h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.4rem; }
+  p { margin: 0 0 0.9rem; }
+  b, strong { font-weight: 600; }
+
+  /* topo */
+  .topo { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1.1rem; flex-wrap: wrap; }
+  .marca { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: inherit; }
+  .marca .nome { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.04em; }
+  .marca .nome i { font-style: normal; color: var(--laranja); }
+  .escuro a { color: var(--laranja); }
+  a { color: var(--laranja-t); }
+
+  /* abertura */
+  .abre .dentro { padding-block: clamp(2.5rem, 5vw, 3.5rem) clamp(2.5rem, 5vw, 3.25rem); }
+  .ficha { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--fio-esc); border: 1px solid var(--fio-esc); margin-top: 2rem; }
+  .ficha div { background: var(--breu); padding: 0.95rem 1.1rem; }
+  .ficha .k { font-family: var(--dado); font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fraco-esc); }
+  .ficha .v { font-size: 0.9375rem; font-weight: 500; margin-top: 0.2rem; overflow-wrap: break-word; }
+  @media (max-width: 46rem) { .ficha { grid-template-columns: minmax(0, 1fr); } }
+
+  /* resumo */
+  .resumo { background: var(--laranja); color: var(--azul); }
+  .resumo .dentro { padding-block: 1.5rem; }
+  .resumo .t { font-size: clamp(1.05rem, 2.6vw, 1.3rem); font-weight: 600; line-height: 1.4; letter-spacing: -0.015em; }
+
+  /* corpo */
+  main { padding-block: clamp(2.5rem, 5vw, 3.5rem) 1rem; }
+  section { margin-bottom: 2.6rem; }
+  .cab { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline; margin-bottom: 0.9rem; }
+  .cab .n { font-family: var(--dado); font-size: 1.05rem; font-weight: 600; color: var(--laranja-t); }
+  .corpo { padding-left: 3.5rem; }
+  @media (max-width: 40rem) { .corpo { padding-left: 0; } .cab { grid-template-columns: 2rem minmax(0, 1fr); gap: 0.7rem; } }
+
+  .item { margin-bottom: 0.9rem; }
+  .item .num { font-family: var(--dado); font-size: 0.8125rem; font-weight: 600; color: var(--laranja-t); margin-right: 0.45rem; }
+
+  ul { margin: 0.2rem 0 1rem; padding-left: 1.1rem; }
+  li { margin-bottom: 0.35rem; }
+
+  .nota { background: var(--branco); border: 1px solid var(--fio); border-left: 4px solid var(--laranja); padding: 1.1rem 1.3rem; margin: 1.2rem 0; }
+  .nota p:last-child { margin-bottom: 0; }
+  .nota .rot { display: block; margin-bottom: 0.4rem; }
+
+  .destaque { background: var(--azul); color: var(--branco); padding: 1.3rem 1.5rem; margin: 1.2rem 0; }
+  .destaque p:last-child { margin-bottom: 0; }
+  .destaque .rot { display: block; color: var(--laranja); margin-bottom: 0.45rem; }
+
+  /* rodapé */
+  footer { padding-block: 2.5rem; }
+  .aviso { font-size: 0.8125rem; font-weight: 300; color: var(--claro); line-height: 1.65; }
+  .rodape-links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.2rem; }
+  .rodape-links a { font-size: 0.875rem; font-weight: 300; color: var(--claro); text-decoration: none; }
+  .rodape-links a:hover { color: var(--laranja); }
+  .ed { font-family: var(--dado); font-size: 0.6875rem; color: var(--fraco-esc); letter-spacing: 0.1em; margin-top: 1.6rem; }
+  .barra { height: 12px; background: var(--laranja); }
+</style>
+</head>
+<body>
+
+<div class="escuro faixa">
+  <div class="dentro topo">
+    <a class="marca" href="../">
+      <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="8" y="6" width="32" height="6.5" fill="#ED8426"/>
+        <rect x="8" y="20.75" width="23" height="6.5" fill="#FFFFFF"/>
+        <rect x="8" y="35.5" width="32" height="6.5" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="8" y="6" width="6.5" height="36" fill="#FFFFFF"/>
+      </svg>
+      <span class="nome">embarca<i>ly</i></span>
+    </a>
+    <span class="rot">Documento público</span>
+  </div>
+</div>
+
+<header class="escuro faixa abre">
+  <div class="dentro">
+    <span class="rot">Contrato de uso</span>
+    <h1 style="margin-top:0.9rem">Termos de uso</h1>
+
+    <div class="ficha">
+      <div><div class="k">Responsável</div><div class="v">Bruno Bianchini, pessoa física</div></div>
+      <div><div class="k">Contato</div><div class="v"><a href="mailto:contato@embarcaly.com">contato@embarcaly.com</a></div></div>
+      <div><div class="k">Versão</div><div class="v dado">1.0 · 14 set 2026</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="resumo faixa">
+  <div class="dentro">
+    <p class="t" style="margin:0">O Embarcaly organiza a sua viagem e te conta o que a lei diz. Ele não é
+    advogado, não é agência, não fala com ninguém por você e pode errar a conta. Confirme com o fornecedor
+    antes de decidir qualquer coisa.</p>
+  </div>
+</div>
+
+<main class="faixa">
+  <div class="dentro">
+
+    <div class="nota">
+      <span class="rot">O que existe hoje, e o que ainda não existe</span>
+      <p style="margin-bottom:0">O aplicativo Embarcaly <strong>ainda não foi publicado</strong>. Hoje existe
+      só este site. Estes termos já valem para o aplicativo porque serão os que valerão quando ele sair — as
+      seções <strong>6</strong> e <strong>7</strong> descrevem dados e pagamento que ainda não acontecem.</p>
+    </div>
+
+    <section>
+      <div class="cab"><span class="n">01</span><h2>Quem somos, e o que este aplicativo é</h2></div>
+      <div class="corpo">
+        <p>O Embarcaly é um aplicativo de organização de viagem, desenvolvido e mantido por
+        <strong>Bruno Bianchini, pessoa física</strong>, contato
+        <a href="mailto:contato@embarcaly.com">contato@embarcaly.com</a>.</p>
+        <p>O aplicativo reúne num só lugar as reservas que <strong>você</strong> cadastra — voo, hospedagem,
+        transporte, passeio — e calcula, a partir desses dados, a sequência de ações da sua viagem.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">02</span><h2>O que este aplicativo não é</h2></div>
+      <div class="corpo">
+        <div class="destaque">
+          <span class="rot">Leia esta seção inteira</span>
+          <p style="margin-bottom:0">É a mais importante deste documento.</p>
+        </div>
+        <p class="item"><span class="num">2.1</span>O Embarcaly <strong>não é escritório de advocacia</strong>,
+        não presta serviço jurídico, não emite parecer e <strong>não representa você</strong> perante companhia
+        aérea, órgão regulador, órgão de defesa do consumidor ou tribunal.</p>
+        <p class="item"><span class="num">2.2</span>O Embarcaly <strong>não é agência de viagens nem operadora
+        de turismo</strong>. Não vende passagem, hospedagem, pacote ou seguro; não intermedeia, confirma, altera
+        ou cancela reserva; e não recebe comissão de fornecedor de viagem.</p>
+        <p class="item"><span class="num">2.3</span>Nenhuma relação contratual passa a existir entre você e os
+        fornecedores da sua viagem por causa deste aplicativo. Sua relação com eles continua sendo
+        exclusivamente com eles.</p>
+        <p class="item"><span class="num">2.4</span>O Embarcaly <strong>não emite cartão de embarque</strong> e
+        nunca gera código de barras de embarque. O código de um cartão carrega o número de sequência do
+        check-in, atribuído pelo sistema da companhia — só ela emite.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">03</span><h2>Informação sobre direitos do passageiro</h2></div>
+      <div class="corpo">
+        <p class="item"><span class="num">3.1</span>O aplicativo exibe informação de caráter educativo sobre
+        direitos do passageiro aéreo, baseada na <strong>Resolução ANAC nº 400/2016</strong> e no
+        <strong>Código de Defesa do Consumidor</strong>, com citação do artigo correspondente.</p>
+        <p class="item"><span class="num">3.2</span>Essa informação <strong>não constitui consultoria
+        jurídica</strong> e não é orientação sobre o seu caso concreto.</p>
+        <p class="item"><span class="num">3.3</span>Normas mudam. Você deve conferir a versão vigente em
+        <a href="https://www.anac.gov.br" rel="noopener">anac.gov.br</a>. Em caso de dúvida, procure o Procon,
+        a ANAC ou um advogado.</p>
+        <p class="item"><span class="num">3.4</span>Conhecer o direito não garante o atendimento dele. O
+        Embarcaly <strong>não promete, não intermedeia e não garante</strong> reembolso, compensação,
+        indenização ou qualquer resultado junto a companhia aérea ou fornecedor.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">04</span><h2>Sobre os cálculos</h2></div>
+      <div class="corpo">
+        <p class="item"><span class="num">4.1</span>Horários, prazos, situações e recomendações exibidos pelo
+        aplicativo são <strong>calculados a partir dos dados que você cadastrou</strong> e servem como
+        <strong>apoio à sua decisão</strong>.</p>
+        <p class="item"><span class="num">4.2</span>O aplicativo <strong>não consulta fonte oficial de status
+        de voo</strong>. Ele não sabe, por conta própria, se um voo atrasou, mudou de portão ou foi cancelado.</p>
+        <p class="item"><span class="num">4.3</span>O Embarcaly <strong>não garante</strong> exatidão,
+        atualização, completude ou disponibilidade de qualquer informação calculada.</p>
+        <div class="destaque">
+          <span class="rot">Antes de decidir qualquer coisa</span>
+          <p style="margin-bottom:0"><span class="num" style="color:#ED8426">4.4</span>Antes de remarcar,
+          cancelar, deixar de comparecer ou tomar qualquer decisão com efeito financeiro,
+          <strong>confirme diretamente com a companhia aérea, o hotel ou o fornecedor</strong>. A decisão é sua
+          e a responsabilidade por ela é sua.</p>
+        </div>
+        <p class="item"><span class="num">4.5</span>O aplicativo <strong>não executa ação nenhuma em seu
+        nome.</strong> Ele não cancela, não remarca, não contata fornecedor e não envia mensagem por você.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">05</span><h2>Limitação de responsabilidade</h2></div>
+      <div class="corpo">
+        <p class="item"><span class="num">5.1</span>Na máxima extensão permitida pela lei brasileira, o
+        Embarcaly não responde por perda de reserva, perda de voo, custo de remarcação, diária não utilizada,
+        lucro cessante ou qualquer dano decorrente de decisão tomada com base em informação exibida pelo
+        aplicativo.</p>
+        <p class="item"><span class="num">5.2</span>O aplicativo é fornecido <strong>no estado em que se
+        encontra</strong>, sem garantia de funcionamento ininterrupto ou livre de erro.</p>
+        <div class="nota">
+          <span class="rot">O que esta seção não faz</span>
+          <p style="margin-bottom:0"><span class="num">5.3</span>Nada nesta seção afasta responsabilidade por
+          dolo ou por violação de direito do consumidor que a lei não permita afastar. O Código de Defesa do
+          Consumidor limita o alcance de cláusulas deste tipo, e <strong>essa limitação prevalece</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">06</span><h2>Seus dados</h2></div>
+      <div class="corpo">
+        <p class="item"><span class="num">6.1</span>Os dados da sua viagem ficam <strong>no seu
+        aparelho</strong>. Tratamento completo na <a href="../privacidade/">política de privacidade</a>.</p>
+        <p class="item"><span class="num">6.2</span>Ao cadastrar acompanhantes, você declara ter autorização
+        para informar os dados dessas pessoas.</p>
+        <p class="item"><span class="num">6.3</span>Os dados de uma viagem são excluídos <strong>30 dias após
+        o retorno</strong>, ou imediatamente quando você exclui a viagem.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">07</span><h2>Pagamento</h2></div>
+      <div class="corpo">
+        <p class="item"><span class="num">7.1</span>Organizar a viagem é gratuito, sem limite de viagens e sem
+        prazo.</p>
+        <p class="item"><span class="num">7.2</span>O acompanhamento ativo de uma viagem custa
+        <strong>R$39 por viagem</strong>, pago uma vez, válido de sete dias antes do embarque até três dias
+        após o retorno. <strong>Não é assinatura e não há renovação automática.</strong></p>
+        <p class="item"><span class="num">7.3</span>Você pode pedir devolução integral em até <strong>7 dias
+        após o retorno</strong>, sem precisar justificar. O pedido é feito pelo e-mail de contato.</p>
+        <p class="item"><span class="num">7.4</span>A cobrança é processada pela loja de aplicativos, sujeita
+        também aos termos dela.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">08</span><h2>Uso aceitável</h2></div>
+      <div class="corpo">
+        <p>Você não pode usar o aplicativo para fim ilícito, tentar acessar dados de outra pessoa, nem
+        reproduzir o conteúdo como se fosse consultoria profissional sua.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">09</span><h2>Mudanças</h2></div>
+      <div class="corpo">
+        <p>Estes termos podem mudar. Mudança relevante é avisada dentro do aplicativo com 30 dias de
+        antecedência, e a data de versão no topo desta página é atualizada. Continuar usando significa aceitar.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="cab"><span class="n">10</span><h2>Lei e foro</h2></div>
+      <div class="corpo">
+        <p>Lei brasileira. Foro do domicílio do consumidor, na forma do Código de Defesa do Consumidor.</p>
+      </div>
+    </section>
+
+    <section style="margin-bottom:1rem">
+      <div class="cab"><span class="n">11</span><h2>Contato</h2></div>
+      <div class="corpo">
+        <p><a href="mailto:contato@embarcaly.com">contato@embarcaly.com</a></p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="escuro faixa">
+  <div class="dentro">
+    <span class="rot">Aviso</span>
+    <p class="aviso" style="margin-top:0.6rem">
+      O Embarcaly é um aplicativo de organização de viagem. Não é escritório de advocacia, não presta serviço
+      jurídico e não representa você perante companhia aérea, órgão público ou tribunal. Também não é agência
+      de viagens: não vende passagem, hospedagem nem pacote.
+    </p>
+    <div class="rodape-links">
+      <a href="../">Site</a>
+      <a href="../privacidade/">Privacidade</a>
+      <a href="../guia-direitos-do-passageiro.pdf" download>Guia em PDF</a>
+      <a href="mailto:contato@embarcaly.com">Contato</a>
+    </div>
+    <div class="ed">EMBARCALY · BRUNO BIANCHINI · TERMOS DE USO 1.0 · 14 SET 2026</div>
+  </div>
+</footer>
+<div class="barra"></div>
+
+</body>
+</html>

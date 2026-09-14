@@ -1,10 +1,18 @@
-# Termos de uso — MINUTA
+# Termos de uso — texto-fonte
 
-> 🔴 **MINUTA. NÃO PUBLICAR SEM REVISÃO DE ADVOGADO.**
-> Escrita por quem não é advogado, para servir de ponto de partida à revisão.
+> 🟠 **PUBLICADOS em 14/09/2026 como versão 1.0**, em
+> [embarcaly.com/termos](https://embarcaly.com/termos/) — fonte em
+> `termos/index.html`. **A revisão de advogado continua pendente**
+> (cronograma semana 8, R$400): publicar não é o mesmo que revisar.
 > Perguntas a levar na consulta: [00-protecao.md](00-protecao.md).
+>
+> A **seção 5** é a que mais precisa de revisão. O CDC limita bastante o que
+> uma cláusula de limitação de responsabilidade pode fazer numa relação de
+> consumo, e cláusula abusiva não só cai como pesa contra quem a escreveu.
+> Na página publicada, o 5.3 ganhou uma frase dizendo que a limitação do CDC
+> prevalece. **Ao editar, edite os dois.**
 
-**Última revisão:** — · **Vigência:** — · **Versão:** minuta 1
+**Vigência:** desde 14/09/2026 · **Versão:** 1.0
 
 ---
 
