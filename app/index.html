@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1C1E3C">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+
+<title>Entrar | Embarcaly</title>
+<meta name="description" content="Entre no Embarcaly com o seu e-mail. Sem senha.">
+
+<!-- Instalável na tela de início, no Android e no iPhone -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Embarcaly">
+<link rel="apple-touch-icon" href="../brand/png/icon-180.png">
+<link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+  /* Sistema visual v3. Ver brand/IDENTIDADE.md.
+     O aplicativo roda em escuro, sempre. Laranja significa uma coisa só:
+     o tempo está contando. Numa tela de login, isso quase nunca acontece —
+     por isso o laranja aqui aparece só no botão e no contador de reenvio. */
+  :root {
+    --breu:      #1C1E3C;
+    --carta:     #262A54;
+    --azul:      #33366A;
+    --fio:       #414682;
+    --branco:    #FFFFFF;
+    --apoio:     #C9CBE4;
+    --fraco:     #7C80AE;
+    --laranja:   #ED8426;
+    --ok:        #2FBF87;
+    --crit:      #FF7A6E;
+
+    --txt:  "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
+    --dado: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+    --toque: 48px;   /* nada abaixo de 44px é tocável de verdade */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--breu); }
+  body {
+    margin: 0;
+    /* dvh acompanha a barra do navegador no celular, que 100vh ignora. */
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--breu);
+    color: var(--branco);
+    font-family: var(--txt);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: var(--laranja); }
+  a:hover { color: var(--branco); }
+
+  .mono { font-family: var(--dado); font-variant-numeric: tabular-nums; }
+  .rot {
+    font-family: var(--dado); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--fraco);
+  }
+
+  /* ---- estrutura: cartão centrado no desktop, tela cheia no celular ---- */
+  .tela {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: calc(env(safe-area-inset-top) + 28px) 20px calc(env(safe-area-inset-bottom) + 24px);
+  }
+  .cartao { width: 100%; max-width: 27rem; margin-inline: auto; }
+
+  @media (min-width: 40rem) {
+    .tela { padding-block: 48px; }
+    .cartao {
+      background: var(--carta);
+      border-top: 3px solid var(--laranja);
+      padding: 40px 40px 36px;
+    }
+  }
+
+  /* ---- marca ---- */
+  .marca { display: flex; align-items: center; gap: 9px; }
+  .marca .nome { font-size: 21px; font-weight: 700; letter-spacing: -0.04em; }
+  .marca .nome i { font-style: normal; color: var(--laranja); }
+
+  h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin: 28px 0 0; }
+  .sub { font-size: 15px; font-weight: 300; color: var(--apoio); line-height: 1.55; margin: 10px 0 0; }
+  .sub b { font-weight: 500; color: var(--branco); }
+
+  /* ---- campos ---- */
+  .campo { margin-top: 26px; }
+  .campo label { display: block; margin-bottom: 8px; }
+  input[type="email"] {
+    width: 100%;
+    min-height: var(--toque);
+    font-family: var(--txt);
+    font-size: 16px;            /* abaixo de 16px o iOS dá zoom ao focar */
+    color: var(--branco);
+    background: var(--breu);
+    border: 1.5px solid var(--fio);
+    border-radius: 0;
+    padding: 12px 14px;
+  }
+  @media (min-width: 40rem) { input[type="email"] { background: var(--breu); } }
+  input::placeholder { color: var(--fraco); }
+  input:focus { outline: none; border-color: var(--laranja); }
+  input[aria-invalid="true"] { border-color: var(--crit); }
+
+  /* ---- código de seis dígitos ---- */
+  .codigo { display: flex; gap: 8px; }
+  .codigo input {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 56px;
+    font-family: var(--dado);
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--branco);
+    background: var(--breu);
+    border: 1.5px solid var(--fio);
+    border-radius: 0;
+    padding: 0;
+  }
+  .codigo input:focus { outline: none; border-color: var(--laranja); }
+  .codigo.erro input { border-color: var(--crit); }
+
+  /* ---- botão ---- */
+  .btn {
+    display: block;
+    width: 100%;
+    min-height: var(--toque);
+    margin-top: 22px;
+    background: var(--laranja);
+    color: var(--branco);
+    font-family: var(--txt);
+    font-size: 16px;
+    font-weight: 700;
+    border: 0;
+    border-radius: 999px;
+    padding: 13px 24px;
+    cursor: pointer;
+  }
+  .btn:hover:not(:disabled) { background: #C96A16; }
+  .btn:disabled { opacity: 0.45; cursor: default; }
+
+  .link-b {
+    display: inline-block;
+    background: none;
+    border: 0;
+    padding: 10px 0;
+    margin: 0;
+    font-family: var(--txt);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--apoio);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .link-b:hover { color: var(--branco); }
+  .link-b:disabled { color: var(--fraco); cursor: default; text-decoration: none; }
+
+  .abaixo { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 6px; flex-wrap: wrap; }
+
+  /* ---- recados ---- */
+  .recado { font-size: 14px; line-height: 1.5; margin-top: 12px; }
+  .recado.ruim { color: var(--crit); }
+  .recado.bom { color: var(--ok); }
+
+  .nota {
+    border: 1px solid var(--fio);
+    padding: 13px 15px;
+    margin-top: 26px;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--apoio);
+    line-height: 1.55;
+  }
+  .nota b { font-weight: 500; color: var(--branco); }
+
+  /* ---- rodapé ---- */
+  .pe {
+    padding: 20px 20px calc(env(safe-area-inset-bottom) + 20px);
+    text-align: center;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--fraco);
+  }
+  .pe a { color: var(--apoio); text-decoration: none; }
+  .pe a:hover { color: var(--laranja); }
+  .pe .linha { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+  /* ---- selo de protótipo: esta tela ainda não fala com servidor nenhum ---- */
+  .selo {
+    position: fixed;
+    top: calc(env(safe-area-inset-top) + 10px);
+    right: 10px;
+    background: var(--azul);
+    color: var(--apoio);
+    font-family: var(--dado);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    padding: 5px 9px;
+    z-index: 5;
+  }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<span class="selo">PROTÓTIPO</span>
+
+<main class="tela">
+  <div class="cartao">
+
+    <div class="marca">
+      <svg width="26" height="26" viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="8" y="6" width="32" height="6.5" fill="#ED8426"/>
+        <rect x="8" y="20.75" width="23" height="6.5" fill="#FFFFFF"/>
+        <rect x="8" y="35.5" width="32" height="6.5" fill="#FFFFFF" opacity="0.55"/>
+        <rect x="8" y="6" width="6.5" height="36" fill="#FFFFFF"/>
+      </svg>
+      <span class="nome">embarca<i>ly</i></span>
+    </div>
+
+    <!-- ============ passo 1 · e-mail ============ -->
+    <section id="passo-email">
+      <h1>Entrar no Embarcaly</h1>
+      <p class="sub">
+        Digita o seu e-mail que eu mando um código. <b>Não tem senha.</b> Nem para criar conta,
+        nem para entrar.
+      </p>
+
+      <form id="form-email" novalidate>
+        <div class="campo">
+          <label class="rot" for="email">Seu e-mail</label>
+          <input type="email" id="email" name="email" inputmode="email" autocomplete="email"
+                 autocapitalize="off" autocorrect="off" spellcheck="false"
+                 placeholder="voce@email.com" required>
+        </div>
+        <p class="recado ruim" id="erro-email" hidden></p>
+        <button class="btn" type="submit" id="btn-email">Continuar</button>
+      </form>
+
+      <p class="nota">
+        Primeira vez por aqui? É o mesmo botão. O código cria a conta e entra, de uma vez só.
+      </p>
+    </section>
+
+    <!-- ============ passo 2 · código ============ -->
+    <section id="passo-codigo" hidden>
+      <h1>Confere o seu e-mail</h1>
+      <p class="sub">
+        Mandei um código de seis dígitos para <b id="eco-email">—</b>. Ele vale por 10 minutos.
+      </p>
+
+      <form id="form-codigo" novalidate>
+        <div class="campo">
+          <span class="rot" id="rot-codigo">Código</span>
+          <div class="codigo" id="caixas" role="group" aria-labelledby="rot-codigo" style="margin-top:8px">
+            <input inputmode="numeric" autocomplete="one-time-code" aria-label="Dígito 1">
+            <input inputmode="numeric" aria-label="Dígito 2">
+            <input inputmode="numeric" aria-label="Dígito 3">
+            <input inputmode="numeric" aria-label="Dígito 4">
+            <input inputmode="numeric" aria-label="Dígito 5">
+            <input inputmode="numeric" aria-label="Dígito 6">
+          </div>
+        </div>
+        <p class="recado" id="recado-codigo" hidden></p>
+        <button class="btn" type="submit" id="btn-codigo" disabled>Entrar</button>
+      </form>
+
+      <div class="abaixo">
+        <button class="link-b" type="button" id="btn-voltar">Trocar o e-mail</button>
+        <button class="link-b" type="button" id="btn-reenviar" disabled>Reenviar</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="pe">
+  <div class="linha">
+    <a href="../">Site</a>
+    <a href="../termos/">Termos</a>
+    <a href="../privacidade/">Privacidade</a>
+    <a href="mailto:contato@embarcaly.com">Ajuda</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var passoEmail   = document.getElementById('passo-email');
+  var passoCodigo  = document.getElementById('passo-codigo');
+  var formEmail    = document.getElementById('form-email');
+  var formCodigo   = document.getElementById('form-codigo');
+  var campoEmail   = document.getElementById('email');
+  var erroEmail    = document.getElementById('erro-email');
+  var ecoEmail     = document.getElementById('eco-email');
+  var btnEmail     = document.getElementById('btn-email');
+  var btnCodigo    = document.getElementById('btn-codigo');
+  var btnVoltar    = document.getElementById('btn-voltar');
+  var btnReenviar  = document.getElementById('btn-reenviar');
+  var recadoCodigo = document.getElementById('recado-codigo');
+  var caixas       = Array.prototype.slice.call(
+                       document.getElementById('caixas').querySelectorAll('input'));
+
+  var ESPERA = 30;          // segundos até liberar o reenvio
+  var relogio = null;
+
+  function valido(v) {
+    // Deliberadamente frouxo: quem valida e-mail de verdade é o código que chega.
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+  }
+
+  function mostrar(el, texto, classe) {
+    el.textContent = texto;
+    el.className = 'recado' + (classe ? ' ' + classe : '');
+    el.hidden = !texto;
+  }
+
+  // ---------------- passo 1 ----------------
+  formEmail.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = campoEmail.value.trim();
+
+    if (!valido(v)) {
+      campoEmail.setAttribute('aria-invalid', 'true');
+      mostrar(erroEmail, 'Esse e-mail não parece completo. Confere?', 'ruim');
+      campoEmail.focus();
+      return;
+    }
+
+    campoEmail.removeAttribute('aria-invalid');
+    erroEmail.hidden = true;
+    btnEmail.disabled = true;
+    btnEmail.textContent = 'Enviando';
+
+    // TODO backend: POST /auth/codigo { email } — envia o código de 6 dígitos.
+    // Enquanto não existe servidor, a tela só avança para o passo 2.
+    setTimeout(function () {
+      btnEmail.disabled = false;
+      btnEmail.textContent = 'Continuar';
+      ecoEmail.textContent = v;
+      passoEmail.hidden = true;
+      passoCodigo.hidden = false;
+      caixas[0].focus();
+      contar();
+    }, 400);
+  });
+
+  // ---------------- passo 2 ----------------
+  function codigo() {
+    return caixas.map(function (c) { return c.value; }).join('');
+  }
+
+  function conferir() {
+    btnCodigo.disabled = codigo().length !== 6;
+  }
+
+  function distribuir(inicio, texto) {
+    var digitos = String(texto || '').replace(/\D/g, '');
+    if (!digitos) { caixas[inicio].value = ''; conferir(); return; }
+    for (var k = 0; k < digitos.length && inicio + k < caixas.length; k++) {
+      caixas[inicio + k].value = digitos.charAt(k);
+    }
+    var ultima = Math.min(inicio + digitos.length, caixas.length - 1);
+    caixas[ultima].focus();
+    conferir();
+  }
+
+  caixas.forEach(function (caixa, i) {
+    caixa.addEventListener('input', function () {
+      // O que cair aqui pode ser mais de um dígito: dedo rápido, ou o
+      // preenchimento automático do iOS, que joga o código inteiro no campo
+      // focado. Fica o primeiro e o resto escorre para as caixas seguintes.
+      distribuir(i, caixa.value);
+    });
+
+    caixa.addEventListener('keydown', function (e) {
+      if (e.key === 'Backspace' && !caixa.value && i > 0) {
+        caixas[i - 1].focus();
+        caixas[i - 1].value = '';
+        conferir();
+        e.preventDefault();
+      }
+      if (e.key === 'ArrowLeft' && i > 0) { caixas[i - 1].focus(); e.preventDefault(); }
+      if (e.key === 'ArrowRight' && i < caixas.length - 1) { caixas[i + 1].focus(); e.preventDefault(); }
+    });
+
+    // Colar o código inteiro em qualquer caixa distribui pelas seis.
+    caixa.addEventListener('paste', function (e) {
+      var texto = (e.clipboardData || window.clipboardData).getData('text') || '';
+      if (!/\d/.test(texto)) return;
+      e.preventDefault();
+      distribuir(0, texto);
+    });
+  });
+
+  formCodigo.addEventListener('submit', function (e) {
+    e.preventDefault();
+    btnCodigo.disabled = true;
+    btnCodigo.textContent = 'Conferindo';
+
+    // TODO backend: POST /auth/entrar { email, codigo } — devolve a sessão.
+    setTimeout(function () {
+      btnCodigo.textContent = 'Entrar';
+      conferir();
+      document.getElementById('caixas').classList.add('erro');
+      mostrar(recadoCodigo,
+        'Ainda não existe servidor para conferir o código. Esta tela é o desenho, não o login.',
+        'ruim');
+    }, 500);
+  });
+
+  btnVoltar.addEventListener('click', function () {
+    if (relogio) { clearInterval(relogio); relogio = null; }
+    caixas.forEach(function (c) { c.value = ''; });
+    document.getElementById('caixas').classList.remove('erro');
+    recadoCodigo.hidden = true;
+    conferir();
+    passoCodigo.hidden = true;
+    passoEmail.hidden = false;
+    campoEmail.focus();
+    campoEmail.select();
+  });
+
+  function contar() {
+    var resta = ESPERA;
+    btnReenviar.disabled = true;
+    btnReenviar.textContent = 'Reenviar em ' + resta + 's';
+    if (relogio) clearInterval(relogio);
+    relogio = setInterval(function () {
+      resta -= 1;
+      if (resta <= 0) {
+        clearInterval(relogio);
+        relogio = null;
+        btnReenviar.disabled = false;
+        btnReenviar.textContent = 'Reenviar código';
+        return;
+      }
+      btnReenviar.textContent = 'Reenviar em ' + resta + 's';
+    }, 1000);
+  }
+
+  btnReenviar.addEventListener('click', function () {
+    // TODO backend: mesmo POST /auth/codigo do passo 1.
+    mostrar(recadoCodigo, 'Mandei outro código.', 'bom');
+    document.getElementById('caixas').classList.remove('erro');
+    contar();
+  });
+})();
+</script>
+
+</body>
+</html>
