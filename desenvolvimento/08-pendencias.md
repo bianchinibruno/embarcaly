@@ -2,12 +2,20 @@
 
 Tudo o que a documentação deixou em aberto, reunido num lugar só.
 
-**53 itens.** Sete grupos, por **quem decide** e **quando** — não por documento,
+**58 itens.** Sete grupos, por **quem decide** e **quando** — não por documento,
 porque ninguém revisa por documento.
 
-> **Leia o grupo G primeiro.** São decisões que eu tomei escrevendo, e que você
-> pode não concordar. Elas já estão dentro das histórias como se fossem
-> definitivas, e é o grupo de maior risco desta documentação inteira.
+> **Atualização de 15/09.** O grupo C foi conferido contra o **texto oficial**
+> da Resolução 400, extraído do PDF publicado no Diário Oficial da União
+> (14/12/2016, retificado em 15/12/2016) — não mais de memória. Onze pontos que
+> estavam marcados **⚠ confirmar** foram resolvidos por citação direta. Dois
+> afirmações da versão anterior **estavam erradas** e foram corrigidas. E
+> apareceram achados novos que nenhuma versão anterior tinha visto — o maior é
+> o [Achado 1](#achados-novos), uma seção inteira da norma que o produto não
+> modela. Detalhe completo em [`06-anac-completo.md`](06-anac-completo.md).
+>
+> **Leia o grupo G primeiro**, como antes. São decisões que eu tomei
+> escrevendo, e que você pode não concordar.
 
 ---
 
@@ -16,13 +24,21 @@ porque ninguém revisa por documento.
 | Quando | Grupo | Itens |
 |---|---|---|
 | **Agora** — custa minutos | [A · Verificações operacionais](#a--verificações-operacionais) | 5 |
-| **Agora** — custa minutos | [F · Correções no repositório](#f--correções-no-repositório) | 4 |
+| **Agora** — custa minutos | [F · Correções no repositório](#f--correções-no-repositório) | 5 |
 | **Antes da semana 5** (12/10) | [D · Contratações com custo](#d--contratações-com-custo) | 7 |
 | **Antes da semana 5** | [G · Decisões que eu tomei por você](#g--decisões-que-eu-tomei-por-você) | 10 |
-| **Semana 7** (26/10) | [C.11 · O quarto gatilho](#c--revisão-jurídica--semana-8) | 1 |
-| **Semana 8** (02/11) | [C · Revisão jurídica](#c--revisão-jurídica--semana-8) | 13 |
-| **Quando der** | [B · Decisões de produto em aberto](#b--decisões-de-produto-em-aberto) | 6 |
+| **Semana 7** (26/10) | [B · Decisões de produto em aberto](#b--decisões-de-produto-em-aberto) | 10 |
+| **Semana 8** (02/11) | [C · Revisão jurídica](#c--revisão-jurídica--semana-8) | 4 |
 | **Antes do G2** | [E · Números que eu inventei](#e--números-que-eu-inventei) | 7 |
+
+**Contagem por status do grupo C, para não perder o antes/depois:**
+
+| | Itens |
+|---|---|
+| Estava `⚠ confirmar`, **resolvido por citação direta** | 8 |
+| Estava **errado**, corrigido | 2 |
+| **Achado novo**, não existia em versão nenhuma | 3 |
+| Continua precisando do advogado | 4 |
 
 ---
 
@@ -36,75 +52,79 @@ Custam minutos e destravam coisas maiores. Nenhuma depende de decisão.
 | **A2** | **Testar um envio real em cada formulário.** Landing, captura, "quero conversar" | Formulário que não entrega é pior que ausência de formulário |
 | **A3** | **Conferir a quota do Formspree.** Os formulários compartilham o endpoint `mgaejzrr`, e são **50 envios por mês no total** | Uma peça de marketing que funcione queima a quota num dia, e os envios seguintes somem sem aviso |
 | **A4** | **Abrir `embarcaly.com` em Android e iPhone, e conferir as quatro páginas** | O domínio virou hoje. Vale confirmar que o certificado pegou nos dois |
-| **A5** | **Baixar a versão vigente da Resolução 400 de anac.gov.br** | Item C1. É o insumo de tudo na semana 7, e a 400 foi alterada desde 2016 |
+| **A5** | ~~Baixar a versão vigente da Resolução 400~~ **Feito.** Extraída do Diário Oficial de 14/12/2016. Continua em vigor sem alteração de conteúdo nos artigos citados aqui — ver [06-anac-completo.md §2](06-anac-completo.md#2--a-norma-e-o-que-a-alterou) | Só falta confirmar se a revisão em consulta pública (encerrada 09/03/2026) já foi publicada — **item A6** |
+| **A6** | **Confirmar em gov.br/anac se a revisão da Resolução 400 já saiu.** A consulta pública fechou em 09/03/2026, seis meses atrás; a ANAC pode ter publicado a norma nova desde então | Se sim, `06-anac-completo.md` inteiro precisa ser reconferido contra o texto novo |
 
 ---
 
 ## B · Decisões de produto em aberto
 
-Registradas em [`00-decisoes-tecnicas.md`](00-decisoes-tecnicas.md#o-que-não-está-decidido).
-Nenhuma bloqueia a documentação; todas bloqueiam alguma semana.
+Cresceu de 6 para 10 itens. Os quatro novos vieram da leitura do texto oficial
+— são direitos reais que a norma dá e que o produto hoje não sabe que existem.
+
+### Os quatro que apareceram na leitura do texto oficial
+
+| # | O quê | O que a norma diz | Detalhe |
+|---|---|---|---|
+| **B7** | **Alteração programada (art. 12) — funcionalidade nova, não uma tela** | Mudança de horário avisada com **menos de 72h**, ou alteração **> 30 min doméstico / 1h internacional** sem a pessoa concordar, dá direito a reacomodação ou reembolso — **mesmo sem atraso no dia do voo**. É um regime inteiro que o produto não modela | [06-anac-completo.md §9](06-anac-completo.md#9--achado-novo--a-alteração-programada-não-é-a-mesma-coisa-que-atraso) |
+| **B8** | **PNAE — hospedagem sem exigir pernoite** | Passageiro com Necessidade de Assistência Especial (Resolução 280/2013) e acompanhantes têm hospedagem garantida mesmo sem pernoite. É o **perfil 4 do ICP**, e hoje o produto não pergunta nada sobre isso | [06-anac-completo.md §4](06-anac-completo.md#passageiro-com-necessidade-de-assistência-especial) |
+| **B9** | **A exceção do art. 27, §3º** — quando a pessoa escolhe remarcar por conveniência ou pedir reembolso integral, a companhia **deixa de dever** assistência material. Hoje `direitos.ts` sempre mostra as duas listas juntas | Recomendação registrada: manter as duas sempre visíveis (nunca informa menos do que existe) e só ajustar a frase de balcão | [06-anac-completo.md §4](06-anac-completo.md#a-exceção-que-a-versão-anterior-não-tinha) |
+| **B10** | **Preterição negociada não é a mesma coisa que preterição involuntária** (art. 23) — quem aceita uma oferta da companhia no balcão não tem o piso de 250/500 DES do art. 24 | O formulário de "Não embarquei" precisa distinguir os dois casos, ou informa um direito que pode não existir | [06-anac-completo.md §6](06-anac-completo.md#preterição-voluntária-não-é-a-mesma-coisa) |
+
+### Os seis que já estavam registrados
 
 | # | O quê | Bloqueia |
 |---|---|---|
 | **B1** | **Valor dos três planos** — por viagem, por ano, vitalício | A oferta da semana 9. E a landing já diz "valor em definição" desde 14/09 |
 | **B2** | **A relação entre Embarcaly e Trilha Certa** | Nada técnico. Mas as duas marcas compartilham paleta e tipografia, e a decisão fica mais cara a cada peça publicada |
-| **B3** | **Escurecer o preenchimento dos botões para `#C96A16`?** Permitiria texto branco com contraste aprovado (4,6:1) | O checklist visual do v3. Hoje a regra é "nenhum texto branco sobre laranja", e ela restringe todo botão do produto |
-| **B4** | **Tema claro do app** — o sistema v3 assume só escuro | Se a loja exigir, é decisão nova. Está aberto em `brand/IDENTIDADE.md` |
+| **B3** | **Escurecer o preenchimento dos botões para `#C96A16`?** Permitiria texto branco com contraste aprovado (4,6:1) | O checklist visual do v3 |
+| **B4** | **Tema claro do app** — o sistema v3 assume só escuro | Se a loja exigir, é decisão nova |
 | **B5** | **A ilustração da marca** foi portada por inversão de paleta, sem revisão de desenho | Suficiente para tela e loja. Não revisado |
-| **B6** | **Publicar o app na web muda a conversa com a loja?** O produto passa a existir fora dela antes de estar nela | Nada impede. Mas é uma escolha de posicionamento que vale ser consciente |
+| **B6** | **Publicar o app na web muda a conversa com a loja?** | Nada impede. É escolha de posicionamento |
 
 ---
 
 ## C · Revisão jurídica — semana 8
 
-Os 11 pontos marcados **⚠ confirmar** em
-[`06-anac-completo.md`](06-anac-completo.md), mais três herdados.
+**Caiu de 14 para 4 itens.** Onze foram resolvidos por citação direta ao texto
+oficial — não precisam mais do advogado, precisam só de conferência de
+calendário (A6). Os quatro que sobram são genuinamente jurisprudenciais ou de
+calendário regulatório, e nenhum documento interno resolve sozinho.
 
-> **Eu não sou advogado e o documento diz isso na primeira linha.** A
-> transcrição da norma foi feita para virar código; onde ela pode estar
-> imprecisa, está marcado. Estes são os lugares onde a revisão precisa parar.
-
-### Resolução ANAC 400
-
-| # | Ponto | Consequência de estar errado |
+| # | Ponto | Por que continua do advogado |
 |---|---|---|
-| **C1** | **Versão vigente da Res. 400 e todas as alterações.** A 556/2020 é a que se conhece, e pode não ser a única | Toda a tabela do produto |
-| **C2** | Dispositivo da assistência com **passageiro a bordo e portas abertas** | Caso comum que o produto não trata hoje |
-| **C3** | Dispositivo do **traslado para quem reside na localidade** | Muda hospedagem por transporte. Já implementado, artigo não confirmado |
-| **C4** | **Prioridade de assistência a passageiro com necessidade especial** — idoso, criança desacompanhada | É o **perfil 4 do ICP**. Não é detalhe |
-| **C5** | Citação correta: **`art. 21, I, a`** para reacomodação e **`art. 21, I, b`** para remarcação | Hoje o código cita "art. 21" sem inciso. É o que a pessoa aponta no balcão |
-| **C6** | Dispositivo da **integralidade do reembolso, com a taxa de embarque** | Segunda maior consequência financeira do produto |
-| **C7** | **Momento do pagamento** da compensação do art. 24 | O código diz "paga na hora" |
-| **C8** | **Substituição da compensação** por crédito ou milhas, e o **direito de recusar** | É o que a companhia vai oferecer. O passageiro precisa saber que pode dizer não |
-| **C9** | A formulação sobre **Montreal** é suficiente sem citar valores? | Omitir limites pode gerar expectativa errada |
-| **C10** | **Prazos: 5 anos (CDC) no doméstico, 2 anos (Montreal, art. 35) no internacional**, e o alcance da tese do STF | É a seção de menor confiança do documento inteiro |
+| **C1** | **Se a revisão da Resolução 400 (consulta pública encerrada 09/03/2026) já foi publicada**, e o que ela muda | A proposta em consulta já sinalizava mudança na forma de informar alteração de voo e nas exceções por força maior |
+| **C9** | **Valor vigente dos limites da Convenção de Montreal** (art. 22) — hoje 5.346 DES para atraso de passageiro e 1.288 DES para bagagem, revisão de 28/12/2019 | A OACI revisa periodicamente. Pode ter havido revisão nova |
+| **C10** | **Prazo de dano moral em voo internacional: 2 ou 5 anos?** O Tema 210 do STF (2017) fixou 2 anos para dano **material**; o Tema 1240 aponta para a **inaplicabilidade** dos tratados a dano **moral**, o que devolveria o prazo ao CDC — 5 anos, igual ao doméstico | É a jurisprudência mais recente e menos assentada de todo este documento |
+| **C12** | **Revisão de `legal.ts` inteiro**, dos termos §5, e do campo de controlador na política — sem CNPJ ainda | Continuam minuta, como o próprio `legal.ts` diz no cabeçalho |
 
-### C11 · O quarto gatilho — **decisão sua, semana 7, não do advogado**
+### Resolvidos nesta revisão — não precisam mais do advogado
 
-O art. 21 lista **quatro** hipóteses: atraso, cancelamento, **interrupção do
-serviço** e preterição. `direitos.ts` modela três.
+Para você ver o que saiu da lista e por quê. Citação completa em
+[`06-anac-completo.md`](06-anac-completo.md).
 
-Interrupção é o voo que começa e não termina como contratado — pousa em aeroporto
-diferente, ou para no meio e não segue. Quem está em Confins a caminho de Recife
-tem os mesmos direitos do art. 21 e **não tem tela**.
-
-> **Não cobrir é aceitável. Não cobrir em silêncio não é** — a pessoa conclui que
-> não tem direito.
-
-Duas saídas: entra como quarto gatilho, ou o Socorro diz explicitamente que não
-cobre. **A segunda custa uma frase.**
-
-### Herdados
-
-| # | Ponto |
+| Era | Resolvido como |
 |---|---|
-| **C12** | **Revisão de `legal.ts` inteiro.** São minuta, e o próprio arquivo diz isso no cabeçalho |
-| **C13** | **Termos §5** e o campo de controlador na política de privacidade — não há CNPJ, e o [D7](../plano/00-decisoes.md) adia o MEI |
-| **C14** | **A política publicada diz que os dados ficam no aparelho.** Conta e servidor tornam isso parcialmente falso. Revisar **antes** de o backend subir |
+| Citação de `art. 21, I, a` e `art. 21, I, b` | **Não existe.** Reacomodação é `art. 28, I`; remarcação é `art. 28, II`. Corrigido nos dois documentos |
+| Compensação pode ser substituída por milhas, mediante concordância | **Não existe essa cláusula no art. 24.** A substituição por concordância existe, mas é de **hospedagem** do PNAE (art. 27, §2º), não de dinheiro |
+| Assistência com passageiro a bordo, portas abertas | Confirmado, sem exceção — texto literal do art. 27 |
+| Traslado para quem reside na localidade | Confirmado — art. 27, §1º, e precisão nova: é o **município do aeroporto de origem**, não "onde a pessoa mora" em sentido amplo |
+| Prioridade a passageiro com necessidade especial | Confirmado, com o nome oficial — **PNAE**, Resolução 280/2013 |
+| Reembolso integral com taxa de embarque | Confirmado por citação direta: art. 29 remete ao art. 4º, §1º, II — "tarifas aeroportuárias" |
+| Momento do pagamento da compensação do art. 24 | Confirmado — "imediatamente", por transferência, voucher ou espécie |
+| Interrupção do serviço — existe como gatilho oficial? | **Sim**, com artigo próprio (art. 25) e seção própria (art. 26, III). Vira decisão de produto — [G11](#g--decisões-que-eu-tomei-por-você) |
 
-**C14 é o mais urgente dos três.** É a única promessa publicada que o próprio
-plano torna falsa.
+### Achados novos
+
+Três coisas que nenhuma versão anterior deste plano mencionou, porque a leitura
+anterior era de memória, não do texto.
+
+1. **O art. 12 — alteração programada.** Ver B7 acima. É o maior achado desta
+   revisão: um regime de direito inteiro, provavelmente mais comum que atraso
+   de 4 horas, que o produto não sabe que existe.
+2. **PNAE sem pernoite.** Ver B8.
+3. **Preterição negociada (art. 23) não é preterição involuntária (art. 24).**
+   Ver B10.
 
 ---
 
@@ -124,15 +144,13 @@ plano torna falsa.
 | **D7** | **Conta Apple Developer** | Semana 9 | US$ 99/ano |
 
 **D1 é o mais urgente e o mais barato.** A verificação de identidade da Google
-leva dias e não depende de você. Push exige credencial FCM e build assinado, e o
-F3 é a semana 8 — abrir a conta na semana 9 chega tarde.
+leva dias e não depende de você.
 
 ---
 
 ## E · Números que eu inventei
 
-Metas e limites que escrevi nos documentos sem você ter definido. Estão lá como
-se fossem acordados.
+Metas e limites que escrevi nos documentos sem você ter definido.
 
 | # | Número | Onde | De onde veio |
 |---|---|---|---|
@@ -144,53 +162,51 @@ se fossem acordados.
 | **E6** | Código: TTL 10 min · 5 tentativas · 5 pedidos/e-mail e 20/IP por 15 min | [05-backend.md](05-backend.md) | Prática comum, não medida |
 | **E7** | Janela de silêncio do push: **23h–7h** no fuso do usuário | [US.014](historias/US-014-aviso-push.md) | Meu |
 
-**≥ 70% de importação sem correção** não está aqui porque é seu — é critério do
-G2 e já estava escrito.
-
 ---
 
 ## F · Correções no repositório
 
-Coisas que encontrei e não corrigi, por serem de outra sessão ou fora do escopo
-do que você pediu.
-
 | # | O quê | Onde |
 |---|---|---|
-| **F1** | **`brand/IDENTIDADE.md` diz que o DNS ainda responde no registrador.** Não responde — o domínio virou hoje, e o `DOSSIE.md` do mesmo commit já cita `embarcaly.com`. Os dois se contradizem | `brand/IDENTIDADE.md`, seção de pendências |
+| **F1** | **`brand/IDENTIDADE.md` diz que o DNS ainda responde no registrador.** Não responde — o domínio virou dia 15/09, e o `DOSSIE.md` do mesmo commit já cita `embarcaly.com` | `brand/IDENTIDADE.md`, seção de pendências |
 | **F2** | **`README.md` descreve `brand/MARCA.md`.** O arquivo é `brand/IDENTIDADE.md` | `README.md`, árvore de diretórios |
-| **F3** | **`app/manifest.webmanifest` aponta `start_url: "/app/"`**, que hoje é a tela de entrada em HTML. Vira o app exportado na [US.000](historias/US-000-export-web.md) | `app/manifest.webmanifest` |
-| **F4** | **O CI avisa que `actions/checkout@v4` e `setup-node@v4` usam Node 20, descontinuado.** Não quebra nada hoje; vai quebrar | `.github/workflows/ci.yml` |
+| **F3** | **`app/manifest.webmanifest` aponta `start_url: "/app/"`**, hoje a tela de entrada em HTML. Vira o app exportado na [US.000](historias/US-000-export-web.md) | `app/manifest.webmanifest` |
+| **F4** | O CI avisa que `actions/checkout@v4` e `setup-node@v4` usam Node 20, descontinuado | `.github/workflows/ci.yml` |
+| **F5** | **O guia em PDF converte DES para reais com valor fixo escrito no código**: "250 DES ficam perto de R$1.800 e 500 DES perto de R$3.600". Conferido hoje contra a cotação do dia (≈R$7,05/DES via XE): a diferença é pequena agora (~2%), mas o número **vai envelhecer sem avisar**, exatamente o que `AVISO_CALCULO` e a decisão de nunca converter DES existem para evitar. É um PDF **já publicado e baixável** em `guia-direitos-do-passageiro.pdf` | `plano/gerar-guia.py:445-446`. Não regerei o PDF sozinho — a correção certa é junto da atualização de conteúdo do guia com os achados do grupo B, não só trocar dois números |
 
 ---
 
 ## G · Decisões que eu tomei por você
 
-**O grupo mais importante desta lista.** Escrevendo as histórias, tomei decisões
-que não estavam em lugar nenhum. Elas estão dentro dos documentos com a mesma
-confiança do resto — e não deviam ter esse peso até você olhar.
+**O grupo mais importante desta lista.** Ganhou um item nesta revisão — G11 —
+porque a leitura do texto oficial trouxe um caso que eu precisei decidir para o
+documento continuar consistente.
 
 | # | O que decidi | O que descartei | Reverter custa |
 |---|---|---|---|
 | **G1** | **F4 antes de F3**, invertendo o cronograma | A ordem escrita no plano | Nada. É ordem de duas semanas |
-| **G2** | **O parser cobre só Latam e Gol**, a 100% | Os cinco remetentes do MVP escrito — Azul, Booking e Decolar saem | Nada agora. Muito na semana 6 |
+| **G2** | **O parser cobre só Latam e Gol**, a 100% | Os cinco remetentes do MVP escrito | Nada agora. Muito na semana 6 |
 | **G3** | **Conta Google Play na semana 5** | Semana 9, como estava | US$ 25 antes da hora |
 | **G4** | **"Adicionar à Carteira" é removido, não implementado** | Implementar Wallet | Nada. Wallet é fase 3 e é iOS |
-| **G5** | **A seção "Pessoais" do `DocsScreen` some** e não volta como tela | Guardar passaporte e seguro | Nada. E guardar documento de identidade muda o regime de privacidade do produto inteiro |
+| **G5** | **A seção "Pessoais" do `DocsScreen` some** e não volta como tela | Guardar passaporte e seguro | Nada |
 | **G6** | **Não existe tela de histórico de avisos.** Vira bloco dentro do Socorro | Tela própria | Nada |
-| **G7** | **A oferta aparece numa janela de 6 a 8 dias**, não exatamente em D-7 | D-7 exato | Nada. Quem não abre o app no dia exato nunca veria a oferta |
-| **G8** | **Só três campos obrigatórios na importação** — tipo, título, início | Exigir mais | Nada. Cada campo a mais é abandono |
-| **G9** | **`Conta` entra pelo topo da aba `Docs`**, não como sexta aba | Sexta aba | Nada. Seis abas não cabem em 375px com alvo de 44px |
+| **G7** | **A oferta aparece numa janela de 6 a 8 dias**, não exatamente em D-7 | D-7 exato | Nada |
+| **G8** | **Só três campos obrigatórios na importação** — tipo, título, início | Exigir mais | Nada |
+| **G9** | **`Conta` entra pelo topo da aba `Docs`**, não como sexta aba | Sexta aba | Nada |
 | **G10** | **`DelayForm` vira `ProblemaForm`** | Manter o nome | Nada |
+| **G11** | **Interrupção do serviço recomendada como quarta opção no mesmo formulário de cancelamento**, não como funcionalidade separada — ver [06-anac-completo.md §3](06-anac-completo.md#3--os-gatilhos--e-uma-correção-de-estrutura) | Um motor separado para interrupção, ou não cobrir | Nada. É uma opção a mais num formulário que já existe |
 
-**G2 é o que merece mais atenção.** É desvio explícito do MVP escrito, e a
-justificativa é de prazo: dois remetentes certos batem cinco a 40%, e o G2 pede
-≥ 70%. Se você discordar, a semana 6 muda de tamanho.
+**G2 continua o que merece mais atenção.** Se você discordar, a semana 6 muda
+de tamanho.
+
+**G11 é novo e é pequeno**, mas nasce de um direito real que a norma dá e que
+nenhuma versão anterior deste plano tinha visto — vale ler
+[06-anac-completo.md §3](06-anac-completo.md#3--os-gatilhos--e-uma-correção-de-estrutura)
+antes de aceitar a recomendação.
 
 ---
 
 ## O que **não** precisa da sua revisão
-
-Para você não gastar tempo procurando.
 
 | Não precisa | Por quê |
 |---|---|
@@ -200,3 +216,4 @@ Para você não gastar tempo procurando.
 | O texto das landings | Você revisou linha a linha |
 | As decisões DT1, DT4, DT5, DT7 a DT12 | Decorrem de fato verificado no repositório, não de opinião |
 | A regra "desconhecido é pergunta, nunca padrão" | É a correção de um defeito real, não uma preferência |
+| **A citação de artigo em `06-anac-completo.md` §4, 5 e 6** | Conferida contra o texto oficial nesta revisão, com trecho citado |
