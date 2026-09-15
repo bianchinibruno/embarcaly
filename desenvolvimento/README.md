@@ -20,6 +20,7 @@ código.
 2. **[01-arquitetura.md](01-arquitetura.md)** — onde cada coisa mora
 3. **[historias/](historias/README.md)** — **o backlog pronto para desenvolvimento**
 4. **[06-anac-completo.md](06-anac-completo.md)** — a tabela que falta no F4
+5. **[08-pendencias.md](08-pendencias.md)** — o que ainda depende de você
 
 > Se você veio para construir alguma coisa, vá direto para
 > **[`historias/`](historias/README.md)**. São 7 épicos e 24 User Stories no
@@ -31,7 +32,7 @@ código.
 | | |
 |---|---|
 | **[historias/](historias/README.md)** | **Épicos e User Stories · o que vai ser construído** ✅ |
-| [00-decisoes-tecnicas.md](00-decisoes-tecnicas.md) | DT1–DT6, o que descartei e o que reabre |
+| [00-decisoes-tecnicas.md](00-decisoes-tecnicas.md) | DT1–DT12, o que descartei e o que reabre |
 | [01-arquitetura.md](01-arquitetura.md) | Expo na web, a página do F5, sincronização, fronteiras |
 | [02-telas.md](02-telas.md) | Ficha por tela — a visão de conjunto que `historias/` detalha |
 | [03-ux.md](03-ux.md) | Os quatro perfis na interface, o momento de uso, acessibilidade |
@@ -39,6 +40,7 @@ código.
 | [05-backend.md](05-backend.md) | Endpoints, RLS, erros, o que nunca sai do aparelho |
 | [06-anac-completo.md](06-anac-completo.md) | **Cancelamento, preterição e internacional** — o insumo da semana 7 |
 | [07-criterios-de-pronto.md](07-criterios-de-pronto.md) | Aceite por tela e o checklist do v3 |
+| **[08-pendencias.md](08-pendencias.md)** | **53 itens que precisam da sua decisão** — leia o grupo G |
 
 ---
 
