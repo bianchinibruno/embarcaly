@@ -310,9 +310,9 @@ seus, e ela precisa de decisão antes de virar peça publicada.
 | `captura/index.html` | ✅ v3 |
 | `brand/gen_brand.py` e o kit | ✅ v3 |
 | `brand/gen_og.py` e `og-image.png` | ✅ v3 |
-| `marketing/gerar-artes.py` | 🔴 ainda no v2 |
-| `plano/gerar-guia.py` | 🔴 ainda no v2 |
-| `prototipo/index.html` | 🔴 ainda no v2 |
+| `marketing/gerar-artes.py` | ✅ v3 |
+| `plano/gerar-guia.py` | ✅ v3 |
+| `prototipo/index.html` | ✅ v3 |
 
 **O motor não muda.** `direitos.ts`, `cascata.ts` e `legal.ts` são domínio, não aparência.
 Os 305 testes continuam valendo.
@@ -323,7 +323,9 @@ Os 305 testes continuam valendo.
    unidades, o que é suficiente para tela e loja, mas não houve revisão de desenho
 2. **Tema claro do app.** Este sistema assume só escuro. Se a loja exigir, é decisão nova
 3. **Revisão jurídica** dos textos de `legal.ts` — cronograma semana 8, R$400
-4. **Domínio próprio.** As páginas ainda apontam para `bianchinibruno.github.io/embarcaly`
+4. **Apontar o domínio.** `embarcaly.com` está registrado e as páginas já citam ele,
+   mas o DNS ainda responde no registrador. Passo a passo em
+   [docs/trocar-dominio.md](../docs/trocar-dominio.md)
 
 ---
 

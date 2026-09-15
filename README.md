@@ -4,8 +4,8 @@
 uma sequência de próximas ações: o que fazer agora, o que vem depois, e qual
 documento você precisa ter em mãos naquele momento.
 
-> 🧭 **[Abrir a landing](https://bianchinibruno.github.io/embarcaly/)** ·
-> **[Abrir o protótipo](https://bianchinibruno.github.io/embarcaly/prototipo/)**
+> 🧭 **[Abrir a landing](https://embarcaly.com/)** ·
+> **[Abrir o protótipo](https://embarcaly.com/prototipo/)**
 
 ---
 
@@ -34,12 +34,24 @@ plano/                  plano de execução, 10/09/2026 → 03/01/2027
   templates/            recrutamento, entrevista, posts, landing, diário
   gerar-guia.py         gerador do PDF de direitos
 
+desenvolvimento/        o que falta construir, tela por tela
+  00-decisoes-tecnicas.md  DT1–DT12: o que está travado e o que reabre
+  06-anac-completo.md      a tabela da Resolução 400 — insumo da semana 7
+  historias/            7 épicos e 24 User Stories prontas para dev
+
 brand/                  identidade visual completa
   MARCA.md              manual de marca
   gen_brand.py          gerador dos assets
   gen_og.py             gerador da imagem de compartilhamento
   *.svg                 marca, lockup e ícone — claro, escuro e mono
   png/                  ícones de loja, favicons e .ico
+marketing/              plano de 6 meses, calendario editorial, ASO e artes
+vendas/                 playbook, precificacao e lancamento
+captura/index.html      landing de captura da lista de espera
+
+.claude/skills/social-embarcaly/
+                        skill mestre de social media - Instagram, TikTok,
+                        X, Threads e YouTube. Roda dentro do Claude Code
 docs/
   Embarcaly-Concept-Brief-v1.pdf
 ```

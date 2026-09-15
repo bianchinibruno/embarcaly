@@ -68,10 +68,10 @@ conta fica com você**, no celular, na fila, cansado.
 | | |
 |---|---|
 | Repositório | https://github.com/bianchinibruno/embarcaly |
-| Landing | https://bianchinibruno.github.io/embarcaly/ |
-| Captura | https://bianchinibruno.github.io/embarcaly/captura/ |
-| Guia em PDF | https://bianchinibruno.github.io/embarcaly/guia-direitos-do-passageiro.pdf |
-| Protótipo | https://bianchinibruno.github.io/embarcaly/prototipo/ |
+| Landing | https://embarcaly.com/ |
+| Captura | https://embarcaly.com/captura/ |
+| Guia em PDF | https://embarcaly.com/guia-direitos-do-passageiro.pdf |
+| Protótipo | https://embarcaly.com/prototipo/ |
 | Painel de controle | https://claude.ai/code/artifact/545256a7-8a0d-435e-a17d-854d2a967e49 |
 
 ---
