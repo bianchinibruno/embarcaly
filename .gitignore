@@ -22,8 +22,9 @@ __pycache__/
 CLAUDE.md
 raio-x.md
 
-# Config local de agentes
-.claude/
+# Config local de agentes (a pasta de skills e versionada)
+.claude/*
+!.claude/skills/
 
 # Saidas de export do Expo
 mobile/.export*/

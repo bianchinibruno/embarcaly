@@ -4,7 +4,8 @@
 
 Sub-documentos: [calendário editorial](01-calendario-editorial.md) ·
 [ASO da Play Store](02-aso-play-store.md) · [artes](artes/) ·
-[playbook de vendas](../vendas/00-playbook.md)
+[playbook de vendas](../vendas/00-playbook.md) ·
+[skill de social media](../.claude/skills/social-embarcaly/SKILL.md)
 
 ---
 
@@ -106,14 +107,25 @@ dogma.
 
 | Canal | Papel | Esforço | Quando entra |
 |---|---|---|---|
-| **Instagram** | O canal. Carrossel e reels | 80% | Semana 0 |
-| **TikTok** | Espelho do reels, mesmo arquivo | 5 min/peça | Semana 0 |
+| **Instagram** | O canal. Carrossel e reels | 60% | Semana 0 |
+| **TikTok** | Espelho do reels, mesmo arquivo. Alcance frio | 5 min/peça | Semana 0 |
 | **YouTube Shorts** | Espelho + cauda longa de busca | 5 min/peça | Semana 0 |
+| **X / Threads** | Autoridade e circulação entre quem escreve sobre viagem. Texto puro, sem arte | 10% | Semana 3 |
+| **YouTube longo** | 8 a 14 min por pergunta. O ativo que compõe por anos e alimenta o SEO do Mês 5 | 15% | Semana 12 |
 | **Reddit** (r/viagens) | Tático, duas vezes no plano | — | Semana 0 e 13 |
 | **Grupos de Facebook** | Recrutamento de entrevista | — | Semanas 1–2 |
 | **Play Store (ASO)** | Aquisição passiva permanente | contínuo | Semana 9 |
 | **Blog / SEO** | Composição de longo prazo | 1 texto/semana | **Mês 4** |
 | **Meta Ads** | Laboratório de mensagem, nunca aquisição | R$300 no total | Semanas 3 e 12 |
+
+> **Mudança de setembro de 2026.** X, Threads e YouTube longo entraram depois da
+> primeira versão deste plano. X e Threads custam quase nada — são o carrossel
+> virado em texto — e alcançam quem escreve sobre viagem, que é onde nasce
+> citação. O YouTube longo só entra na Fase 3, quando já existe produto para
+> mostrar na tela, e é o único canal aqui que ainda estará trabalhando em 2028.
+> O Instagram cai de 80% para 60% do esforço; o que sai vira espelho, não peça
+> nova. A execução das cinco redes está na
+> [skill de social media](../.claude/skills/social-embarcaly/SKILL.md).
 
 ## 7 · As quatro fases
 

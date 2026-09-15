@@ -223,7 +223,8 @@ def secao(p, rot, titulo, y=None):
     return y - 18
 
 
-def fecho(p, chamada="Salva pra quando precisar", linha2="Embarcaly · guia gratuito de direitos"):
+def fecho(p, chamada="Salva pra quando precisar", linha2="Embarcaly · guia gratuito de direitos",
+          ressalva="Conteúdo informativo. Não é consultoria jurídica."):
     c = p.c
     y = CH_ * 0.62
     c.setFont("AN-Bd", 62)
@@ -234,9 +235,12 @@ def fecho(p, chamada="Salva pra quando precisar", linha2="Embarcaly · guia grat
     y -= 30
     p.texto(p.M, y, linha2, "AR", 26, CHUMBO_2, p.CW * 0.86, 36)
     p.carimbo(CW_ * 0.68, CH_ * 0.26, ["guarde", "no celular"], ang=-6, tam=30)
+    c.setFont("CP", 17)
+    c.setFillColor(CHUMBO_3)
+    c.drawString(p.M, p.M + 36, ressalva)
     c.setFont("CP-Bd", 17)
     c.setFillColor(CHUMBO)
-    c.drawString(p.M, p.M + 6, "BIANCHINIBRUNO.GITHUB.IO/EMBARCALY")
+    c.drawString(p.M, p.M + 6, "EMBARCALY.COM")
 
 
 COL3 = [0, 190, 400]
@@ -246,9 +250,86 @@ FONTES2 = [("CP-Bd", 34, CHUMBO), ("AR-Sb", 30, CHUMBO)]
 
 
 # ------------------------------------------------------------------ P1
+def conclusao(p, linhas, tam=58, y0=None):
+    """A caixa laranja chapada atras da conclusao. Uma por peca.
+
+    Texto em azul-marinho 700 sobre o laranja: branco sobre #ED8426 da 2,6:1 e
+    reprova em qualquer tamanho (brand/IDENTIDADE.md).
+    """
+    c = p.c
+    y0 = y0 or CH_ * 0.40
+    alt = tam * 1.22 * len(linhas) + tam * 0.9
+    c.setFillColor(CARIMBO)
+    c.rect(p.M, y0, p.CW, alt, stroke=0, fill=1)
+    c.setFont("AN-Bd", tam)
+    c.setFillColor(AZUL)
+    yy = y0 + alt - tam * 1.28
+    for l in linhas:
+        c.drawString(p.M + 28, yy, l.upper())
+        yy -= tam * 1.22
+    return y0
+
+
+def marco_slide(p, marco, nome, det, fonte, peca):
+    """Uma faixa da tabela do art. 27: o marco, o direito, o artigo e a frase."""
+    c = p.c
+    c.setFont("CP-Bd", 170)
+    c.setFillColor(CARIMBO)
+    c.drawString(p.M, CH_ * 0.65, marco)
+    c.setFont("AN-Bd", 56)
+    c.setFillColor(CHUMBO)
+    c.drawString(p.M, CH_ * 0.565, nome.upper())
+    y = p.texto(p.M, CH_ * 0.49, det, "AR", 30, CHUMBO_2, p.CW * 0.94, 42)
+    c.setFont("CP-Bd", 20)
+    c.setFillColor(CHUMBO_3)
+    c.drawString(p.M, y - 18, fonte.upper())
+
+    alt = 190
+    y0 = CH_ * 0.13
+    c.setFillColor(BARRA)
+    c.rect(p.M, y0, p.CW, alt, stroke=0, fill=1)
+    c.setFillColor(CARIMBO)
+    c.rect(p.M, y0, 8, alt, stroke=0, fill=1)
+    c.setFont("CP-Bd", 19)
+    c.setFillColor(CARIMBO)
+    c.drawString(p.M + 30, y0 + alt - 38, "PEÇA NO BALCÃO, COM ESSAS PALAVRAS")
+    y = y0 + alt - 78
+    c.setFont("CP", 23)
+    c.setFillColor(CHUMBO)
+    for ln in p.wrap('"' + peca + '"', "CP", 23, p.CW - 60):
+        c.drawString(p.M + 30, y, ln)
+        y -= 32
+
+
+# IG-01 - a tabela de limiar. Todo numero, artigo e frase saem de
+# mobile/src/domain/direitos.ts. Nada aqui e escrito de cabeca.
+FAIXAS = [
+    ("AGORA", "Informação",
+     "A companhia precisa informar o atraso e atualizar a cada 30 minutos. "
+     "Silêncio é descumprimento e vira prova a seu favor.",
+     "Res. 400, art. 20",
+     "Qual a nova previsão de partida? Preciso de atualização a cada 30 minutos."),
+    ("+1h", "Comunicação",
+     "Internet e telefone por conta da companhia, para você avisar quem está "
+     "te esperando.",
+     "Res. 400, art. 27, I",
+     "Meu voo está com mais de uma hora de atraso. Quero a assistência material "
+     "de comunicação prevista na Resolução 400."),
+    ("+2h", "Alimentação",
+     "Voucher, refeição ou lanche conforme o horário. Se o atraso pegou o "
+     "almoço, é almoço.",
+     "Res. 400, art. 27, II",
+     "Já passou de duas horas. Quero o voucher de alimentação, por favor."),
+    ("+4h", "Hospedagem e traslado",
+     "Hotel mais transporte de ida e volta até ele.",
+     "Res. 400, art. 27, III",
+     "Passou de quatro horas. Preciso de hospedagem e do transporte até o hotel."),
+]
+
+
 def carrossel_limiares():
     pasta = os.path.join(SAIDA, "carrossel-01-limiares")
-    T = 7
+    T = 9
 
     slide(pasta, 1, T, lambda p: (
         gancho(p, ["Seu voo", "atrasou", "4 horas."], tam=104, y=CH_ * 0.74),
@@ -260,51 +341,51 @@ def carrossel_limiares():
     ))
 
     slide(pasta, 2, T, lambda p: (
-        secao(p, "o tamanho do problema", "E quase ninguém pede"),
-        p.texto(p.M, CH_ * 0.50,
+        secao(p, "a regra", "Olha o relógio, não o motivo"),
+        p.texto(p.M, CH_ * 0.52,
+                "Mau tempo, manutenção, tráfego aéreo: a assistência do art. 27 conta "
+                "tempo de espera. O motivo do atraso não muda o que a companhia deve.",
+                "AR", 33, CHUMBO_2, p.CW * 0.94, 46),
+        p.texto(p.M, CH_ * 0.30,
                 "Em 2018, 17 milhões de brasileiros tiveram voo atrasado ou cancelado. "
                 "Dois por cento pediram alguma coisa.",
-                "AR", 34, CHUMBO_2, p.CW * 0.92, 48),
-        p.texto(p.M, CH_ * 0.28,
-                "Não é falta de direito. É falta de saber.",
-                "AR-Sb", 34, CHUMBO, p.CW * 0.92, 48),
+                "AR-Sb", 31, CHUMBO, p.CW * 0.94, 44),
     ))
 
-    for i, (marco, nome, det) in enumerate([
-        ("+1h", "COMUNICAÇÃO", "Internet e telefone por conta da companhia. Dois minutos de ligação pra avisar quem está te esperando."),
-        ("+2h", "ALIMENTAÇÃO", "Voucher, refeição ou lanche conforme o horário. Se o atraso pegou o almoço, é almoço."),
-        ("+4h", "HOSPEDAGEM", "Hotel mais o transporte de ida e volta até ele. Se você mora na cidade, pode ser só o transporte."),
-    ], start=3):
-        def faz(p, marco=marco, nome=nome, det=det):
-            c = p.c
-            c.setFont("CP-Bd", 200)
-            c.setFillColor(CARIMBO)
-            c.drawString(p.M, CH_ * 0.62, marco)
-            c.setFont("AN-Bd", 64)
-            c.setFillColor(CHUMBO)
-            c.drawString(p.M, CH_ * 0.52, nome)
-            p.texto(p.M, CH_ * 0.42, det, "AR", 32, CHUMBO_2, p.CW * 0.94, 44)
-            c.setFillColor(BARRA)
-            c.rect(p.M, CH_ * 0.18, p.CW, 74, stroke=0, fill=1)
-            c.setFont("CP-Bd", 22)
-            c.setFillColor(CARIMBO)
-            c.drawString(p.M + 24, CH_ * 0.18 + 28, "PEÇA NO BALCÃO, COM ESSAS PALAVRAS")
+    for i, (marco, nome, det, fonte, peca) in enumerate(FAIXAS, start=3):
+        def faz(p, m=marco, n=nome, d=det, f=fonte, pc=peca):
+            marco_slide(p, m, n, d, f, pc)
         slide(pasta, i, T, faz)
 
-    slide(pasta, 6, T, lambda p: (
-        secao(p, "resumo", "Guarde assim"),
-        p.greenbar(CH_ * 0.60, [
-            ("+1h", "LIBERADO", "internet e telefone"),
-            ("+2h", "LIBERADO", "comida"),
-            ("+4h", "LIBERADO", "hotel e transporte"),
-        ], 98, COL3, FONTES3),
-        p.texto(p.M, CH_ * 0.24,
-                "Passou de 4h, ou cancelaram? Você escolhe entre outro voo, "
-                "reembolso integral, outro transporte ou remarcar sem custo.",
-                "AR", 28, CHUMBO_2, p.CW * 0.94, 40),
+    slide(pasta, 7, T, lambda p: (
+        secao(p, "exceção", "Se você mora na cidade"),
+        p.texto(p.M, CH_ * 0.52,
+                "Aí a companhia pode custear apenas o transporte de ida e volta entre "
+                "a sua casa e o aeroporto. O hotel deixa de fazer sentido, o traslado não.",
+                "AR", 33, CHUMBO_2, p.CW * 0.94, 46),
+        p.texto(p.M, CH_ * 0.30,
+                '"Passou de quatro horas e eu moro aqui. Quero o transporte de ida e '
+                'volta até a minha casa."',
+                "CP", 26, CHUMBO, p.CW * 0.94, 38),
     ))
 
-    slide(pasta, 7, T, lambda p: fecho(p))
+    slide(pasta, 8, T, lambda p: (
+        conclusao(p, ["Passou de 4 horas", "e foi de Uber pra casa?"], tam=58,
+                  y0=CH_ * 0.56),
+        p.texto(p.M, CH_ * 0.46, "Você pagou o que era conta da companhia.",
+                "AR-Sb", 34, CHUMBO, p.CW * 0.94, 46),
+        p.texto(p.M, CH_ * 0.34,
+                "A assistência não é favor e não depende de você reclamar bonito. É "
+                "obrigação, e tem artigo.",
+                "AR", 30, CHUMBO_2, p.CW * 0.94, 42),
+    ))
+
+    slide(pasta, 9, T, lambda p: fecho(
+        p,
+        chamada="Salva pra usar no aeroporto",
+        linha2="Nove folhas, quatro faixas e a frase de cada uma. "
+               "Você vai precisar em pé, com fila atrás.",
+    ))
     print("  carrossel-01-limiares:", T, "folhas")
 
 
